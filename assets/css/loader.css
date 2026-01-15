@@ -1,0 +1,71 @@
+/* Capa que cubre toda la pantalla */
+.page-loader{
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: grid;
+  place-items: center;
+
+  /* Fondo blanco difuminado */
+  background: rgba(255,255,255,0.75);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+
+  transition: opacity .6s ease, visibility .6s ease;
+}
+
+/* Contenedor del círculo */
+.loader-circle-37{
+  width: 140px;
+  height: 140px;
+  border-radius: 999px;
+  position: relative;
+  display: grid;
+  place-items: center;
+}
+
+/* Logo centrado */
+.loader-logo{
+  width: 96px;
+  height: 96px;
+  object-fit: contain;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.95);
+  padding: 6px;
+  z-index: 1;
+}
+
+/* Aro giratorio */
+.loader-circle-37::before{
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+
+  /* COLOR del aro */
+  color: #E31E24; /* rojo MSI */
+  /* color: #0047AB; */ /* azul */
+
+  box-shadow: inset -6px 0 0 6px currentColor;
+  clip: rect(0, 84px, 42px, 0);
+  animation: loader-circle-37-spin 1.2s infinite ease-in-out;
+}
+
+@keyframes loader-circle-37-spin{
+  0%   { transform: rotate(-180deg); }
+  50%  { transform: rotate(0);      box-shadow: inset -2px 0 0 2px currentColor; }
+  100% { transform: rotate(180deg); }
+}
+
+/* Ocultar loader */
+.page-loader.is-hidden{
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* Si ya visitaste, el loader NO se renderiza (evita el flash) */
+html.loader-off .page-loader{
+  display: none !important;
+}
+

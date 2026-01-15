@@ -1,0 +1,29 @@
+html {
+  scroll-behavior: smooth;
+}
+/* Entrada lenta desde la derecha SOLO para los botones flotantes */
+#floatingButtons{
+  opacity: 0;
+  transform: translateX(140px);
+  animation: floatBtnsIn 4s cubic-bezier(.12,.9,.2,1) forwards; /* <- más lento */
+  animation-delay: .35s; /* <- opcional, espera un poquito */
+  will-change: transform, opacity;
+}
+
+@keyframes floatBtnsIn{
+  to{
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Accesibilidad */
+@media (prefers-reduced-motion: reduce){
+  #floatingButtons{
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+
