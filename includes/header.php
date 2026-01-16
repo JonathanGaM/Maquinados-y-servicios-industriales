@@ -1,5 +1,13 @@
 
 <?php
+//---- años de experiencia dinamicas 
+  require_once __DIR__ . "/metrics.php";
+
+if (!defined("MSI_START_YEAR")) {
+  define("MSI_START_YEAR", 1994);
+}
+//------
+
   $currentPage = basename($_SERVER['PHP_SELF']);
 ?>
 

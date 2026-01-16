@@ -1,3 +1,4 @@
+<!-- footer.php -->
 <footer class="bg-deep-black pt-20 pb-10 border-t-4 border-primary-red">
 
   <div class="max-w-7xl mx-auto px-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-20">
@@ -121,9 +122,20 @@ target="_blank"
 
   <!-- BARRA INFERIOR -->
   <div class="max-w-7xl mx-auto px-8 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
-    <p class="text-gray-600 text-[10px] uppercase tracking-[0.2em]">
-      © 2026 Maquinados y Servicios Industriales. Calidad que Impulsa la Industria.
-    </p>
+   <?php
+  $fallbackYear = 2026;
+
+  try {
+    $year = (int) date("Y"); // año actual del servidor
+    if ($year < 2000 || $year > 2100) $year = $fallbackYear; // sanity check
+  } catch (Throwable $e) {
+    $year = $fallbackYear;
+  }
+?>
+<p class="text-gray-600 text-[10px] uppercase tracking-[0.2em]">
+  © <?php echo $year; ?> Maquinados y Servicios Industriales. Calidad que Impulsa la Industria.
+</p>
+
     <div class="flex items-center gap-6">
       <span class="text-[10px] text-gray-500 uppercase tracking-widest">Hecho en Mexico</span>
       <div class="w-12 h-[1px] bg-white/10"></div>
@@ -141,7 +153,6 @@ target="_blank"
 </button>
 
 
-
 <?php
 $currentPage = basename($_SERVER['PHP_SELF']);
 
@@ -153,24 +164,9 @@ if ($currentPage !== "contacto.php") {
 <script src="assets/js/loader.js"></script>
 
 <script>
-window.addEventListener("pageshow", () => {
-  const fb = document.getElementById("floatingButtons");
-  if (!fb) return;
-
-  fb.style.animation = "none";
-  fb.offsetHeight; // reflow
-
-  // misma duración que CSS (4s) + mismo delay (0.35s)
-  fb.style.animation = "floatBtnsIn 4s cubic-bezier(.12,.9,.2,1) forwards";
-  fb.style.animationDelay = ".35s";
-});
-</script>
-<script>
 const backToTop = document.getElementById("backToTop");
-
 function toggleBackToTop() {
   const y = window.scrollY || document.documentElement.scrollTop;
-
   if (y > 80) {
     backToTop.classList.remove("opacity-0", "pointer-events-none");
     backToTop.classList.add("opacity-100");
@@ -179,17 +175,21 @@ function toggleBackToTop() {
     backToTop.classList.remove("opacity-100");
   }
 }
-
 window.addEventListener("scroll", toggleBackToTop, { passive: true });
 document.addEventListener("DOMContentLoaded", toggleBackToTop);
-
-backToTop.addEventListener("click", () => {
-  window.scrollTo({ top: 0, behavior: "smooth" });
-});
+backToTop.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
 </script>
 
+<?php
+// ✅ Solo cargar el carrusel del hero en index.php
+if ($currentPage === "index.php") {
+  echo '<script src="assets/js/hero-carrusel.js"></script>';
+    echo '<script src="assets/js/hero-text-rotate.js"></script>';
 
+}
+?>
 
 </body>
-
 </html>
+
+

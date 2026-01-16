@@ -43,7 +43,7 @@
 
         <div class="flex flex-col items-center group">
           <span class="text-5xl md:text-6xl font-black text-white tracking-tighter mb-1 group-hover:text-primary-red transition-colors">
-            30+
+ <?= experience_decade(MSI_START_YEAR); ?>+
           </span>
           <span class="text-primary-red font-black tracking-[0.45em] text-[11px] uppercase">
             Años de Experiencia
@@ -132,20 +132,20 @@
 
       <!-- CARD: Soldadura -->
       <div class="group relative h-[520px] overflow-hidden border border-white/10 bg-navy-blue shadow-2xl">
-        <img
-          alt="Soldadura Industrial"
+         <img
+          alt="Tornos CNC"
           class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-          src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZ09B5wv6uIk2tIImsniQwNSKL3RsG6zE9aDP0OI2azXEa9oKdGmQPLjJ_j-KfT3HhwC0UCUm6SnX_N41epgELXa4xkG8qN7acqhHDn2ZZcc6gACYU50o4uKxTZW8KRoAD0_v-H6VD3Bc1MVytmHUIUodZW9lXmY8ngdjXlEBhB76zKPkticwvb4vO0yBzt8Wo_nzCH5PltzEeaFDoruFUXYmCq7EGARySgpX03HbBzBuDTSZkvo934twn95UpmNfpDdPu7byO4nS4"
+          src="https://www.metalmecanica.com/uploads/news-pictures/pphoto-3769.png"
         />
         <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-navy-blue/70 to-navy-blue/30"></div>
 
         <div class="absolute inset-0 p-10 flex flex-col justify-end">
-          <span class="material-symbols-outlined text-primary-red text-4xl mb-6">mfg_nest_yale_lock</span>
+          <span class="material-symbols-outlined text-primary-red text-4xl mb-6">smart_toy</span>
           <h3 class="text-2xl font-black text-white uppercase mb-4 leading-tight">
-            Soldadura <br/><span class="text-primary-red">Industrial</span>
+            <span class="text-primary-red">Tornos</span><br/>CNC
           </h3>
           <p class="text-gray-300 text-sm leading-relaxed mb-8">
-            Recuperación y unión de metales con procesos de soldadura eléctrica y autógena de grado industrial.
+            Producción en serie y piezas de alta complejidad técnica mediante control numérico computarizado.
           </p>
           <a href="contacto.php" class="bg-primary-red hover:bg-white hover:text-navy-blue transition-all text-white font-black text-[10px] tracking-widest uppercase py-4 px-8 self-start rounded-sm">
             Cotizar
@@ -224,30 +224,7 @@
 
     </div>
 
-    <!-- CARD FINAL CENTRADA: Tornos CNC -->
-    <div class="flex justify-center">
-      <div class="group relative h-[520px] overflow-hidden border border-white/10 bg-navy-blue shadow-2xl w-full md:w-2/3 lg:w-1/3">
-        <img
-          alt="Tornos CNC"
-          class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-          src="https://www.metalmecanica.com/uploads/news-pictures/pphoto-3769.png"
-        />
-        <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-navy-blue/70 to-navy-blue/30"></div>
-
-        <div class="absolute inset-0 p-10 flex flex-col justify-end">
-          <span class="material-symbols-outlined text-primary-red text-4xl mb-6">smart_toy</span>
-          <h3 class="text-2xl font-black text-white uppercase mb-4 leading-tight">
-            <span class="text-primary-red">Tornos</span><br/>CNC
-          </h3>
-          <p class="text-gray-300 text-sm leading-relaxed mb-8">
-            Producción en serie y piezas de alta complejidad técnica mediante control numérico computarizado.
-          </p>
-          <a href="contacto.php" class="bg-primary-red hover:bg-white hover:text-navy-blue transition-all text-white font-black text-[10px] tracking-widest uppercase py-4 px-8 self-start rounded-sm">
-            Cotizar
-          </a>
-        </div>
-      </div>
-    </div>
+   
 
   </div>
   
@@ -278,7 +255,7 @@
           class="absolute inset-0 w-full h-full object-cover grayscale brightness-[0.45] transition-all duration-700 group-hover:scale-110 group-hover:grayscale-0"
           src="https://cdn.club-magazin.autodoc.de/uploads/sites/11/2020/12/motor-de-combustion-interna-de-un-automovil.jpg"
         />
-        <div class="absolute inset-0 bg-deep-black/70 group-hover:bg-primary-red/80 transition-all duration-500 flex flex-col items-center justify-center p-6">
+        <div class="absolute inset-0 bg-deep-black/70 group-hover:bg-deep-black/20 transition-all duration-500 flex flex-col items-center justify-center p-6">
           <span class="material-symbols-outlined text-4xl mb-4 text-white">directions_car</span>
           <h5 class="text-white font-black uppercase tracking-widest text-lg">Automotriz</h5>
         </div>
@@ -291,7 +268,8 @@
           class="absolute inset-0 w-full h-full object-cover grayscale brightness-[0.45] transition-all duration-700 group-hover:scale-110 group-hover:grayscale-0"
           src="https://storage.googleapis.com/medium-feed.appspot.com/images%2F9353691196%2F15628bee6d866-1716899179_604_7-principais-materiais-usados-%25E2%2580%258B%25E2%2580%258Bem-motores-de-aeronaves-um-guia.jpg"
         />
-        <div class="absolute inset-0 bg-deep-black/70 group-hover:bg-primary-red/80 transition-all duration-500 flex flex-col items-center justify-center p-6">
+        <div class="absolute inset-0 bg-deep-black/70 group-hover:bg-deep-black/20
+ transition-all duration-500 flex flex-col items-center justify-center p-6">
           <span class="material-symbols-outlined text-4xl mb-4 text-white">flight</span>
           <h5 class="text-white font-black uppercase tracking-widest text-lg">Aeronáutica</h5>
         </div>
@@ -304,7 +282,8 @@
           class="absolute inset-0 w-full h-full object-cover grayscale brightness-[0.45] transition-all duration-700 group-hover:scale-110 group-hover:grayscale-0"
           src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtSTCbbFwtoOuDTFm4wtTfdsFb_TTA8NWY-Q&s"
         />
-        <div class="absolute inset-0 bg-deep-black/70 group-hover:bg-primary-red/80 transition-all duration-500 flex flex-col items-center justify-center p-6">
+        <div class="absolute inset-0 bg-deep-black/70 group-hover:bg-deep-black/20
+ transition-all duration-500 flex flex-col items-center justify-center p-6">
           <span class="material-symbols-outlined text-4xl mb-4 text-white">factory</span>
           <h5 class="text-white font-black uppercase tracking-widest text-lg">Metal-Mecánica</h5>
         </div>
@@ -315,9 +294,10 @@
         <img
           alt="Alimenticia"
           class="absolute inset-0 w-full h-full object-cover grayscale brightness-[0.45] transition-all duration-700 group-hover:scale-110 group-hover:grayscale-0"
-          src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJNVjBzyAR1abkbPp9sjxuQogGh1wMillxRuMEcg8XC6Qma00Fm9k3o5LZpoGngB3tbvENoo1FNVsV-6wcOUbud_kfvk997cbtwV_Vm-05BAbTIadRMthj4LaBTAqyDomzWbkPl7a3OJFOk1398T7OWqF8rLkH8oYNSyuYiKExV2GYw5wf3vunK1V-HlllCaiQROibu2P0A91qeOums1HSeijA9FY_r5mgJA-p4rJhbuSh0f4v42THqaSvlZXI3wUx-_qeJfRcAvSv"
+          src="https://www.rrhhdigital.com/wp-content/uploads/userfiles/fabrica-alimentacion-comida.jpg"
         />
-        <div class="absolute inset-0 bg-deep-black/70 group-hover:bg-primary-red/80 transition-all duration-500 flex flex-col items-center justify-center p-6">
+        <div class="absolute inset-0 bg-deep-black/70 group-hover:bg-deep-black/20
+ transition-all duration-500 flex flex-col items-center justify-center p-6">
           <span class="material-symbols-outlined text-4xl mb-4 text-white">restaurant</span>
           <h5 class="text-white font-black uppercase tracking-widest text-lg">Alimenticia</h5>
         </div>
@@ -328,9 +308,10 @@
         <img
           alt="Agrícola"
           class="absolute inset-0 w-full h-full object-cover grayscale brightness-[0.45] transition-all duration-700 group-hover:scale-110 group-hover:grayscale-0"
-          src="https://lh3.googleusercontent.com/aida-public/AB6AXuDrXGIfiqSQuLpzaNpiq50cWg5askEzKvfaQcNPjld8CkKsXy0RbIK6BOGRKFe_PE1m1o4GoejsXqhUXeXZrHjDAR8LN6K18urvIV8burjLuikJFyLqhIXykexRyddKCv1_YPhp2c1C4rRbdIeiSFI48q544GKkPF-nKzs5bCD8Zn4jDjtL0mfpSjWC9ZR9mfeqBikmdFnpOXazHUqijpHsn00MeoGy6gcjP8k2-oftShBsUG3oIpfPNOyuQOjCOVGCPOXnM-ff4HfX"
+          src="https://www.spmas.es/wp-content/uploads/2023/03/Post-3-PRL-Sector-Agricola.jpg"
         />
-        <div class="absolute inset-0 bg-deep-black/70 group-hover:bg-primary-red/80 transition-all duration-500 flex flex-col items-center justify-center p-6">
+        <div class="absolute inset-0 bg-deep-black/70 group-hover:bg-deep-black/20
+ transition-all duration-500 flex flex-col items-center justify-center p-6">
           <span class="material-symbols-outlined text-4xl mb-4 text-white">agriculture</span>
           <h5 class="text-white font-black uppercase tracking-widest text-lg">Agrícola</h5>
         </div>
@@ -341,9 +322,10 @@
         <img
           alt="Electrónica"
           class="absolute inset-0 w-full h-full object-cover grayscale brightness-[0.45] transition-all duration-700 group-hover:scale-110 group-hover:grayscale-0"
-          src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJNVjBzyAR1abkbPp9sjxuQogGh1wMillxRuMEcg8XC6Qma00Fm9k3o5LZpoGngB3tbvENoo1FNVsV-6wcOUbud_kfvk997cbtwV_Vm-05BAbTIadRMthj4LaBTAqyDomzWbkPl7a3OJFOk1398T7OWqF8rLkH8oYNSyuYiKExV2GYw5wf3vunK1V-HlllCaiQROibu2P0A91qeOums1HSeijA9FY_r5mgJA-p4rJhbuSh0f4v42THqaSvlZXI3wUx-_qeJfRcAvSv"
+          src="https://www.vencoel.com/wp-content/uploads/2023/11/normativas-electronica.jpg"
         />
-        <div class="absolute inset-0 bg-deep-black/70 group-hover:bg-primary-red/80 transition-all duration-500 flex flex-col items-center justify-center p-6">
+        <div class="absolute inset-0 bg-deep-black/70 group-hover:bg-deep-black/20
+ transition-all duration-500 flex flex-col items-center justify-center p-6">
           <span class="material-symbols-outlined text-4xl mb-4 text-white">memory</span>
           <h5 class="text-white font-black uppercase tracking-widest text-lg">Electrónica</h5>
         </div>

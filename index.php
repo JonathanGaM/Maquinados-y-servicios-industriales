@@ -1,184 +1,29 @@
+<!-- index.php-->
+
 <?php include "includes/header.php"; ?>
 
 <!-- ✅ SECUENCIA HERO (FONDO -> TITULO -> TEXTO+BOTONES) -->
-<link rel="stylesheet" href="assets/css/hero-seq.css">
-
-<style>
-/* ===== HERO TITLE PRO (GARANTIZADO) ===== */
-.hero-title{
-  position: relative;
-  text-rendering: geometricPrecision;
-  -webkit-font-smoothing: antialiased;
-  filter: drop-shadow(0 18px 28px rgba(0,0,0,.45));
-}
-
-/* Cada línea entra con fade + slide + blur (pro) */
-.hero-line{
-  display: inline-block;
-  opacity: 0;
-  transform: translateY(22px);
-  filter: blur(8px);
-  animation: heroIn .9s cubic-bezier(.2,.9,.2,1) forwards;
-}
-
-/* Escalonado (stagger) */
-.hero-line:nth-of-type(1){ animation-delay: .15s; }
-.hero-line:nth-of-type(2){ animation-delay: .30s; }
-.hero-line:nth-of-type(3){ animation-delay: .45s; }
-
-/* Brillo metálico sutil (una pasada) */
-.hero-title::after{
-  content:"";
-  position:absolute;
-  inset:-18px -40px;
-  background: linear-gradient(115deg,
-    rgba(255,255,255,0) 0%,
-    rgba(255,255,255,.12) 45%,
-    rgba(255,255,255,0) 65%
-  );
-  transform: translateX(-130%) skewX(-12deg);
-  animation: heroShine 1.2s ease-out forwards;
-  animation-delay: .65s;
-  pointer-events:none;
-  mix-blend-mode: screen;
-  opacity: .9;
-}
-
-@keyframes heroIn{
-  to{
-    opacity: 1;
-    transform: translateY(0);
-    filter: blur(0);
-  }
-}
-
-@keyframes heroShine{
-  to{
-    transform: translateX(130%) skewX(-12deg);
-    opacity: 0;
-  }
-}
-
-/* Accesibilidad */
-@media (prefers-reduced-motion: reduce){
-  .hero-line, .hero-title::after{
-    animation:none !important;
-    opacity:1 !important;
-    transform:none !important;
-    filter:none !important;
-  }
-}
-
-/* ===== CONTRASTE PREMIUM PARA TITULO HERO (AZUL REY SIN CAMBIAR COLOR) ===== */
-.hero-title{
-  text-shadow:
-    0 1px 0 rgba(255,255,255,.22),
-    0 10px 22px rgba(0,0,0,.55);
-  -webkit-text-stroke: .45px rgba(255,255,255,.35);
-}
-
-/* brillo/reflejo extra sobre cada línea (sutil y pro) */
-.hero-line{
-  position: relative;
-}
-
-.hero-line::after{
-  content:"";
-  position:absolute;
-  inset:-6px -10px;
-  background: linear-gradient(115deg,
-    rgba(255,255,255,0) 0%,
-    rgba(255,255,255,.18) 45%,
-    rgba(255,255,255,0) 65%
-  );
-  transform: translateX(-140%) skewX(-12deg);
-  animation: lineShine 1.4s ease-out forwards;
-  animation-delay: inherit;
-  pointer-events:none;
-  mix-blend-mode: screen;
-  opacity: .9;
-}
-
-@keyframes lineShine{
-  to{
-    transform: translateX(140%) skewX(-12deg);
-    opacity: 0;
-  }
-}
-
-/* Carrusel logos */
-@keyframes logoScroll {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
-}
-.animate-logo-scroll {
-  width: max-content;
-  animation: logoScroll 25s linear infinite;
-}
-
-
-
-/*carrucel de hero */
-
-</style>
-
+<link rel="stylesheet" href="assets/css/hero-animaciones.css">
+<link rel="stylesheet" href="assets/css/hero-estilos.css">
 <section id="hero" class="relative min-h-[90vh] flex items-center overflow-hidden bg-deep-black">
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  const heroImages = [
-    "https://brr.mx/wp-content/uploads/2024/01/image-19.png",
-    "https://www.boyiprototyping.com/wp-content/uploads/2024/07/what-is-a-lathe-1024x577.webp",
-    "https://www.frmaquinaria.com/wp-content/uploads/2021/01/Banner-FR-Maquinaria-2021.jpg",
-    "https://lh3.googleusercontent.com/aida-public/AB6AXuClbVtyJae0malhxuUoC3raax3boT7IqjdA0Wo6oBPQsoUBOaVoY_Tfr4sgz5mh4cI6P6HDdgL_hf9TRAiHXF1OnrNc951RrJVkrSYnqacgx7nCsuYFDTMgcUTf4TmtOLAmfHlPTEknJ9Pg5SwbD_6Yx7UYWNEq9FEmpMi-v0McZco4Yr_5Ijb09hwbu_IspTJR-ArEmwoNnGiFXOBjIHi5CT8KVkJndU4i3wtxk9bNrnyJrI6otW37r1rag69yP4oprKeEbQZ17pec",
-    "https://lh3.googleusercontent.com/aida-public/AB6AXuDdkqm1fznG0VDQM985giOOyg2-RQ32lyT7FhWr0fvgmBDp3sXoshDOSbKs3Bo25lcLbJaUVssfmasKdsTDDVudARrgqAXAYx8QsHDHV-J6jiVsu-Ojuom9flxDOybFNqE_2H3313IB-uLWjEROONEJ9Ctb5jh1XJoiZoKSS3N-2kOxyYNVozcou0tEI7A0kro31o2wtzx7d9yx4cP5Jm7Cj5jhdykJmVQ-9bBNUkf2YmQTFGvQ8t8hLoO6R5uQsB78doe5uUq-U4mx"
-  ];
-
-  let heroIndex = 0;
-  const heroBg = document.getElementById("hero-bg");
-  const heroSection = document.getElementById("hero");
-
-  if (!heroBg || !heroSection) return;
-
-  /* ========= 1) SLIDER (se mantiene) ========= */
-  setInterval(() => {
-    heroBg.style.opacity = "0";
-    setTimeout(() => {
-      heroIndex = (heroIndex + 1) % heroImages.length;
-      heroBg.src = heroImages[heroIndex];
-      heroBg.style.opacity = "1";
-    }, 500);
-  }, 6000);
-
-  /* ========= 2) SECUENCIA (FONDO -> TITULO -> TEXTO+BOTONES) ========= */
-  const runSequence = () => {
-    heroSection.classList.add("run-title");
-    setTimeout(() => heroSection.classList.add("show-surround"), 400);
-  };
-
-  // Si el CSS del fondo trae animación, usamos el evento real (mejor)
-  heroBg.addEventListener("animationend", runSequence, { once: true });
-
-  // Backup por si no dispara animationend (por cache o reduce motion)
-  setTimeout(() => {
-    if (!heroSection.classList.contains("run-title")) runSequence();
-  }, 800);
-});
-</script>
-
-
-
   <!-- FONDO -->
-  <div class="absolute inset-0 z-0">
-    <div class="absolute inset-0 bg-gradient-to-r from-deep-black via-deep-black/85 to-transparent z-10"></div>
-
-    <img
-      id="hero-bg"
-      alt="Industrial background"
-      class="w-full h-full object-cover opacity-80 saturate-110 brightness-90 contrast-105 transition-opacity duration-1000"
-      src="https://miro.medium.com/v2/resize:fit:720/format:webp/1*E_NfoODmC-93DOwzsS5e4Q.jpeg"
-    />
-  </div>
-
+ <div  id="hero-bg-wrap"  class="absolute inset-0 z-0">
+  <div class="absolute inset-0 bg-gradient-to-r from-deep-black via-deep-black/85 to-transparent z-10"></div>
+  <!-- Capa actual -->
+  <img
+    id="hero-bg-a"
+    class="hero-bg-layer is-active"
+    alt="Industrial background"
+    src="https://miro.medium.com/v2/resize:fit:720/format:webp/1*E_NfoODmC-93DOwzsS5e4Q.jpeg"
+  />
+  <!-- Capa siguiente (arranca invisible) -->
+  <img
+    id="hero-bg-b"
+    class="hero-bg-layer"
+    alt=""
+    src=""
+  />
+</div>
   <!-- CONTENIDO -->
   <div class="relative z-20 max-w-7xl mx-auto px-8 w-full">
     <div class="max-w-3xl">
@@ -198,25 +43,30 @@ document.addEventListener("DOMContentLoaded", () => {
       </h1>
 
       <!-- ✅ TEXTO + BOTONES (aparecen al final juntos) -->
-      <div class="hero-surround">
-        <p class="text-xl text-gray-300 mb-10 max-w-xl font-light leading-relaxed border-l-4 border-primary-red pl-6">
-          Fabricación, maquila y reparación de componentes críticos para la industria global con precisión certificada.
-        </p>
+ <div class="hero-surround">
 
-        <div class="flex flex-wrap gap-4">
-          <a href="servicios.php"
-             class="bg-primary-red hover:bg-red-700 px-8 py-4 text-sm font-bold uppercase tracking-widest rounded-sm
-                    flex items-center gap-3 text-white transition-all shadow-xl shadow-red-900/40">
-            NUESTROS SERVICIOS
-            <span class="material-symbols-outlined text-sm">arrow_forward</span>
-          </a>
+  <!-- ✅ Texto que cambiará -->
+  <p id="hero-rotating-text"
+     class="text-xl text-gray-300 mb-10 max-w-xl font-light leading-relaxed border-l-4 border-primary-red pl-6">
+    Fabricación, maquila y reparación de componentes críticos para la industria global con precisión certificada.
+  </p>
 
-          <a href="#infraestructura"
-             class="border-2 border-white hover:bg-white hover:text-navy-blue px-8 py-4 text-sm font-bold
-                    uppercase tracking-widest rounded-sm transition-all text-white inline-block">
-            Ver Catálogo
-          </a>
-        </div>
+  <!-- ✅ Botones -->
+  <div class="flex flex-wrap gap-4">
+    <a href="servicios.php"
+       class="hero-cta bg-primary-red hover:bg-red-700 px-8 py-4 text-sm font-bold uppercase tracking-widest rounded-sm
+              flex items-center gap-3 text-white transition-all shadow-xl shadow-red-900/40">
+      NUESTROS SERVICIOS
+      <span class="material-symbols-outlined text-sm">arrow_forward</span>
+    </a>
+
+    <a href="#infraestructura"
+       class="hero-cta border-2 border-white hover:bg-white hover:text-navy-blue px-8 py-4 text-sm font-bold
+              uppercase tracking-widest rounded-sm transition-all text-white inline-block">
+      Ver Catálogo
+    </a>
+  </div>
+</div>
       </div>
 
     </div>
@@ -249,10 +99,14 @@ document.addEventListener("DOMContentLoaded", () => {
                src="https://imagedelivery.net/xaKlCos5cTg_1RWzIu_h-A/b3832b78-7ebb-4f53-cf2c-fcb63464ab00/public"/>
 
           <div class="absolute -bottom-6 -right-6 bg-primary-red p-8 rounded-sm shadow-2xl skew-box">
-            <div class="skew-box-inner text-center text-white">
-              <span class="block text-4xl font-black">30+</span>
-              <span class="text-[10px] uppercase tracking-widest font-bold">Años de Liderazgo</span>
-            </div>
+             <div class="skew-box-inner text-center text-white">
+  <span class="block text-4xl font-black">
+    <?= experience_decade(MSI_START_YEAR); ?>+
+  </span>
+  <span class="text-[10px] uppercase tracking-widest font-bold">
+    Años de Liderazgo
+  </span>
+</div>
           </div>
         </div>
       </div>
@@ -391,5 +245,6 @@ document.addEventListener("DOMContentLoaded", () => {
     </div>
   </div>
 </section>
+
 
 <?php include "includes/footer.php"; ?>

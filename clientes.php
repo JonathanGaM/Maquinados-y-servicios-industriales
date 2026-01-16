@@ -36,7 +36,7 @@
   <div class="max-w-7xl mx-auto px-8 md:px-12">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
       <div class="flex items-center gap-6">
-        <span class="text-7xl font-black text-primary-red">30+</span>
+        <span class="text-7xl font-black text-primary-red"> <?= experience_decade(MSI_START_YEAR); ?>+</span>
         <div>
           <h3 class="text-2xl font-black text-navy-blue uppercase tracking-tight">Años de Experiencia</h3>
           <p class="text-sm font-bold text-gray-400 uppercase tracking-widest">Trayectoria comprobada en el mercado</p>

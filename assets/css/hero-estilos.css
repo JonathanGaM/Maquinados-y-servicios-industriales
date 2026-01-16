@@ -1,0 +1,111 @@
+/* ===== hero-estilos.css  ===== */
+
+
+.hero-title{
+  position: relative;
+  text-rendering: geometricPrecision;
+  -webkit-font-smoothing: antialiased;
+  filter: drop-shadow(0 18px 28px rgba(0,0,0,.45));
+}
+
+.hero-line{
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(22px);
+  filter: blur(8px);
+  animation: heroIn .9s cubic-bezier(.2,.9,.2,1) forwards;
+}
+
+.hero-line:nth-of-type(1){ animation-delay: .15s; }
+.hero-line:nth-of-type(2){ animation-delay: .30s; }
+.hero-line:nth-of-type(3){ animation-delay: .45s; }
+
+.hero-title::after{
+  content:"";
+  position:absolute;
+  inset:-18px -40px;
+  background: linear-gradient(115deg,
+    rgba(255,255,255,0) 0%,
+    rgba(255,255,255,.12) 45%,
+    rgba(255,255,255,0) 65%
+  );
+  transform: translateX(-130%) skewX(-12deg);
+  animation: heroShine 1.2s ease-out forwards;
+  animation-delay: .65s;
+  pointer-events:none;
+  mix-blend-mode: screen;
+  opacity: .9;
+}
+
+@keyframes heroIn{
+  to{
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes heroShine{
+  to{
+    transform: translateX(130%) skewX(-12deg);
+    opacity: 0;
+  }
+}
+
+.hero-line::after{
+  content:"";
+  position:absolute;
+  inset:-6px -10px;
+  background: linear-gradient(115deg,
+    rgba(255,255,255,0) 0%,
+    rgba(255,255,255,.18) 45%,
+    rgba(255,255,255,0) 65%
+  );
+  transform: translateX(-140%) skewX(-12deg);
+  animation: lineShine 1.4s ease-out forwards;
+  animation-delay: inherit;
+  pointer-events:none;
+  mix-blend-mode: screen;
+  opacity: .9;
+}
+
+@keyframes lineShine{
+  to{
+    transform: translateX(140%) skewX(-12deg);
+    opacity: 0;
+  }
+}
+
+@keyframes logoScroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.animate-logo-scroll {
+  width: max-content;
+  animation: logoScroll 25s linear infinite;
+}
+
+/* ===== Crossfade suave de fondo (2 capas) ===== */
+.hero-bg-layer{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+
+  /* tu look */
+  opacity: 0;
+  filter: saturate(1.1) brightness(.9) contrast(1.05);
+  transform: scale(1.03);
+
+  /* aquí está lo suave */
+  transition: opacity 1200ms ease, transform 6000ms ease;
+  will-change: opacity, transform;
+}
+
+.hero-bg-layer.is-active{
+  opacity: .85;        /* respeta tu estilo */
+  transform: scale(1.08); /* movimiento lento tipo “ken burns” */
+}
+/* ===== Contraste extra para el título (azul + borde claro) ===== */

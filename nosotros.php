@@ -63,34 +63,46 @@
 </section>
 
 
-  <!-- 30 AÑOS (YA NO BLANCO) -->
-  <section class="py-16 bg-navy-blue border-b border-white/10">
-    <div class="max-w-7xl mx-auto px-12 flex flex-col md:flex-row items-start md:items-center justify-between gap-12">
-      <div class="flex items-center gap-8">
-        <span class="text-8xl font-black text-white/10 select-none">30+</span>
-        <div class="border-l-4 border-primary-red pl-6">
-          <h3 class="text-4xl font-black uppercase leading-tight tracking-tight text-white">
-            Más de 30 años
-          </h3>
-          <p class="text-sm font-bold text-gray-300 uppercase tracking-widest mt-2">
-            liderando la industria de precisión
-          </p>
-        </div>
-      </div>
+  <!-- AÑOS DE EXPERIENCIA (DINÁMICO POR DÉCADAS) -->
+<section class="py-16 bg-navy-blue border-b border-white/10">
+  <div class="max-w-7xl mx-auto px-12 flex flex-col md:flex-row items-start md:items-center justify-between gap-12">
+    
+    <div class="flex items-center gap-8">
+      <!-- NÚMERO GRANDE -->
+      <span class="text-8xl font-black select-none
+             bg-gradient-to-b from-white/40 via-white/20 to-white/5
+             bg-clip-text text-transparent
+             drop-shadow-[0_6px_20px_rgba(255,255,255,0.15)]">
+  <?= experience_decade(MSI_START_YEAR); ?>+
+</span>
 
-      <div class="flex items-center gap-6 bg-deep-black/50 border border-white/10 py-6 px-10 rounded-sm">
-        <span class="material-symbols-outlined text-primary-red text-5xl">verified_user</span>
-        <div>
-          <p class="text-xs font-black text-primary-red uppercase tracking-[0.2em] mb-1">
-            Certificación Total
-          </p>
-          <p class="text-base font-bold text-white uppercase tracking-wider">
-            Confianza & Calidad <br />Garantizada
-          </p>
-        </div>
+      <div class="border-l-4 border-primary-red pl-6">
+        <!-- TEXTO PRINCIPAL -->
+        <h3 class="text-4xl font-black uppercase leading-tight tracking-tight text-white">
+          Más de <?= experience_decade(MSI_START_YEAR); ?> años
+        </h3>
+
+        <p class="text-sm font-bold text-gray-300 uppercase tracking-widest mt-2">
+          liderando la industria de precisión
+        </p>
       </div>
     </div>
-  </section>
+
+    <div class="flex items-center gap-6 bg-deep-black/50 border border-white/10 py-6 px-10 rounded-sm">
+      <span class="material-symbols-outlined text-primary-red text-5xl">verified_user</span>
+      <div>
+        <p class="text-xs font-black text-primary-red uppercase tracking-[0.2em] mb-1">
+          Certificación Total
+        </p>
+        <p class="text-base font-bold text-white uppercase tracking-wider">
+          Confianza & Calidad <br />Garantizada
+        </p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
 
   <!-- MISIÓN / VISIÓN -->
 <!-- MISIÓN / VISIÓN PREMIUM BLANCO -->
