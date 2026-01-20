@@ -5,7 +5,8 @@ declare(strict_types=1);
 /**
  * Año actual seguro (fallback si algo falla).
  */
-function safe_current_year(int $fallbackYear = 2026): int {
+function safe_current_year(int $fallbackYear = 2026): int
+{
   try {
     $y = (int) date('Y');
     return ($y >= 2000 && $y <= 2100) ? $y : $fallbackYear;
@@ -20,7 +21,8 @@ function safe_current_year(int $fallbackYear = 2026): int {
  * - $defaultDecade: por defecto 30
  * - $step: tamaño de salto (10 = décadas)
  */
-function experience_decade(int $startYear, int $minDecade = 30, int $step = 10, int $fallbackYear = 2026): int {
+function experience_decade(int $startYear, int $minDecade = 30, int $step = 10, int $fallbackYear = 2026): int
+{
   try {
     $currentYear = safe_current_year($fallbackYear);
     $exp = $currentYear - $startYear;
@@ -35,4 +37,3 @@ function experience_decade(int $startYear, int $minDecade = 30, int $step = 10, 
     return $minDecade;
   }
 }
-

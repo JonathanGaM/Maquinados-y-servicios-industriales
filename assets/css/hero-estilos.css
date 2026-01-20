@@ -109,3 +109,28 @@
   transform: scale(1.08); /* movimiento lento tipo “ken burns” */
 }
 /* ===== Contraste extra para el título (azul + borde claro) ===== */
+/* ===== CONTRASTE REAL PARA HERO TITLE (ANTI-BUG FILTER) ===== */
+.hero-line{
+  position: relative;
+  color: #0047AB; /* royal blue */
+}
+
+/* contorno claro duplicando texto */
+.hero-line::before{
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+
+  color: #ffffff;
+  opacity: .85;
+
+  /* “borde” manual */
+  transform:
+    translate(-1px, 0)
+    translate(1px, 0)
+    translate(0, -1px)
+    translate(0, 1px);
+
+  filter: none;
+}

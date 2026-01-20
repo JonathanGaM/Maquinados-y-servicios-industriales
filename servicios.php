@@ -12,7 +12,7 @@
     <div class="industrial-grid absolute inset-0 opacity-10"></div>
   </div>
 
-  <div class="max-w-7xl mx-auto px-8 relative z-10 w-full">
+  <div  class="reveal zoom-text max-w-7xl mx-auto px-8 relative z-10 w-full">
     <div class="flex flex-col items-center text-center">
 
       <!-- Badge más compacto -->
