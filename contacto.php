@@ -46,6 +46,7 @@ function e(string $v): string {
 $waRaw = (string)($empresa["whatsapp"] ?? "");
 $waDigits = preg_replace("/\D+/", "", $waRaw);
 
+$hideTopBar = true;
 include "includes/ui/header.php";
 ?>
 
@@ -62,11 +63,11 @@ include "includes/ui/header.php";
   </div>
 
   <!-- CONTENIDO -->
-  <div class="relative z-10 max-w-7xl mx-auto w-full px-5 sm:px-6 lg:px-12 py-14 sm:py-20 lg:py-24">
+  <div class="relative z-10 max-w-7xl mx-auto w-full px-5 sm:px-6 lg:px-12 pt-6 sm:pt-10 lg:pt-12 pb-14 sm:pb-20 lg:pb-24">
     <div class="grid lg:grid-cols-2 gap-10 lg:gap-20 items-start lg:items-center">
 
       <!-- INFO -->
-      <div class="space-y-10 sm:space-y-12 text-center lg:text-left">
+      <div class="space-y-8 sm:space-y-10 text-center lg:text-left">
         <div>
           <div class="inline-flex items-center gap-4 mb-6 justify-center lg:justify-start">
             <div class="h-[3px] w-12 bg-primary-red"></div>
@@ -75,7 +76,7 @@ include "includes/ui/header.php";
             </span>
           </div>
 
-        <h2 class="text-2xl sm:text-3xl md:text-5xl font-black uppercase leading-[0.95] tracking-tight mb-6 text-white">
+        <h2 class="text-2xl sm:text-3xl md:text-5xl font-black uppercase leading-[0.95] tracking-tight mb-4 text-white">
   HABLEMOS DE <br /><span class="text-primary-red">SU PROYECTO</span>
 </h2>
 
@@ -85,7 +86,7 @@ include "includes/ui/header.php";
           </p>
         </div>
 
-        <div class="space-y-7 sm:space-y-8 max-w-xl mx-auto lg:mx-0 text-left">
+        <div class="space-y-6 sm:space-y-7 max-w-xl mx-auto lg:mx-0 text-left">
           <div class="flex items-start gap-4 sm:gap-6">
             <div class="w-11 h-11 sm:w-12 sm:h-12 bg-white/5 border border-white/10 rounded-sm flex items-center justify-center text-primary-red shrink-0 transition-transform hover:scale-110">
               <span class="material-symbols-outlined text-2xl">location_on</span>

@@ -94,6 +94,8 @@ $empresa = db_first_row(
   <div class="fixed top-0 left-0 right-0 z-[9999]">
 
     <!-- TOP BAR (SOLO ESCRITORIO) -->
+     <?php if (!($hideTopBar ?? false)): ?>
+
     <div class="hidden lg:flex w-full bg-deep-black border-b border-white/10">
       <div class="max-w-7xl mx-auto w-full px-8 py-2 flex items-center text-[11px] uppercase tracking-widest text-gray-400">
         <div class="flex flex-wrap items-center gap-x-8 gap-y-2 text-white/80">
@@ -114,10 +116,11 @@ $empresa = db_first_row(
         </div>
       </div>
     </div>
+    <?php endif; ?>
+
 
     <!-- ✅ HEADER (FIJO) -->
-    <header class="bg-white border-b border-border-navy/20 px-4 sm:px-6 lg:px-8 py-2 h-20 sm:h-24 lg:h-28">
-      <div class="max-w-7xl mx-auto flex justify-between items-center h-full">
+    <header class="bg-white border-b border-border-navy/20 shadow-[0_6px_12px_-8px_rgba(2,6,23,0.35)] px-4 sm:px-6 lg:px-8 py-2 h-20 sm:h-24 lg:h-28">      <div class="max-w-7xl mx-auto flex justify-between items-center h-full">
 
         <!-- LOGO -->
         <a href="index.php" class="flex items-center h-full gap-4">
@@ -189,7 +192,10 @@ $empresa = db_first_row(
   </div>
 
   <!-- ✅ ESPACIADOR para header fijo -->
-  <div class="h-20 sm:h-24 lg:h-[152px]"></div>
+<div class="<?= ($hideTopBar ?? false)
+  ? 'h-20 sm:h-24 lg:h-[112px]'
+  : 'h-20 sm:h-24 lg:h-[152px]' ?>">
+</div>
 
   <!-- MENU MÓVIL -->
   <div id="mobileMenu" class="md:hidden fixed left-0 right-0 top-20 sm:top-24 z-50 pointer-events-none">

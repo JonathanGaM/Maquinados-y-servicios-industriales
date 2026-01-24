@@ -35,7 +35,7 @@ include "includes/ui/header.php";
 ?>
 
 <!-- HERO CLIENTES -->
-<section class="relative h-[55vh] sm:h-[60vh] flex items-center overflow-hidden bg-deep-black">
+<section class="relative h-[50vh] sm:h-[55vh] flex items-center overflow-hidden bg-deep-black">
   <!-- FONDO -->
   <div class="absolute inset-0 z-0">
     <img

@@ -32,7 +32,10 @@ if (empty($servicios)) {
 
 
 <!-- HERO / PORTADA SERVICIOS -->
-<section class="relative min-h-[60vh] sm:min-h-[70vh] flex items-center pt-16 pb-10 overflow-hidden">
+    <section class="relative min-h-[60vh] sm:min-h-[70vh] flex items-center pt-16 pb-24 sm:pb-32 overflow-hidden">
+
+
+
   <div class="absolute inset-0 z-0">
     <img
       alt="Fondo Industrial"
@@ -60,26 +63,28 @@ if (empty($servicios)) {
         Maquinados y Servicios Industriales es una empresa dedicada al mantenimiento industrial. Ofrecemos soluciones integrales de manufactura con tecnología de vanguardia y personal altamente calificado para cumplir con los estándares más exigentes.
       </p>
 
-      <!-- Stats más pequeñas -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-4xl border-y border-white/10 py-8">
-        <div class="flex flex-col items-center group">
-          <span class="text-4xl sm:text-5xl md:text-6xl font-black text-white tracking-tighter mb-1 group-hover:text-primary-red transition-colors">
-            100%
-          </span>
-          <span class="text-primary-red font-black tracking-[0.45em] text-[11px] uppercase">
-            Calidad Garantizada
-          </span>
-        </div>
+   <div class="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-4xl border-y border-white/10 py-4">
 
-        <div class="flex flex-col items-center group">
-          <span class="text-4xl sm:text-5xl md:text-6xl font-black text-white tracking-tighter mb-1 group-hover:text-primary-red transition-colors">
-            <?= experience_decade(MSI_START_YEAR); ?>+
-          </span>
-          <span class="text-primary-red font-black tracking-[0.45em] text-[11px] uppercase">
-            Años de Experiencia
-          </span>
-        </div>
-      </div>
+  <div class="flex flex-col items-center group">
+    <span class="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight mb-0 group-hover:text-primary-red transition-colors">
+      100%
+    </span>
+    <span class="text-primary-red font-black tracking-[0.45em] text-[11px] uppercase">
+      Calidad Garantizada
+    </span>
+  </div>
+
+  <div class="flex flex-col items-center group">
+    <span class="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight mb-0 group-hover:text-primary-red transition-colors">
+      <?= experience_decade(MSI_START_YEAR); ?>+
+    </span>
+    <span class="text-primary-red font-black tracking-[0.45em] text-[11px] uppercase">
+      Años de Experiencia
+    </span>
+  </div>
+
+</div>
+
 
       <!-- Botones ancla -->
       <div class="mt-8 flex flex-col sm:flex-row gap-4">
@@ -106,21 +111,22 @@ if (empty($servicios)) {
   </div>
 </section>
 <!-- GRID SERVICIOS -->
-<section id="servicios" class="py-24 sm:py-32 bg-deep-black">
+<section id="servicios" class="py-24 sm:py-32 bg-white">
+
   <div class="max-w-7xl mx-auto px-5 sm:px-8">
-  <!-- ✅ TITULO SECCIÓN SERVICIOS -->
+    <!-- ✅ TITULO SECCIÓN SERVICIOS -->
     <div class="text-center mb-16">
       <span class="text-primary-red font-black tracking-[0.4em] text-[10px] uppercase">
         Servicios Especializados
       </span>
 
-      <h3 class="text-4xl md:text-5xl font-black text-white uppercase mt-4">
+      <h3 class="text-4xl md:text-5xl font-black text-navy-blue uppercase mt-4">
         Servicios que Ofrecemos
       </h3>
 
       <div class="w-24 h-[2px] bg-primary-red mx-auto mt-6"></div>
 
-  
+
     </div>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
 
@@ -161,18 +167,19 @@ if (empty($servicios)) {
   </div>
 </section>
 
-<section id="sectores" class="py-24 bg-navy-blue relative overflow-hidden">
+<section id="sectores" class="py-24 bg-white relative overflow-hidden">
 
   <!-- overlays (todo inline) -->
-  <div class="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(255,255,255,0.08)_1px,transparent_0)] [background-size:40px_40px] opacity-20"></div>
-  <div class="absolute inset-0 bg-gradient-to-b from-navy-blue/70 via-navy-blue/60 to-deep-black/90"></div>
+  <div class="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(2,6,23,0.06)_1px,transparent_0)] [background-size:40px_40px]"></div>
+  <div class="absolute inset-0 bg-gradient-to-b from-white via-white to-white/95"></div>
+
 
   <div class="max-w-7xl mx-auto px-5 sm:px-8 relative z-10">
     <div class="text-center mb-16">
       <span class="text-primary-red font-black tracking-[0.4em] text-[10px] uppercase">
         Mercados Atendidos
       </span>
-      <h3 class="text-4xl md:text-5xl font-black text-white uppercase mt-4">
+      <h3 class="text-4xl md:text-5xl font-black text-navy-blue uppercase mt-4">
         Sectores que Atendemos
       </h3>
       <div class="w-24 h-[2px] bg-primary-red mx-auto mt-6"></div>
@@ -181,7 +188,7 @@ if (empty($servicios)) {
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
 
       <!-- Automotriz -->
-      <div class="relative h-64 overflow-hidden group border border-white/10 bg-deep-black">
+      <div class="relative h-64 overflow-hidden group border border-slate-200 bg-deep-black">
         <img
           alt="Automotriz"
           class="absolute inset-0 w-full h-full object-cover grayscale brightness-[0.45] transition-all duration-700 group-hover:scale-110 group-hover:grayscale-0"
@@ -193,11 +200,11 @@ if (empty($servicios)) {
       </div>
 
       <!-- Aeronáutica -->
-      <div class="relative h-64 overflow-hidden group border border-white/10 bg-deep-black">
+      <div class="relative h-64 overflow-hidden group border border-slate-200 bg-deep-black">
         <img
           alt="Aeronáutica"
           class="absolute inset-0 w-full h-full object-cover grayscale brightness-[0.45] transition-all duration-700 group-hover:scale-110 group-hover:grayscale-0"
-          src="https://storage.googleapis.com/medium-feed.appspot.com/images%2F9353691196%2F15628bee6d866-1716899179_604_7-principais-materiais-usados-%25E2%2580%258B%25E2%2580%258Bem-motores-de-aeronaves-um-guia.jpg" />
+          src="https://us.123rf.com/450wm/andose24/andose241709/andose24170900011/86109270-tren-de-aterrizaje.jpg?ver=6" />
         <div class="absolute inset-0 bg-deep-black/70 group-hover:bg-deep-black/20 transition-all duration-500 flex flex-col items-center justify-center p-6">
           <span class="material-symbols-outlined text-4xl mb-4 text-white">flight</span>
           <h5 class="text-white font-black uppercase tracking-widest text-base sm:text-lg">Aeronáutica</h5>
@@ -205,11 +212,11 @@ if (empty($servicios)) {
       </div>
 
       <!-- Metal-Mecánica -->
-      <div class="relative h-64 overflow-hidden group border border-white/10 bg-deep-black">
+      <div class="relative h-64 overflow-hidden group border border-slate-200 bg-deep-black">
         <img
           alt="Metal-Mecánica"
           class="absolute inset-0 w-full h-full object-cover grayscale brightness-[0.45] transition-all duration-700 group-hover:scale-110 group-hover:grayscale-0"
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtSTCbbFwtoOuDTFm4wtTfdsFb_TTA8NWY-Q&s" />
+          src="https://www.rapiddirect.com/wp-content/uploads/2023/10/5-axis-cnc-machining-process.webp" />
         <div class="absolute inset-0 bg-deep-black/70 group-hover:bg-deep-black/20 transition-all duration-500 flex flex-col items-center justify-center p-6">
           <span class="material-symbols-outlined text-4xl mb-4 text-white">factory</span>
           <h5 class="text-white font-black uppercase tracking-widest text-base sm:text-lg">Metal-Mecánica</h5>
@@ -217,7 +224,7 @@ if (empty($servicios)) {
       </div>
 
       <!-- Alimenticia -->
-      <div class="relative h-64 overflow-hidden group border border-white/10 bg-deep-black">
+      <div class="relative h-64 overflow-hidden group border border-slate-200 bg-deep-black">
         <img
           alt="Alimenticia"
           class="absolute inset-0 w-full h-full object-cover grayscale brightness-[0.45] transition-all duration-700 group-hover:scale-110 group-hover:grayscale-0"
@@ -229,7 +236,7 @@ if (empty($servicios)) {
       </div>
 
       <!-- Agrícola -->
-      <div class="relative h-64 overflow-hidden group border border-white/10 bg-deep-black">
+      <div class="relative h-64 overflow-hidden group border border-slate-200 bg-deep-black">
         <img
           alt="Agrícola"
           class="absolute inset-0 w-full h-full object-cover grayscale brightness-[0.45] transition-all duration-700 group-hover:scale-110 group-hover:grayscale-0"
@@ -241,7 +248,7 @@ if (empty($servicios)) {
       </div>
 
       <!-- Electrónica -->
-      <div class="relative h-64 overflow-hidden group border border-white/10 bg-deep-black">
+      <div class="relative h-64 overflow-hidden group border border-slate-200 bg-deep-black">
         <img
           alt="Electrónica"
           class="absolute inset-0 w-full h-full object-cover grayscale brightness-[0.45] transition-all duration-700 group-hover:scale-110 group-hover:grayscale-0"
