@@ -1,4 +1,54 @@
-<?php include "includes/header.php"; ?>
+<?php
+require_once __DIR__ . "/includes/core/db.php";
+require_once __DIR__ . "/includes/core/db-safe.php";
+require_once __DIR__ . "/includes/core/fallbacks.php";
+
+/* =========================
+   EMPRESA (BD → fallback)
+   ========================= */
+$empresa = db_first_row(
+  "SELECT nombre, ubicacion, telefono, whatsapp, correo, horarios
+   FROM empresa
+   LIMIT 1",
+  [],
+  $fallback_empresa
+);
+
+/* =========================
+   SERVICIOS PARA COMBOBOX
+   (solo nombre)
+   ========================= */
+$serviciosForm = [];
+
+if ($pdo instanceof PDO) {
+  try {
+    $stmt = $pdo->query("SELECT nombre FROM servicios ORDER BY id ASC");
+    $serviciosForm = $stmt->fetchAll(PDO::FETCH_COLUMN);
+  } catch (Throwable $e) {
+    $serviciosForm = [];
+  }
+}
+
+/* Si BD falla → fallback */
+if (empty($serviciosForm)) {
+  $serviciosForm = array_map(
+    fn($s) => $s["nombre"],
+    $fallback_servicios
+  );
+}
+
+/* Escape helper */
+function e(string $v): string {
+  return htmlspecialchars($v, ENT_QUOTES, "UTF-8");
+}
+
+/* WhatsApp limpio */
+$waRaw = (string)($empresa["whatsapp"] ?? "");
+$waDigits = preg_replace("/\D+/", "", $waRaw);
+
+include "includes/ui/header.php";
+?>
+
 
 <main class="relative overflow-hidden">
   <!-- FONDO -->
@@ -16,74 +66,92 @@
     <div class="grid lg:grid-cols-2 gap-10 lg:gap-20 items-start lg:items-center">
 
       <!-- INFO -->
-      <div class="space-y-10 sm:space-y-12">
+      <div class="space-y-10 sm:space-y-12 text-center lg:text-left">
         <div>
-          <div class="inline-flex items-center gap-4 mb-6">
+          <div class="inline-flex items-center gap-4 mb-6 justify-center lg:justify-start">
             <div class="h-[3px] w-12 bg-primary-red"></div>
-            <span class="text-primary-red font-black tracking-[0.4em] text-xs uppercase">Establecer Conexión</span>
+            <span class="text-primary-red font-black tracking-[0.4em] text-[10px] sm:text-xs uppercase">
+              Establecer Conexión
+            </span>
           </div>
 
-          <h2 class="text-4xl md:text-6xl font-black uppercase leading-[0.95] tracking-tight mb-6 text-white">
-            HABLEMOS DE <br /><span class="text-primary-red">SU PROYECTO</span>
-          </h2>
+        <h2 class="text-2xl sm:text-3xl md:text-5xl font-black uppercase leading-[0.95] tracking-tight mb-6 text-white">
+  HABLEMOS DE <br /><span class="text-primary-red">SU PROYECTO</span>
+</h2>
 
-          <p class="text-base sm:text-lg text-gray-300 leading-relaxed font-light max-w-[95%] sm:max-w-md">
+
+          <p class="text-sm sm:text-base md:text-lg text-gray-300 leading-relaxed font-light mx-auto lg:mx-0 max-w-xl">
             Contamos con la infraestructura y experiencia necesaria para materializar sus requerimientos de maquinado más exigentes.
           </p>
         </div>
 
-        <div class="space-y-7 sm:space-y-8">
-          <div class="flex items-start gap-5 sm:gap-6">
-            <div class="w-12 h-12 bg-white/5 border border-white/10 rounded-sm flex items-center justify-center text-primary-red shrink-0 transition-transform hover:scale-110">
+        <div class="space-y-7 sm:space-y-8 max-w-xl mx-auto lg:mx-0 text-left">
+          <div class="flex items-start gap-4 sm:gap-6">
+            <div class="w-11 h-11 sm:w-12 sm:h-12 bg-white/5 border border-white/10 rounded-sm flex items-center justify-center text-primary-red shrink-0 transition-transform hover:scale-110">
               <span class="material-symbols-outlined text-2xl">location_on</span>
             </div>
             <div class="min-w-0">
-              <h4 class="text-xs font-black uppercase tracking-widest text-primary-red mb-1">Ubicación Planta</h4>
+              <h4 class="text-[10px] sm:text-xs font-black uppercase tracking-widest text-primary-red mb-1">Ubicación Planta</h4>
               <p class="text-gray-200 text-sm leading-relaxed break-words">
-                20 de Noviembre No.361,<br />Col. Zona Centro, Gdl, Jal.
+                <?= e((string)($empresa["ubicacion"] ?? "")); ?>
               </p>
             </div>
           </div>
 
-          <div class="flex items-start gap-5 sm:gap-6">
-            <div class="w-12 h-12 bg-white/5 border border-white/10 rounded-sm flex items-center justify-center text-primary-red shrink-0 transition-transform hover:scale-110">
+          <div class="flex items-start gap-4 sm:gap-6">
+            <div class="w-11 h-11 sm:w-12 sm:h-12 bg-white/5 border border-white/10 rounded-sm flex items-center justify-center text-primary-red shrink-0 transition-transform hover:scale-110">
               <span class="material-symbols-outlined text-2xl">call</span>
             </div>
-            <div>
-              <h4 class="text-xs font-black uppercase tracking-widest text-primary-red mb-1">Línea Directa</h4>
-              <p class="text-gray-200 text-sm leading-relaxed">01 33 3617-5426</p>
+            <div class="min-w-0">
+              <h4 class="text-[10px] sm:text-xs font-black uppercase tracking-widest text-primary-red mb-1">Línea Directa</h4>
+              <p class="text-gray-200 text-sm leading-relaxed break-words">
+                <?= e((string)($empresa["telefono"] ?? "")); ?>
+              </p>
             </div>
           </div>
 
-          <div class="flex items-start gap-5 sm:gap-6">
-            <div class="w-12 h-12 bg-white/5 border border-white/10 rounded-sm flex items-center justify-center text-primary-red shrink-0 transition-transform hover:scale-110">
+          <div class="flex items-start gap-4 sm:gap-6">
+            <div class="w-11 h-11 sm:w-12 sm:h-12 bg-white/5 border border-white/10 rounded-sm flex items-center justify-center text-primary-red shrink-0 transition-transform hover:scale-110">
               <span class="material-symbols-outlined text-2xl">chat</span>
             </div>
             <div class="min-w-0">
+              <h4 class="text-[10px] sm:text-xs font-black uppercase tracking-widest text-primary-red mb-1">WhatsApp Business</h4>
 
-              <h4 class="text-xs font-black uppercase tracking-widest text-primary-red mb-1">WhatsApp Business</h4>
-              <p class="text-gray-200 text-sm leading-relaxed">+52 13 33157-6129</p>
+              <?php if ($waDigits !== ""): ?>
+                <a
+                  class="text-gray-200 text-sm leading-relaxed break-words hover:text-primary-red transition-colors inline-flex items-center gap-2"
+                  href="https://wa.me/<?= e($waDigits); ?>"
+                  target="_blank"
+                  rel="noopener">
+                  <?= e($waRaw); ?>
+                  <span class="material-symbols-outlined text-[18px]">open_in_new</span>
+                </a>
+              <?php else: ?>
+                <p class="text-gray-200 text-sm leading-relaxed break-words">
+                  <?= e($waRaw); ?>
+                </p>
+              <?php endif; ?>
             </div>
           </div>
 
-          <div class="flex items-start gap-5 sm:gap-6">
-            <div class="w-12 h-12 bg-white/5 border border-white/10 rounded-sm flex items-center justify-center text-primary-red shrink-0 transition-transform hover:scale-110">
+          <div class="flex items-start gap-4 sm:gap-6">
+            <div class="w-11 h-11 sm:w-12 sm:h-12 bg-white/5 border border-white/10 rounded-sm flex items-center justify-center text-primary-red shrink-0 transition-transform hover:scale-110">
               <span class="material-symbols-outlined text-2xl">mail</span>
             </div>
             <div class="min-w-0">
-              <h4 class="text-xs font-black uppercase tracking-widest text-primary-red mb-1">Correo Electrónico</h4>
+              <h4 class="text-[10px] sm:text-xs font-black uppercase tracking-widest text-primary-red mb-1">Correo Electrónico</h4>
               <p class="text-gray-200 text-sm leading-relaxed break-all">
-                contacto@maquinadosyserviciosindustriales.com
+                <?= e((string)($empresa["correo"] ?? "")); ?>
               </p>
+
             </div>
           </div>
 
           <div class="pt-6 border-t border-white/10">
             <div class="flex items-start gap-3">
               <span class="material-symbols-outlined text-primary-red text-sm mt-[1px] shrink-0">schedule</span>
-
               <p class="min-w-0 text-gray-400 text-[11px] font-bold uppercase tracking-widest leading-relaxed break-words">
-                Horario de Atención: Lunes a Viernes, 9:00 AM - 6:30 PM y Sabados, 9:00 AM - 2:00 PM
+                Horario de Atención: <?= e((string)($empresa["horarios"] ?? "")); ?>
               </p>
             </div>
           </div>
@@ -91,18 +159,18 @@
         </div>
       </div>
 
-      <!-- FORM -->
-      <div class="w-full flex justify-center lg:justify-end mt-8 lg:mt-0">
-        <div class="glass-morphism w-full max-w-xl p-6 sm:p-10 md:p-14 rounded-sm shadow-2xl relative overflow-hidden">
+      <!-- FORM (NO tocar lógica) -->
+      <div class="w-full flex justify-center lg:justify-end mt-4 sm:mt-6 lg:mt-0">
+        <div class="glass-morphism w-full max-w-xl p-5 sm:p-8 md:p-12 lg:p-14 rounded-sm shadow-2xl relative overflow-hidden">
           <div class="absolute top-0 right-0 w-32 h-32 bg-primary-red/10 rounded-full blur-3xl -mr-16 -mt-16"></div>
 
-          <h3 class="text-2xl font-black uppercase tracking-tight text-white mb-8 flex items-center gap-3">
+          <h3 class="text-xl sm:text-2xl font-black uppercase tracking-tight text-white mb-6 sm:mb-8 flex items-center gap-3">
             <span class="w-2 h-2 bg-primary-red"></span>
             Solicitar Cotización
           </h3>
 
-          <form action="includes/send_mail.php" method="POST" class="space-y-6">
-            <div class="grid md:grid-cols-2 gap-6">
+          <form action="includes/mail/send_mail.php" method="POST" class="space-y-5 sm:space-y-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
               <div class="space-y-2">
                 <label class="text-[10px] font-black uppercase tracking-widest text-gray-400">Nombre Completo</label>
                 <input name="nombre" type="text" required placeholder="Ej. Juan Pérez"
@@ -116,7 +184,7 @@
               </div>
             </div>
 
-            <div class="grid md:grid-cols-2 gap-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
               <div class="space-y-2">
                 <label class="text-[10px] font-black uppercase tracking-widest text-gray-400">Teléfono / WhatsApp</label>
                 <input name="telefono" type="tel" required placeholder="10 dígitos"
@@ -125,14 +193,25 @@
 
               <div class="space-y-2">
                 <label class="text-[10px] font-black uppercase tracking-widest text-gray-400">Servicio de Interés</label>
-                <select name="servicio" required
-                  class="w-full bg-white/5 border border-white/10 focus:border-primary-red focus:ring-0 text-white transition-colors py-3 px-4 text-sm appearance-none">
-                  <option class="bg-navy-blue" value="">Seleccione una opción</option>
-                  <option class="bg-navy-blue" value="Maquinado de Precisión">Maquinado de Precisión</option>
-                  <option class="bg-navy-blue" value="Mantenimiento Industrial">Mantenimiento Industrial</option>
-                  <option class="bg-navy-blue" value="Maquinado CNC">Maquinado CNC</option>
-                  <option class="bg-navy-blue" value="Proyectos Especiales">Proyectos Especiales</option>
-                </select>
+            <select name="servicio" required
+  class="w-full bg-white/5 border border-white/10 focus:border-primary-red focus:ring-0 text-white transition-colors py-3 px-4 text-sm appearance-none">
+
+  <option class="bg-navy-blue" value="">Seleccione una opción</option>
+
+  <?php foreach ($serviciosForm as $nombreServicio): ?>
+    <option class="bg-navy-blue" value="<?= e($nombreServicio); ?>">
+      <?= e($nombreServicio); ?>
+    </option>
+  <?php endforeach; ?>
+
+  <!-- OPCIÓN FIJA AL FINAL -->
+  <option class="bg-navy-blue" value="Proyecto Especial">
+    Proyecto Especial
+  </option>
+
+</select>
+
+
               </div>
             </div>
 
@@ -155,12 +234,11 @@
   </div>
 </main>
 
-<?php include "includes/footer.php"; ?>
-
+<?php include "includes/ui/footer.php"; ?>
 
 <?php if (isset($_GET["ok"])): ?>
-  <div id="msgSuccess" class="fixed inset-0 z-[999] flex items-center justify-center bg-black/60 backdrop-blur-sm">
-    <div class="bg-deep-black border border-primary-red/40 rounded-sm px-8 py-6 text-center shadow-2xl animate-fade-in max-w-sm">
+  <div id="msgSuccess" class="fixed inset-0 z-[999] flex items-center justify-center bg-black/60 backdrop-blur-sm px-5">
+    <div class="bg-deep-black border border-primary-red/40 rounded-sm px-7 sm:px-8 py-6 text-center shadow-2xl animate-fade-in w-full max-w-sm">
       <span class="material-symbols-outlined text-primary-red text-4xl mb-3 block">check_circle</span>
       <h3 class="text-sm font-black uppercase tracking-widest mb-2 text-white">
         Mensaje enviado

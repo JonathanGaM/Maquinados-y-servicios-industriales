@@ -1,8 +1,8 @@
 <!-- footer.php -->
 <?php
-include_once __DIR__ . "/db.php";
-include_once __DIR__ . "/db-safe.php";
-include_once __DIR__ . "/fallbacks.php";
+include_once __DIR__ . "/../core/db.php";
+include_once __DIR__ . "/../core/db-safe.php";
+include_once __DIR__ . "/../core/fallbacks.php";
 
 // Traer datos reales o fallback
 $empresa = db_first_row(
@@ -21,6 +21,8 @@ $empresa = db_first_row(
 );
 $whatsappText = urlencode("Hola, me gustaría solicitar una cotización");
 ?>
+
+
 
 <footer class="bg-deep-black pt-20 pb-10 border-t-4 border-primary-red">
 

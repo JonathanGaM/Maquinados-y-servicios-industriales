@@ -1,8 +1,8 @@
 <?php
-include "includes/db.php";        // conexión (crea $pdo)
-include "includes/db-safe.php";   // helpers seguros
-include "includes/fallbacks.php"; // datos estáticos
-include "includes/header.php"; ?>
+include "includes/core/db.php";        // conexión (crea $pdo)
+include "includes/core/db-safe.php";   // helpers seguros
+include "includes/core/fallbacks.php"; // datos estáticos
+include "includes/ui/header.php"; ?>
 <?php
 // 1) Traer el texto desde BD (o fallback)
 $empresa = db_first_row(
@@ -86,4 +86,4 @@ $p3 = $parrafos[2] ?? '';
 
 </main>
 
-<?php include "includes/footer.php"; ?>
+<?php include "includes/ui/footer.php"; ?>

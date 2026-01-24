@@ -1,8 +1,8 @@
 <?php
-include "includes/db.php";
-include "includes/db-safe.php";
-include "includes/fallbacks.php";
-include "includes/header.php";
+include "includes/core/db.php";
+include "includes/core/db-safe.php";
+include "includes/core/fallbacks.php";
+include "includes/ui/header.php";
 
 // 1) Consultar política de servicio (o fallback)
 $empresa = db_first_row(
@@ -83,4 +83,4 @@ $p4 = $parrafos[3] ?? '';
 
 </main>
 
-<?php include "includes/footer.php"; ?>
+<?php include "includes/ui/footer.php"; ?>
