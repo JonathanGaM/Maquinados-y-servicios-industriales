@@ -14,13 +14,18 @@ include_once __DIR__ . "/../core/db-safe.php";
 include_once __DIR__ . "/../core/fallbacks.php";
 
 // ✅ Traer datos necesarios para el header (o fallback)
-$empresa = db_first_row(
-  "SELECT nombre, ubicacion, telefono, correo
-   FROM empresa
-   LIMIT 1",
-  [],
-  $fallback_empresa
-);
+// ✅ Traer datos necesarios para el header (o fallback)
+// Solo consultar si $empresa NO viene precargada desde la página (ej. contacto.php)
+if (!isset($empresa) || !is_array($empresa) || empty($empresa)) {
+  $empresa = db_first_row(
+    "SELECT nombre, ubicacion, telefono, whatsapp, correo, horarios
+     FROM empresa
+     LIMIT 1",
+    [],
+    $fallback_empresa
+  );
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -28,6 +33,10 @@ $empresa = db_first_row(
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>MSI Maquinados y Servicios Industriales</title>
+  <link rel="icon" href="assets/img/favicon.ico" type="image/x-icon">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
+
 
   <!-- ✅ Anti-flash: fondo base inmediato (antes de que cargue Tailwind/CSS) -->
   <style>
@@ -96,8 +105,11 @@ $empresa = db_first_row(
     <!-- TOP BAR (SOLO ESCRITORIO) -->
      <?php if (!($hideTopBar ?? false)): ?>
 
-    <div class="hidden lg:flex w-full bg-deep-black border-b border-white/10">
-      <div class="max-w-7xl mx-auto w-full px-8 py-2 flex items-center text-[11px] uppercase tracking-widest text-gray-400">
+   <div class="hidden lg:flex w-full bg-deep-black border-b border-white/10">
+      <div class="max-w-7xl mx-auto w-full px-8 h-10 flex items-center text-[13px] tracking-wide text-white/90 normal-case">
+
+
+
         <div class="flex flex-wrap items-center gap-x-8 gap-y-2 text-white/80">
           <span class="flex items-center gap-2">
             <span class="material-symbols-outlined text-primary-red text-sm">location_on</span>
@@ -120,7 +132,8 @@ $empresa = db_first_row(
 
 
     <!-- ✅ HEADER (FIJO) -->
-    <header class="bg-white border-b border-border-navy/20 shadow-[0_6px_12px_-8px_rgba(2,6,23,0.35)] px-4 sm:px-6 lg:px-8 py-2 h-20 sm:h-24 lg:h-28">      <div class="max-w-7xl mx-auto flex justify-between items-center h-full">
+<header class="bg-white border-b border-border-navy/20 shadow-[0_6px_12px_-8px_rgba(2,6,23,0.35)] px-4 sm:px-6 lg:px-8 h-20 sm:h-24 lg:h-28">
+         <div class="max-w-7xl mx-auto flex justify-between items-center h-full">
 
         <!-- LOGO -->
         <a href="index.php" class="flex items-center h-full gap-4">
@@ -198,7 +211,8 @@ $empresa = db_first_row(
 </div>
 
   <!-- MENU MÓVIL -->
-  <div id="mobileMenu" class="md:hidden fixed left-0 right-0 top-20 sm:top-24 z-50 pointer-events-none">
+  <div id="mobileMenu"
+  class="md:hidden fixed left-0 right-0 top-20 sm:top-24 lg:top-28 z-50 pointer-events-none">
     <div
       id="mobileMenuPanel"
       class="bg-white border-b border-border-navy/20 shadow-xl

@@ -6,6 +6,7 @@ require_once __DIR__ . "/includes/ui/header.php";
 
 // ✅ Inyectamos el “diccionario” de imágenes para JS
 $MEDIA = $fallback_media ?? [];
+
 ?>
 <script>
   window.MSI_MEDIA = <?= json_encode($MEDIA, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) ?>;
@@ -20,32 +21,32 @@ $MEDIA = $fallback_media ?? [];
   <!-- FONDO -->
   <div id="hero-bg-wrap" class="absolute inset-0 z-0">
 
-  <div class="absolute inset-0 z-10 bg-gradient-to-r from-black/45 via-black/65 to-transparent"></div>
+    <div class="absolute inset-0 z-10 bg-gradient-to-r from-black/75 via-black/60 to-transparent"></div>
 
-  <!-- Capa actual (imagen inicial del carrusel) -->
-  <img
-    id="hero-bg-a"
-    class="hero-bg-layer is-active"
-    alt="Industrial background"
-    src="<?= htmlspecialchars(($fallback_media['hero']['carousel'][0] ?? ''), ENT_QUOTES, 'UTF-8') ?>"
-  />
+    <!-- Capa actual (imagen inicial del carrusel) -->
+    <img
+      id="hero-bg-a"
+      class="hero-bg-layer is-active"
+      alt="Industrial background"
+      src="<?= htmlspecialchars(($fallback_media['hero']['carousel'][0] ?? ''), ENT_QUOTES, 'UTF-8') ?>" />
 
-  <!-- Capa siguiente (arranca invisible) -->
-  <img
-    id="hero-bg-b"
-    class="hero-bg-layer"
-    alt=""
-    src=""
-  />
+    <!-- Capa siguiente (arranca invisible) -->
+    <img
+      id="hero-bg-b"
+      class="hero-bg-layer"
+      alt=""
+      src="" />
 
-</div>
+  </div>
 
   <!-- CONTENIDO -->
   <div class="relative z-20 max-w-7xl mx-auto px-5 sm:px-8 w-full">
-    <div class="max-w-5xl mx-auto text-center -mt-6 sm:-mt-10">
+    <div class="max-w-3xl text-left -mt-12 sm:-mt-10">
 
 
-      <div class="inline-flex items-center gap-3 mb-6">
+
+
+      <div class="inline-flex items-center gap-3 mb-6 justify-start">
         <div class="h-[2px] w-12 bg-primary-red"></div>
         <span class="text-white font-bold tracking-[0.28em] text-xs sm:text-sm uppercase">
           Estándar Industrial de Excelencia
@@ -72,7 +73,7 @@ $MEDIA = $fallback_media ?? [];
       }
       ?>
 
-      <h1 class="hero-title text-center text-3xl sm:text-4xl md:text-6xl font-extrabold uppercase leading-tight tracking-tight mb-6 text-royal-blue">
+      <h1 class="hero-title text-left text-3xl sm:text-4xl md:text-6xl font-extrabold uppercase leading-tight tracking-tight mb-6 text-royal-blue">
         <span class="hero-line" data-text="<?= e($nombre) ?>"><?= e($nombre) ?></span>
       </h1>
 
@@ -83,14 +84,15 @@ $MEDIA = $fallback_media ?? [];
 
         <!-- ✅ Texto que cambiará -->
         <p id="hero-rotating-text"
-          class="text-sm sm:text-base md:text-xl text-gray-200 mb-6 sm:mb-10 max-w-2xl mx-auto font-medium leading-relaxed">
+          class="text-sm sm:text-base md:text-xl text-gray-200 mb-6 sm:mb-10 max-w-xl font-medium leading-relaxed">
+
 
 
           Fabricación, maquila y reparación de componentes críticos para la industria global con precisión certificada.
         </p>
 
         <!-- ✅ Botones -->
-        <div class="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 justify-center">
+        <div class="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 justify-start">
           <a href="servicios.php"
             class="hero-cta bg-primary-red hover:bg-red-700
 px-5 py-3 sm:px-8 sm:py-4
@@ -207,7 +209,6 @@ inline-flex items-center gap-2 sm:gap-3 text-white transition-all w-full sm:w-au
     <div class="flex flex-col md:flex-row justify-between md:items-baseline mb-10 md:mb-16 border-b-2 border-navy-blue pb-5 md:pb-6">
       <div>
         <h2 class="text-primary-red font-black tracking-[0.3em] text-xs uppercase mb-2">INFRAESTRUCTURA TÉCNICA</h2>
-        <h3 class="text-3xl sm:text-4xl md:text-5xl font-black uppercase text-navy-blue">Ingeniería de Precisión</h3>
       </div>
       <p class="text-navy-blue/60 font-medium uppercase tracking-widest text-[10px] sm:text-xs md:text-sm mt-3 md:mt-0">Maquinaria de última generación</p>
     </div>

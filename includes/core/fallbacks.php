@@ -48,32 +48,39 @@ $fallback_servicios = [
   [
     "nombre" => "Servicio de Rectificado",
     "imagen" => "https://www.rapiddirect.com/wp-content/uploads/2022/08/CNC-turning-basics.webp",
-    "descripcion" => "Precisión milimétrica en superficies planas y cilíndricas para acabados de alta calidad y tolerancias críticas."
+    "descripcion" => "Precisión milimétrica en superficies planas y cilíndricas para acabados de alta calidad y tolerancias críticas.",
+    "video" => "assets/img/prue.mp4"
   ],
   [
     "nombre" => "Servicio de Cepillo",
     "imagen" => "https://umesal.com/wp-content/uploads/2019/06/C%C3%B3mo-funciona-el-proceso-de-mecanizado.jpg",
-    "descripcion" => "Maquinado de piezas de gran tamaño y superficies planas con alta remoción y precisión estructural."
+    "descripcion" => "Maquinado de piezas de gran tamaño y superficies planas con alta remoción y precisión estructural.",
+    "video" => "assets/img/prue.mp4"
+
   ],
   [
     "nombre" => "Tornos CNC",
     "imagen" => "https://www.metalmecanica.com/uploads/news-pictures/pphoto-3769.png",
-    "descripcion" => "Producción en serie y piezas de alta complejidad técnica mediante control numérico computarizado."
+    "descripcion" => "Producción en serie y piezas de alta complejidad técnica mediante control numérico computarizado.",
+    "video" => "assets/img/prue.mp4"
   ],
   [
     "nombre" => "Fabricación de Engranes",
     "imagen" => "https://acerostorices.com/wp-content/uploads/2024/01/imagen-de-diversos-engranajes.jpg",
-    "descripcion" => "Diseño y manufactura de piñones, coronas y engranajes rectos o helicoidales bajo plano o muestra."
+    "descripcion" => "Diseño y manufactura de piñones, coronas y engranajes rectos o helicoidales bajo plano o muestra.",
+    "video" => "assets/img/prue.mp4"
   ],
   [
     "nombre" => "Servicio de Torno",
     "imagen" => "https://jlmetalmecanica.com/wp-content/uploads/2023/09/SERVICIO-DE-TORNO.jpg",
-    "descripcion" => "Fabricación de ejes, bujes y piezas cilíndricas con acabados técnicos y precisión dimensional."
+    "descripcion" => "Fabricación de ejes, bujes y piezas cilíndricas con acabados técnicos y precisión dimensional.",
+    "video" => "assets/img/prue.mp4"
   ],
   [
     "nombre" => "Servicio de Fresadora",
     "imagen" => "https://lh3.googleusercontent.com/aida-public/AB6AXuAJNVjBzyAR1abkbPp9sjxuQogGh1wMillxRuMEcg8XC6Qma00Fm9k3o5LZpoGngB3tbvENoo1FNVsV-6wcOUbud_kfvk997cbtwV_Vm-05BAbTIadRMthj4LaBTAqyDomzWbkPl7a3OJFOk1398T7OWqF8rLkH8oYNSyuYiKExV2GYw5wf3vunK1V-HlllCaiQROibu2P0A91qeOums1HSeijA9FY_r5mgJA-p4rJhbuSh0f4v42THqaSvlZXI3wUx-_qeJfRcAvSv",
-    "descripcion" => "Mecanizado para chaveteros, cajas y componentes geométricos complejos con alta repetibilidad."
+    "descripcion" => "Mecanizado para chaveteros, cajas y componentes geométricos complejos con alta repetibilidad.",
+    "video" => "assets/img/prue.mp4"
   ],
 ];
 // ======================
@@ -138,7 +145,7 @@ $fallback_media = [
     // Carrusel HERO (las que antes estaban en hero-carrucel.js)
     "carousel" => [
       "assets/img/engrane.png",
-      "https://brr.mx/wp-content/uploads/2024/01/image-19.png",
+      "assets/img/contacto.png",
       "https://artservices.com.mx/_astro/default-hero-2.CKNHaXvA_Z23prV5.webp",
       "assets/img/fon1.png",
       "assets/img/fon2.png",
@@ -157,3 +164,4 @@ $fallback_media = [
     "fresadora_universal"=> "https://lh3.googleusercontent.com/aida-public/AB6AXuDdkqm1fznG0VDQM985giOOyg2-RQ32lyT7FhWr0fvgmBDp3sXoshDOSbKs3Bo25lcLbJaUVssfmasKdsTDDVudARrgqAXAYx8QsHDHV-J6jiVsu-Ojuom9flxDOybFNqE_2H3313IB-uLWjEROONEJ9Ctb5jh1XJoiZoKSS3N-2kOxyYNVozcou0tEI7A0kro31o2wtzx7d9yx4cP5Jm7Cj5jhdykJmVQ-9bBNUkf2YmQTFGvQ8t8hLoO6R5uQsB78doe5uUq-U4mx",
   ],
 ];
+

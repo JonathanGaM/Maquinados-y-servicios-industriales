@@ -129,17 +129,20 @@ $whatsappText = urlencode("Hola, me gustaría solicitar una cotización");
       </div>
 
       <!-- Mapa -->
+      <!-- Mapa -->
       <div class="border border-white/10 rounded-sm overflow-hidden bg-white/5">
         <div class="relative w-full h-64 md:h-56 lg:h-64">
           <iframe
             class="absolute inset-0 w-full h-full"
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3732.996443270684!2d-103.34618682567154!3d20.66972370001516!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8428b1f6e5519289%3A0x3984cb6b1aab9b08!2sCalle%2020%20de%20Noviembre%20361%2C%20Analco%2C%2044450%20Guadalajara%2C%20Jal.!5e0!3m2!1ses-419!2smx!4v1768344647209!5m2!1ses-419!2smx"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3732.9970110655!2d-103.34618206122255!3d20.669700600095442!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8428b1f6e56c88a3%3A0xfb7138346dfabc73!2sMaquinados%20y%20servicios%20Industriales!5e0!3m2!1ses-419!2smx!4v1769530385803!5m2!1ses-419!2smx"
             style="border:0;"
-            allowfullscreen=""
+            allowfullscreen
             loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"></iframe>
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
         </div>
       </div>
+
 
       <a
         href="https://www.google.com/maps/search/?api=1&query=Calle+20+de+Noviembre+361,+Analco,+44450+Guadalajara,+Jalisco"

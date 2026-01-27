@@ -3,8 +3,8 @@
   opacity: 0;
   will-change: opacity, transform;
   transition:
-    opacity 1.1s ease,
-    transform 1.1s cubic-bezier(.22,.9,.2,1);
+    opacity 1.4s ease,
+    transform 1.4s cubic-bezier(.22,.9,.2,1);
 
   /* ✅ evita “saltos” raros con transform */
   transform-origin: center;
@@ -42,8 +42,8 @@ html, body { overflow-x: clip; } /* mejor que hidden si el navegador lo soporta 
   /* Un poco más rápido en móvil */
   .reveal{
     transition:
-      opacity .7s ease,
-      transform .7s cubic-bezier(.22,.9,.2,1);
+      opacity .9s ease,
+      transform .9s cubic-bezier(.22,.9,.2,1);
   }
 }
 

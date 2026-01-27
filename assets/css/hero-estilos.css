@@ -20,11 +20,7 @@
   0 6px 14px rgba(0,0,0,.35),
   0 0 6px rgba(82, 147, 226, 0.25);/* toque azul leve */
 
-
-
-  
 }
-
 
 
 .hero-line:nth-of-type(1){ animation-delay: .15s; }
