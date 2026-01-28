@@ -42,10 +42,6 @@ $MEDIA = $fallback_media ?? [];
   <!-- CONTENIDO -->
   <div class="relative z-20 max-w-7xl mx-auto px-5 sm:px-8 w-full">
     <div class="max-w-3xl text-left -mt-12 sm:-mt-10">
-
-
-
-
       <div class="inline-flex items-center gap-3 mb-6 justify-start">
         <div class="h-[2px] w-12 bg-primary-red"></div>
         <span class="text-white font-bold tracking-[0.28em] text-xs sm:text-sm uppercase">
@@ -83,13 +79,11 @@ $MEDIA = $fallback_media ?? [];
       <div class="hero-surround">
 
         <!-- ✅ Texto que cambiará -->
-        <p id="hero-rotating-text"
-          class="text-sm sm:text-base md:text-xl text-gray-200 mb-6 sm:mb-10 max-w-xl font-medium leading-relaxed">
-
-
-
-          Fabricación, maquila y reparación de componentes críticos para la industria global con precisión certificada.
-        </p>
+       
+<p
+  id="hero-rotating-text"
+  class="text-sm sm:text-base md:text-xl text-gray-200 mb-6 sm:mb-10 max-w-xl font-medium leading-relaxed">
+</p>
 
         <!-- ✅ Botones -->
         <div class="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 justify-start">

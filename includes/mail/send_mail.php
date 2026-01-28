@@ -18,7 +18,8 @@ function clean(string $v): string {
 }
 
 if ($_SERVER["REQUEST_METHOD"] !== "POST") {
-  header("Location: /webMSI/contacto.php?err=method");
+  header("Location: /contacto.php?err=method");
+
   exit;
 }
 
@@ -29,11 +30,11 @@ $servicio = clean($_POST["servicio"] ?? "");
 $mensaje  = trim($_POST["mensaje"] ?? "");
 
 if ($nombre === "" || $email === "" || $telefono === "" || $servicio === "" || $mensaje === "") {
-  header("Location: /webMSI/contacto.php?err=campos");
+  header("Location: /contacto.php?err=campos");
   exit;
 }
 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-  header("Location: /webMSI/contacto.php?err=email");
+  header("Location: /contacto.php?err=email");
   exit;
 }
 
@@ -69,7 +70,8 @@ if (db_ok()) {
 // -------------------------------
 $mail_ok = false;
 
-$cfg = require "C:/xampp/secure/msi_mail.php";
+$cfg = require "/home/u236648/secure/msi_mail.php";
+
 
 $smtpHost = $cfg["SMTP_HOST"] ?? "";
 $smtpPort = (int)($cfg["SMTP_PORT"] ?? 0);
@@ -80,10 +82,10 @@ $destino  = ($cfg["SMTP_TO"] ?? "") ?: $smtpUser;
 if ($smtpHost === "" || $smtpPort === 0 || $smtpUser === "" || $smtpPass === "") {
   // Si config SMTP está mal, igual puede haber BD guardada -> decide con fallback
   if ($bd_ok) {
-    header("Location: /webMSI/contacto.php?ok=1");
+    header("Location: /contacto.php?ok=1");
     exit;
   }
-  header("Location: /webMSI/contacto.php?err=smtp");
+  header("Location: /contacto.php?err=smtp");
   exit;
 }
 
@@ -146,10 +148,10 @@ try {
 // 3) Resultado final (cualquiera de las 2 basta)
 // -------------------------------
 if ($mail_ok || $bd_ok) {
-  header("Location: /webMSI/contacto.php?ok=1");
+  header("Location: /contacto.php?ok=1");
   exit;
 }
 
 // Si ambas fallaron:
-header("Location: /webMSI/contacto.php?err=mail");
+header("Location: /contacto.php?err=mail");
 exit;

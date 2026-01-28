@@ -20,10 +20,11 @@ $historiaTxt = $empresa["historia"] ?? $fallback_empresa["historia"] ?? "";
   <!-- HERO / HISTORIA -->
   <!-- HERO / HISTORIA -->
   <section class="relative overflow-hidden border-b border-white/10">
-    <div class="relative w-full lg:flex lg:min-h-[80vh]">
+
+    <div class="relative w-full lg:flex lg:min-h-[58vh]">
 
       <!-- IMAGEN -->
-      <div class="relative w-full lg:w-1/2 min-h-[86vh] lg:min-h-[80vh] overflow-hidden">
+      <div class="relative w-full lg:w-1/2 min-h-[58vh] lg:min-h-[58vh] overflow-hidden">
         <img
           src="https://thumbs.dreamstime.com/b/hombre-de-ingenier%C3%ADa-que-lleva-uniforme-trabajadores-seguridad-realizar-el-mantenimiento-en-la-f%C3%A1brica-m%C3%A1quina-torno-metal-216109790.jpg"
           alt="Taller industrial de alta precisión"
@@ -69,7 +70,7 @@ $historiaTxt = $empresa["historia"] ?? $fallback_empresa["historia"] ?? "";
       </div>
 
       <!-- DESKTOP (igual que antes) -->
-      <div class="hidden lg:flex reveal from-right w-full lg:w-1/2 bg-navy-blue px-20 py-20 flex-col justify-center">
+<div class="hidden lg:flex reveal from-right w-full lg:w-[55%] bg-navy-blue px-14 py-8 flex-col justify-center">
         <div class="flex items-center gap-4 mb-6">
           <div class="h-[3px] w-14 bg-primary-red"></div>
           <span class="text-primary-red font-black tracking-[0.35em] text-[10px] uppercase">
@@ -82,7 +83,8 @@ $historiaTxt = $empresa["historia"] ?? $fallback_empresa["historia"] ?? "";
           & <span class="text-primary-red">Experiencia</span>
         </h1>
 
-        <p class="text-lg text-gray-300 leading-relaxed font-light max-w-xl">
+<p class="text-lg text-gray-300 leading-relaxed font-light max-w-none">
+
           <?php echo nl2br(htmlspecialchars($historiaTxt)); ?>
         </p>
       </div>
@@ -90,60 +92,60 @@ $historiaTxt = $empresa["historia"] ?? $fallback_empresa["historia"] ?? "";
     </div>
   </section>
 
-  
-  <!-- AÑOS DE EXPERIENCIA (DINÁMICO POR DÉCADAS) -->
-<section class="py-14 sm:py-16 bg-navy-blue border-b border-white/10">
+
+<!-- AÑOS DE EXPERIENCIA (COMPACTO) -->
+  <section class="py-6 sm:py-8 bg-navy-blue border-b border-white/10 lg:pr-52">
+    
+
   <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
 
-    <!-- WRAPPER: en móvil centrado / en md en fila -->
-    <div class="flex flex-col md:flex-row items-center md:items-center justify-between gap-10 md:gap-12">
+    <div class="flex flex-col md:flex-row items-center justify-between gap-5 md:gap-6">
 
       <!-- BLOQUE IZQUIERDO -->
-      <div class="reveal w-full md:w-auto flex flex-col sm:flex-row items-center sm:items-start md:items-center gap-6 sm:gap-8 text-center sm:text-left">
+      <div class="reveal w-full md:w-auto flex flex-col sm:flex-row items-center sm:items-start md:items-center gap-3 sm:gap-5 text-center sm:text-left">
 
-        <!-- NÚMERO GRANDE (más sutil en móvil) -->
-        <span class="text-6xl sm:text-7xl lg:text-8xl font-black select-none
+        <!-- NÚMERO GRANDE (más compacto) -->
+        <span class="text-4xl sm:text-5xl lg:text-6xl font-black select-none
               bg-gradient-to-b from-white/35 via-white/20 to-white/5
               bg-clip-text text-transparent
-              drop-shadow-[0_6px_18px_rgba(255,255,255,0.12)]
-              opacity-70 sm:opacity-100">
+              drop-shadow-[0_4px_14px_rgba(255,255,255,0.12)]
+              opacity-80">
           <?= experience_decade(MSI_START_YEAR); ?>+
         </span>
 
         <!-- TEXTO -->
-        <div class="relative sm:border-l-4 sm:border-primary-red sm:pl-6">
+        <div class="relative sm:border-l-4 sm:border-primary-red sm:pl-4">
 
-          <!-- Línea roja en móvil (debajo) para mantener identidad sin cargar -->
-          <div class="sm:hidden mx-auto mb-3 h-[3px] w-16 bg-primary-red"></div>
+          <div class="sm:hidden mx-auto mb-1 h-[3px] w-12 bg-primary-red"></div>
 
-          <h3 class="text-3xl sm:text-4xl font-black uppercase leading-tight tracking-tight text-white">
+          <h3 class="text-xl sm:text-2xl font-black uppercase leading-tight tracking-tight text-white">
             Más de <?= experience_decade(MSI_START_YEAR); ?> años
           </h3>
 
-          <p class="mt-2 text-sm sm:text-[0.95rem] font-bold text-gray-200 uppercase tracking-widest leading-relaxed">
+          <p class="mt-0.5 text-[11px] sm:text-xs font-bold text-gray-300 uppercase tracking-widest leading-relaxed">
             liderando la industria de precisión
           </p>
         </div>
       </div>
 
-      <!-- BLOQUE DERECHO (tarjeta) -->
-      <div class="reveal w-full md:w-auto">
-        <div class="flex items-center justify-center md:justify-start gap-4 sm:gap-6
-                    bg-deep-black/55 border border-white/10
-                    py-5 sm:py-6 px-6 sm:px-10
-                    rounded-md sm:rounded-sm
-                    w-full md:w-auto">
+      <!-- BLOQUE DERECHO (tarjeta compacta) -->
+      <div class="reveal w-full md:w-auto md:pr-16 lg:pr-24">
+  <div class="flex items-center justify-center md:justify-start gap-3
+              bg-deep-black/55 border border-white/10
+              py-2.5 sm:py-3 px-4 sm:px-6
+              rounded-sm w-full md:w-auto">
 
-          <span class="material-symbols-outlined text-primary-red text-5xl sm:text-5xl leading-none">
+
+          <span class="material-symbols-outlined text-primary-red text-3xl leading-none">
             verified_user
           </span>
 
           <div class="text-center md:text-left">
-            <p class="text-xs font-black text-primary-red uppercase tracking-[0.22em] mb-1">
-              Certificación Total
+            <p class="text-[9px] font-black text-primary-red uppercase tracking-[0.22em] mb-0.5">
+              Control de Calidad Interno
             </p>
-            <p class="text-base font-bold text-white uppercase tracking-wider leading-snug">
-              Confianza & Calidad <br />Garantizada
+            <p class="text-xs sm:text-sm font-bold text-white uppercase tracking-wider leading-snug">
+              Precisión & Confiabilidad <br />Operativa
             </p>
           </div>
         </div>
@@ -152,6 +154,8 @@ $historiaTxt = $empresa["historia"] ?? $fallback_empresa["historia"] ?? "";
     </div>
   </div>
 </section>
+
+
 
 
   <!-- MISIÓN / VISIÓN -->

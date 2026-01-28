@@ -37,7 +37,7 @@ include "includes/ui/header.php";
 ?>
 
 <!-- HERO / PORTADA SERVICIOS -->
-<section class="relative min-h-[60vh] sm:min-h-[70vh] flex items-center pt-16 pb-24 sm:pb-32 overflow-hidden">
+<section class="relative min-h-[60vh] sm:min-h-[70vh] flex items-center pt-10 pb-24 sm:pb-32 overflow-hidden">
 
   <div class="absolute inset-0 z-0">
     <img
@@ -60,8 +60,7 @@ include "includes/ui/header.php";
       </h2>
 
       <p class="text-base sm:text-lg md:text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed font-light mb-10">
-        Maquinados y Servicios Industriales es una empresa dedicada al mantenimiento industrial. Ofrecemos soluciones integrales de manufactura con tecnología de vanguardia y personal altamente calificado para cumplir con los estándares más exigentes.
-      </p>
+Maquinados y Servicios Industriales es una empresa dedicada al maquinado y mantenimiento de maquinaria industrial, especializada en la fabricación y reparación de engranes, sinfines, coronas, flechas y componentes críticos. Ofrecemos soluciones de manufactura mediante procesos convencionales y CNC, orientadas a sectores agroindustrial y manufacturero, cumpliendo con altos estándares de precisión, confiabilidad operativa y entregas en tiempo.      </p>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-4xl border-y border-white/10 py-4">
         <div class="flex flex-col items-center group">

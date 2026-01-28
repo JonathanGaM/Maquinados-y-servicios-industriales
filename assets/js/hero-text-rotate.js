@@ -3,25 +3,30 @@ document.addEventListener("DOMContentLoaded", () => {
   if (!el) return;
 
   const texts = [
-    "Fabricación, maquila y reparación de componentes críticos para la industria global con precisión certificada.",
-    "Maquinados de precisión para piezas industriales, refacciones y componentes especiales bajo especificación.",
-    "Respuesta rápida, control de calidad y amplia experiencia en torno, fresadora, CNC y procesos de manufactura."
+    "Fabricación, maquila y reparación de componentes industriales con sistemas internos de control de calidad y procesos confiables.",
+    "Especialistas en engranes, sinfines y coronas para transmisión de potencia en maquinaria industrial.",
+    "Diseño y manufactura de ejes y componentes mecánicos a medida, fabricados con alta precisión y entrega puntual.",
+    "Producción de rodillos industriales, coples y refacciones críticas para mantenimiento y continuidad operativa.",
+    "Soluciones en maquinado convencional y CNC para proyectos unitarios o producción en volumen."
   ];
 
-  // ⏱️ Debe coincidir con el fondo
-  const BG_INTERVAL = 6500;     // igual que setInterval(swap, 6500)
-  const AFTER_BG = 1700;        // espera a que termine el fade del fondo (≈1200ms) + un extra suave
+  const BG_INTERVAL = 6500;
+  const AFTER_BG = 1700;
 
-  // ⏱️ Duraciones del texto (para que no se vea rápido)
-  const OUT_MS = 950;           // salida
-  const GAP_MS = 250;           // pausa mínima antes de entrar
-  const IN_MS = 1800;           // entrada
+  const OUT_MS = 950;
+  const GAP_MS = 250;
+  const IN_MS = 1800;
 
   let i = 0;
   let timer = null;
 
+  // ✅ Siempre mostrar el primer texto
+  el.textContent = texts[i];
+  el.style.opacity = "1";
+  el.style.transform = "translateX(0)";
+  el.style.filter = "blur(0)";
+
   const doTextSwap = () => {
-    // sale a la derecha suave
     el.style.transition = `opacity ${OUT_MS}ms ease, transform ${OUT_MS}ms ease, filter ${OUT_MS}ms ease`;
     el.style.opacity = "0";
     el.style.transform = "translateX(40px)";
@@ -30,16 +35,14 @@ document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => {
       i = (i + 1) % texts.length;
 
-      // preparar el nuevo texto entrando desde izquierda (invisible)
       el.textContent = texts[i];
       el.style.transition = "none";
       el.style.opacity = "0";
       el.style.transform = "translateX(-40px)";
       el.style.filter = "blur(6px)";
 
-      void el.offsetHeight; // reflow
+      void el.offsetHeight;
 
-      // entra suave desde izquierda
       el.style.transition = `opacity ${IN_MS}ms ease, transform ${IN_MS}ms ease, filter ${IN_MS}ms ease`;
       el.style.opacity = "1";
       el.style.transform = "translateX(0)";
@@ -48,21 +51,14 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   const scheduleNext = () => {
-    // Cancela por seguridad
     if (timer) clearTimeout(timer);
 
-    // 1) Espera el cambio del fondo (BG_INTERVAL)
-    // 2) Luego espera a que termine el fade del fondo (AFTER_BG)
     timer = setTimeout(() => {
       doTextSwap();
       scheduleNext();
     }, BG_INTERVAL + AFTER_BG);
   };
 
-  // ✅ Arranque: primero se ve el fondo + secuencia normal del hero,
-  // y ya después empieza a rotar el texto.
-  timer = setTimeout(() => {
-    doTextSwap();
-    scheduleNext();
-  }, BG_INTERVAL + AFTER_BG);
+  // ✅ Arranca la rotación (sin duplicar timers)
+  scheduleNext();
 });
