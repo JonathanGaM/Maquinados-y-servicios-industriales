@@ -53,6 +53,7 @@ include "includes/ui/header.php";
 
 
 <main class="relative overflow-hidden">
+
   <!-- FONDO -->
   <div class="absolute inset-0 z-0 overflow-hidden">
     <img
@@ -71,7 +72,7 @@ pb-10 sm:pb-14 lg:pb-16">
     <div class="grid lg:grid-cols-2 gap-10 lg:gap-20 items-start lg:items-center">
 
       <!-- INFO -->
-      <div class="space-y-6 sm:space-y-8 text-center lg:text-left reveal zoom-text">
+      <div class="space-y-4 sm:space-y-6 text-center lg:text-left reveal zoom-text">
 
         <div>
           <div class="inline-flex items-center gap-4 mb-6 justify-center lg:justify-start">
@@ -91,7 +92,7 @@ pb-10 sm:pb-14 lg:pb-16">
           </p>
         </div>
 
-        <div class="space-y-4 sm:space-y-5 max-w-xl mx-auto lg:mx-0 text-left">
+        <div class="space-y-3 sm:space-y-4 max-w-xl mx-auto lg:mx-0 text-left">
           <div class="flex items-start gap-4 sm:gap-6">
             <div class="w-11 h-11 sm:w-12 sm:h-12 bg-white/5 border border-white/10 rounded-sm flex items-center justify-center text-primary-red shrink-0 transition-transform hover:scale-110">
               <span class="material-symbols-outlined text-2xl">location_on</span>
@@ -153,7 +154,7 @@ pb-10 sm:pb-14 lg:pb-16">
             </div>
           </div>
 
-          <div class="pt-6 border-t border-white/10">
+          <div class="pt-4 border-t border-white/10">
             <div class="flex items-start gap-3">
               <span class="material-symbols-outlined text-primary-red text-sm mt-[1px] shrink-0">schedule</span>
               <p class="min-w-0 text-gray-400 text-[11px] font-bold uppercase tracking-widest leading-relaxed break-words">
@@ -170,39 +171,44 @@ pb-10 sm:pb-14 lg:pb-16">
         <div class="glass-morphism w-full max-w-xl 
 p-5 sm:p-7 md:p-9 lg:p-10 
 rounded-sm shadow-2xl relative overflow-hidden reveal zoom-text">
-          <div class="absolute top-0 right-0 w-32 h-32 bg-primary-red/10 rounded-full blur-3xl -mr-16 -mt-16"></div>
+          <div class="absolute top-0 right-0 w-32 h-28
+ bg-primary-red/10 rounded-full blur-3xl -mr-16 -mt-16"></div>
 
           <h3 class="text-xl sm:text-2xl font-black uppercase tracking-tight text-white mb-6 sm:mb-8 flex items-center gap-3">
             <span class="w-2 h-2 bg-primary-red"></span>
             Solicitar Cotización
           </h3>
 
-          <form action="/enviar.php" method="POST" class="space-y-5 sm:space-y-6">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
-              <div class="space-y-2">
+          <form action="/enviar.php" method="POST" class="space-y-3 sm:space-y-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
+              <div class="space-y-1">
                 <label class="text-[10px] font-black uppercase tracking-widest text-gray-400">Nombre Completo</label>
                 <input name="nombre" type="text" required placeholder="Ej. Juan Pérez"
-                  class="w-full bg-white/5 border border-white/10 focus:border-primary-red focus:ring-0 text-white placeholder-gray-500 transition-colors py-3 px-4 text-sm" />
+                  class="w-full bg-white/5 border border-white/10 focus:border-primary-red focus:ring-0 text-white placeholder-gray-500 transition-colors py-2.5 px-4 text-sm
+" />
               </div>
 
-              <div class="space-y-2">
+              <div class="space-y-1">
                 <label class="text-[10px] font-black uppercase tracking-widest text-gray-400">Correo Electrónico</label>
                 <input name="email" type="email" required placeholder="email@empresa.com"
-                  class="w-full bg-white/5 border border-white/10 focus:border-primary-red focus:ring-0 text-white placeholder-gray-500 transition-colors py-3 px-4 text-sm" />
+                  class="w-full bg-white/5 border border-white/10 focus:border-primary-red focus:ring-0 text-white placeholder-gray-500 transition-colors py-2.5 px-4 text-sm
+" />
               </div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
-              <div class="space-y-2">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
+              <div class="space-y-1">
                 <label class="text-[10px] font-black uppercase tracking-widest text-gray-400">Teléfono / WhatsApp</label>
                 <input name="telefono" type="tel" required placeholder="10 dígitos"
-                  class="w-full bg-white/5 border border-white/10 focus:border-primary-red focus:ring-0 text-white placeholder-gray-500 transition-colors py-3 px-4 text-sm" />
+                  class="w-full bg-white/5 border border-white/10 focus:border-primary-red focus:ring-0 text-white placeholder-gray-500 transition-colors py-2.5 px-4 text-sm
+" />
               </div>
 
-              <div class="space-y-2">
+              <div class="space-y-1">
                 <label class="text-[10px] font-black uppercase tracking-widest text-gray-400">Servicio de Interés</label>
                 <select name="servicio" required
-                  class="w-full bg-white/5 border border-white/10 focus:border-primary-red focus:ring-0 text-white transition-colors py-3 px-4 text-sm appearance-none">
+                  class="w-full bg-white/5 border border-white/10 focus:border-primary-red focus:ring-0 text-white transition-colors py-2.5 px-4 text-sm
+ appearance-none">
 
                   <option value="">Seleccione una opción</option>
 
@@ -219,14 +225,18 @@ rounded-sm shadow-2xl relative overflow-hidden reveal zoom-text">
               </div>
             </div>
 
-            <div class="space-y-2">
+            <div class="space-y-1">
               <label class="text-[10px] font-black uppercase tracking-widest text-gray-400">Mensaje / Detalles del Proyecto</label>
               <textarea name="mensaje" required
-                class="w-full bg-white/5 border border-white/10 focus:border-primary-red focus:ring-0 text-white placeholder-gray-500 transition-colors py-3 px-4 text-sm h-32"
+                class="w-full bg-white/5 border border-white/10 focus:border-primary-red focus:ring-0 text-white placeholder-gray-500 transition-colors py-2.5 px-4 text-sm
+ h-28
+"
                 placeholder="Describa brevemente su requerimiento..."></textarea>
             </div>
 
-            <button class="btn-sweep w-full bg-primary-red hover:bg-red-700 text-white py-4 px-8 text-xs font-black uppercase tracking-[0.2em] transition-all flex items-center justify-center gap-3">
+            <button class="btn-sweep w-full bg-primary-red hover:bg-red-700 text-white py-3.5 px-8
+
+ text-xs font-black uppercase tracking-[0.2em] transition-all flex items-center justify-center gap-3">
               Enviar Requerimiento
               <span class="material-symbols-outlined text-sm">send</span>
             </button>

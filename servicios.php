@@ -1,5 +1,3 @@
-
-
 <?php
 require_once __DIR__ . "/includes/core/fallbacks.php";
 require_once __DIR__ . "/includes/core/db.php";
@@ -7,7 +5,8 @@ require_once __DIR__ . "/includes/core/db.php";
 $servicios = [];
 
 /* Escape helper */
-function e(string $v): string {
+function e(string $v): string
+{
   return htmlspecialchars($v, ENT_QUOTES, "UTF-8");
 }
 
@@ -36,35 +35,46 @@ if (empty($servicios)) {
 include "includes/ui/header.php";
 ?>
 
-<!-- HERO / PORTADA SERVICIOS -->
-<section class="relative min-h-[60vh] sm:min-h-[70vh] flex items-center pt-10 pb-24 sm:pb-32 overflow-hidden">
+
+<section id="hero-servicios"
+  class="scroll-mt-28 sm:scroll-mt-32 relative min-h-[60vh] sm:min-h-[70vh] flex items-center pt-10 pb-24 sm:pb-32 overflow-hidden">
+
 
   <div class="absolute inset-0 z-0">
     <img
+      id="hero-bg-img"
       alt="Fondo Industrial"
-      class="w-full h-full object-cover grayscale brightness-[0.3]"
+      class="w-full h-full object-cover grayscale brightness-[0.5]"
       src="https://www.mobil.com.mx/lubricantes/-/media/project/wep/mobil/mobil-mx/blog-industrial/engranes/fs-sm.jpg" />
-    <div class="absolute inset-0 bg-gradient-to-b from-navy-blue/80 to-deep-black/95"></div>
+
+    <div class="absolute inset-0 bg-gradient-to-b from-navy-blue/75 to-deep-black/65"></div>
     <div class="industrial-grid absolute inset-0 opacity-10"></div>
   </div>
 
   <div class="reveal zoom-text max-w-7xl mx-auto px-5 sm:px-8 relative z-10 w-full">
     <div class="flex flex-col items-center text-center">
 
-      <p class="text-primary-red font-bold tracking-[0.28em] text-xs uppercase mb-3 bg-primary-red/10 px-4 py-1 inline-block border-x border-primary-red/30">
+      <p id="hero-badge"
+        class="text-primary-red font-bold tracking-[0.28em] text-xs uppercase mb-3
+         bg-primary-red/10 px-4 py-1 inline-block border-x border-primary-red/30">
         ¿Buscas un servicio especializado?
       </p>
 
-      <h2 class="text-3xl md:text-5xl font-black uppercase leading-none tracking-tight mb-6 text-white">
+
+      <h2 id="hero-title" class="text-3xl md:text-5xl font-black uppercase leading-none tracking-tight mb-6 text-white">
         Nuestros <span class="text-primary-red">Servicios</span>
       </h2>
 
-      <p class="text-base sm:text-lg md:text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed font-light mb-10">
-Maquinados y Servicios Industriales es una empresa dedicada al maquinado y mantenimiento de maquinaria industrial, especializada en la fabricación y reparación de engranes, sinfines, coronas, flechas y componentes críticos. Ofrecemos soluciones de manufactura mediante procesos convencionales y CNC, orientadas a sectores agroindustrial y manufacturero, cumpliendo con altos estándares de precisión, confiabilidad operativa y entregas en tiempo.      </p>
+      <p id="hero-desc" class="text-base sm:text-lg md:text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed font-light mb-10">
+Maquinados y Servicios Industriales es una empresa dedicada al maquinado y mantenimiento de maquinaria industrial, especializada en la fabricación y reparación de engranes, sinfines, coronas, flechas y componentes críticos. Ofrecemos soluciones de manufactura mediante procesos convencionales y CNC, orientadas a sectores agroindustrial y manufacturero, cumpliendo con altos estándares de precisión, confiabilidad operativa y entregas en tiempo.
+      </p>
+      <div id="hero-stats"
+        class="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-4xl border-y border-white/10 py-4">
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-4xl border-y border-white/10 py-4">
+        <!-- 100% -->
         <div class="flex flex-col items-center group">
-          <span class="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight mb-0 group-hover:text-primary-red transition-colors">
+          <span class="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight mb-0
+                 group-hover:text-primary-red transition-colors">
             100%
           </span>
           <span class="text-primary-red font-black tracking-[0.45em] text-[11px] uppercase">
@@ -72,127 +82,187 @@ Maquinados y Servicios Industriales es una empresa dedicada al maquinado y mante
           </span>
         </div>
 
+        <!-- AÑOS -->
         <div class="flex flex-col items-center group">
-          <span class="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight mb-0 group-hover:text-primary-red transition-colors">
+          <span class="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight mb-0
+                 group-hover:text-primary-red transition-colors">
             <?= experience_decade(MSI_START_YEAR); ?>+
           </span>
           <span class="text-primary-red font-black tracking-[0.45em] text-[11px] uppercase">
             Años de Experiencia
           </span>
         </div>
+
       </div>
-
-      <div class="mt-8 flex flex-col sm:flex-row gap-4">
-        <a href="#servicios"
-          class="px-7 py-3 text-[11px] font-black uppercase tracking-widest border border-white/20 text-white bg-white/0
-                 hover:bg-primary-red hover:border-primary-red transition-all w-full sm:w-auto text-center">
-          Servicios que ofrecemos
-        </a>
-
-        <a href="#sectores"
-          class="px-7 py-3 text-[11px] font-black uppercase tracking-widest border border-white/20 text-white bg-white/0
-                 hover:bg-primary-red hover:border-primary-red transition-all w-full sm:w-auto text-center">
-          Sectores que atendemos
-        </a>
-
-        <a href="#materiales"
-          class="px-7 py-3 text-[11px] font-black uppercase tracking-widest border border-white/20 text-white bg-white/0
-                 hover:bg-primary-red hover:border-primary-red transition-all w-full sm:w-auto text-center">
-          Capacidades materiales
-        </a>
-      </div>
-
     </div>
   </div>
 </section>
 
 <!-- GRID SERVICIOS -->
-<section id="servicios" class="py-24 sm:py-32 bg-navy-blue relative overflow-hidden">
+<section id="servicios" class="pt-14 pb-16 sm:pt-18 sm:pb-20 bg-white relative overflow-hidden">
 
-  <div class="absolute inset-0 industrial-grid opacity-10"></div>
-  <div class="absolute inset-0 bg-gradient-to-b from-navy-blue via-navy-blue/95 to-deep-black/90"></div>
+  <!-- overlays suaves -->
+  <div class="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(2,6,23,0.05)_1px,transparent_0)] [background-size:40px_40px]"></div>
+  <div class="absolute inset-0 bg-gradient-to-b from-white via-white to-white/95"></div>
 
   <div class="relative z-10 max-w-7xl mx-auto px-5 sm:px-8">
 
-    <div class="text-center mb-16 reveal zoom-text">
+    <!-- TITULO -->
+    <div class="text-center mb-8 sm:mb-10 reveal zoom-text">
       <span class="text-primary-red font-black tracking-[0.4em] text-[10px] uppercase">
         Servicios Especializados
       </span>
 
-      <h3 class="text-4xl md:text-5xl font-black text-white uppercase mt-4">
+      <h3 class="text-4xl md:text-5xl font-black text-navy-blue uppercase mt-4">
         Servicios que Ofrecemos
       </h3>
 
       <div class="w-24 h-[2px] bg-primary-red mx-auto mt-6"></div>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <!-- GRID -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
 
       <?php foreach ($servicios as $s): ?>
-        <?php $videoSrc = trim((string)($s["video"] ?? "")); ?>
+        <?php
+        $nombre = (string)($s["nombre"] ?? "");
+        $heroDesc = (string)($s["descripcion_larga"] ?? $s["descripcion"] ?? "");
+        $img    = (string)($s["imagen"] ?? "");
+        $vid    = trim((string)($s["video"] ?? ""));
+        ?>
+
 
         <div
-          class="service-card reveal from-bottom group relative h-[460px] sm:h-[520px] overflow-hidden
-                 border border-white/10 bg-deep-black shadow-2xl">
+          class="service-card reveal from-bottom group relative
+         h-[420px] sm:h-[460px]
+         overflow-hidden border border-slate-200
+         bg-deep-black
+       rounded-[5px]
+shadow-[0_8px_12px_-4px_rgba(0,0,0,0.65)]
+">
 
-          <!-- IMAGEN (fallback) -->
+
+          <!-- IMAGEN -->
           <img
             alt="<?= e((string)($s["nombre"] ?? "")); ?>"
-            class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-            src="<?= e((string)($s["imagen"] ?? "")); ?>" />
+            src="<?= e((string)($s["imagen"] ?? "")); ?>"
+            class="absolute inset-0 w-full h-full object-cover
+             transition-transform duration-700
+             group-hover:scale-110" />
 
-          <?php if ($videoSrc !== ""): ?>
-            <!-- VIDEO (hover) -->
-          <video
-  class="service-video absolute inset-0 w-full h-full object-cover opacity-0 pointer-events-none transition-opacity duration-300"
-  muted
-  loop
-  playsinline
-  preload="none"
-  data-src="<?= e($videoSrc); ?>">
-</video>
-
+          <!-- VIDEO -->
+          <?php if ($vid !== ""): ?>
+            <video
+              class="service-video absolute inset-0 w-full h-full object-cover
+           opacity-0 pointer-events-none
+           transition-opacity duration-300"
+              muted
+              loop
+              playsinline
+              preload="none"
+              data-src="<?= e($vid); ?>">
+            </video>
           <?php endif; ?>
 
+
           <!-- OVERLAY -->
-          <div class="absolute inset-0 bg-gradient-to-t from-deep-black/95 via-navy-blue/70 to-navy-blue/30"></div>
+          <div class="absolute inset-0 bg-gradient-to-t
+            from-deep-black/85
+            via-deep-black/35
+            to-transparent"></div>
+
 
           <!-- CONTENIDO -->
-          <div class="absolute inset-0 p-6 sm:p-10 flex flex-col justify-end">
-            <span class="material-symbols-outlined text-primary-red text-4xl mb-6">
-              precision_manufacturing
-            </span>
 
-            <h3 class="text-2xl font-black text-white uppercase mb-4 leading-tight">
-              <?= e((string)($s["nombre"] ?? "")); ?>
-            </h3>
 
-            <p class="text-gray-300 text-sm leading-relaxed mb-8">
-              <?= e((string)($s["descripcion"] ?? "")); ?>
-            </p>
+          <div class="absolute inset-0 px-3 py-6 sm:px-4 sm:py-8 flex flex-col justify-end">
 
-            <a href="contacto.php"
-              class="bg-primary-red hover:bg-white hover:text-navy-blue transition-all
-                     text-white font-black text-[10px] tracking-widest uppercase
-                     py-3 px-6 sm:py-4 sm:px-8 self-start rounded-sm">
-              Cotizar
-            </a>
+            <!-- TEXTO (con espacio reservado para botones) -->
+            <!-- TEXTO (pegado abajo pero con espacio para botones) -->
+            <div class="pr-2 pb-16 sm:pb-20">
+              <div class="service-head transform transition-all duration-500 ease-out
+    translate-y-20 group-hover:translate-y-0 group-focus-within:translate-y-0">
+
+                <span class="material-symbols-outlined text-primary-red text-3xl mb-3">
+                  precision_manufacturing
+                </span>
+
+                <h3 class="text-xl font-black text-white uppercase leading-tight">
+                  <?= e((string)($s["nombre"] ?? "")); ?>
+                </h3>
+              </div>
+
+              <p class="service-desc mt-6 group-hover:mt-2 text-gray-200 text-sm leading-relaxed
+    opacity-0 translate-y-3 transition-all duration-500 ease-out
+    group-hover:opacity-100 group-hover:translate-y-0
+    group-focus-within:opacity-100 group-focus-within:translate-y-0">
+                <?= e((string)($s["descripcion"] ?? "")); ?>
+              </p>
+            </div>
+
+
+            <!-- BOTONES FIJOS ABAJO -->
+            <div class="service-cta absolute left-3 right-3 bottom-5 sm:left-4 sm:right-4 sm:bottom-6
+  flex items-center gap-3 flex-wrap">
+
+
+              <!-- VER SERVICIO -->
+              <a href="#hero-servicios"
+                class="js-hero-service border border-white/60 text-white hover:bg-white hover:text-navy-blue transition-all font-black text-[10px]
+         tracking-widest uppercase py-3 px-6 rounded-sm"
+                data-hero-title="<?= e($nombre); ?>"
+                data-hero-desc="<?= e($heroDesc); ?>"
+                data-hero-img="<?= e($img); ?>"
+                data-hero-badge="Soluciones de alta precisión para <?= e($nombre); ?>">
+                Ver servicio
+              </a>
+
+
+              <!-- COTIZAR -->
+              <a href="contacto.php"
+                class="bg-primary-red
+           hover:bg-white hover:text-navy-blue
+           transition-all
+           text-white font-black text-[10px]
+           tracking-widest uppercase
+           py-3 px-6 rounded-sm">
+                Cotizar
+              </a>
+
+              <!-- FLECHA -->
+              <span
+                class="service-arrow material-symbols-outlined
+           text-white/70 text-xl
+           animate-bounce
+           transition-all duration-300
+           group-hover:animate-none group-hover:opacity-80">
+                expand_less
+              </span>
+
+            </div>
+
+
           </div>
+
         </div>
       <?php endforeach; ?>
+
 
     </div>
   </div>
 </section>
-<section id="sectores" class="py-24 bg-white relative overflow-hidden">
 
-  <!-- overlays (todo inline) -->
+<section id="sectores" class="pt-14 pb-16 sm:pt-18 sm:pb-20 bg-white relative overflow-hidden">
+
+  <!-- overlays -->
   <div class="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(2,6,23,0.06)_1px,transparent_0)] [background-size:40px_40px]"></div>
   <div class="absolute inset-0 bg-gradient-to-b from-white via-white to-white/95"></div>
 
-
   <div class="max-w-7xl mx-auto px-5 sm:px-8 relative z-10">
-    <div class="text-center mb-16">
+
+    <!-- TITULO -->
+    <div class="text-center mb-8 sm:mb-10">
       <span class="text-primary-red font-black tracking-[0.4em] text-[10px] uppercase">
         Mercados Atendidos
       </span>
@@ -202,82 +272,211 @@ Maquinados y Servicios Industriales es una empresa dedicada al maquinado y mante
       <div class="w-24 h-[2px] bg-primary-red mx-auto mt-6"></div>
     </div>
 
+    <!-- GRID -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
 
-      <!-- Automotriz -->
+      <!-- AUTOMOTRIZ -->
       <div class="reveal from-bottom relative h-64 overflow-hidden group border border-slate-200 bg-deep-black">
         <img
+          src="https://cdn.club-magazin.autodoc.de/uploads/sites/11/2020/12/motor-de-combustion-interna-de-un-automovil.jpg"
           alt="Automotriz"
-          class="absolute inset-0 w-full h-full object-cover grayscale brightness-[0.45] transition-all duration-700 group-hover:scale-110 group-hover:grayscale-0"
-          src="https://cdn.club-magazin.autodoc.de/uploads/sites/11/2020/12/motor-de-combustion-interna-de-un-automovil.jpg" />
-        <div class="absolute inset-0 bg-deep-black/70 group-hover:bg-deep-black/20 transition-all duration-500 flex flex-col items-center justify-center p-6">
-          <span class="material-symbols-outlined text-4xl mb-4 text-white">directions_car</span>
-          <h5 class="text-white font-black uppercase tracking-widest text-base sm:text-lg">Automotriz</h5>
+          class="absolute inset-0 w-full h-full object-cover grayscale brightness-[0.45]
+                 transition-all duration-700 group-hover:scale-110 group-hover:grayscale-0" />
+
+        <div class="absolute inset-0 bg-deep-black/70 group-hover:bg-deep-black/25
+                    transition-all duration-500
+                    flex flex-col items-center justify-center p-6 text-center">
+
+          <span class="material-symbols-outlined text-4xl mb-3 text-white
+                       transform transition-transform duration-500
+                       group-hover:-translate-y-4">
+            directions_car
+          </span>
+
+          <h5 class="text-white font-black uppercase tracking-widest text-base sm:text-lg
+                     transform transition-transform duration-500
+                     group-hover:-translate-y-4">
+            Automotriz
+          </h5>
+
+          <p class="mt-3 text-white/85 text-xs leading-relaxed max-w-xs
+                    opacity-0 translate-y-2
+                    transition-all duration-500
+                    group-hover:opacity-100 group-hover:translate-y-0">
+            Fabricación y reparación de componentes para líneas de producción automotriz.
+          </p>
         </div>
       </div>
 
-      <!-- Aeronáutica -->
+      <!-- AERONÁUTICA -->
       <div class="reveal from-bottom relative h-64 overflow-hidden group border border-slate-200 bg-deep-black">
         <img
+          src="https://us.123rf.com/450wm/andose24/andose241709/andose24170900011/86109270-tren-de-aterrizaje.jpg?ver=6"
           alt="Aeronáutica"
-          class="absolute inset-0 w-full h-full object-cover grayscale brightness-[0.45] transition-all duration-700 group-hover:scale-110 group-hover:grayscale-0"
-          src="https://us.123rf.com/450wm/andose24/andose241709/andose24170900011/86109270-tren-de-aterrizaje.jpg?ver=6" />
-        <div class="absolute inset-0 bg-deep-black/70 group-hover:bg-deep-black/20 transition-all duration-500 flex flex-col items-center justify-center p-6">
-          <span class="material-symbols-outlined text-4xl mb-4 text-white">flight</span>
-          <h5 class="text-white font-black uppercase tracking-widest text-base sm:text-lg">Aeronáutica</h5>
+          class="absolute inset-0 w-full h-full object-cover grayscale brightness-[0.45]
+                 transition-all duration-700 group-hover:scale-110 group-hover:grayscale-0" />
+
+        <div class="absolute inset-0 bg-deep-black/70 group-hover:bg-deep-black/25
+                    transition-all duration-500
+                    flex flex-col items-center justify-center p-6 text-center">
+
+          <span class="material-symbols-outlined text-4xl mb-3 text-white
+                       transform transition-transform duration-500
+                       group-hover:-translate-y-4">
+            flight
+          </span>
+
+          <h5 class="text-white font-black uppercase tracking-widest text-base sm:text-lg
+                     transform transition-transform duration-500
+                     group-hover:-translate-y-4">
+            Aeronáutica
+          </h5>
+
+          <p class="mt-3 text-white/85 text-xs leading-relaxed max-w-xs
+                    opacity-0 translate-y-2
+                    transition-all duration-500
+                    group-hover:opacity-100 group-hover:translate-y-0">
+            Maquinados de alta precisión para componentes críticos aeronáuticos.
+          </p>
         </div>
       </div>
 
-      <!-- Metal-Mecánica -->
+      <!-- METAL-MECÁNICA -->
       <div class="reveal from-bottom relative h-64 overflow-hidden group border border-slate-200 bg-deep-black">
         <img
+          src="https://www.rapiddirect.com/wp-content/uploads/2023/10/5-axis-cnc-machining-process.webp"
           alt="Metal-Mecánica"
-          class="absolute inset-0 w-full h-full object-cover grayscale brightness-[0.45] transition-all duration-700 group-hover:scale-110 group-hover:grayscale-0"
-          src="https://www.rapiddirect.com/wp-content/uploads/2023/10/5-axis-cnc-machining-process.webp" />
-        <div class="absolute inset-0 bg-deep-black/70 group-hover:bg-deep-black/20 transition-all duration-500 flex flex-col items-center justify-center p-6">
-          <span class="material-symbols-outlined text-4xl mb-4 text-white">factory</span>
-          <h5 class="text-white font-black uppercase tracking-widest text-base sm:text-lg">Metal-Mecánica</h5>
+          class="absolute inset-0 w-full h-full object-cover grayscale brightness-[0.45]
+                 transition-all duration-700 group-hover:scale-110 group-hover:grayscale-0" />
+
+        <div class="absolute inset-0 bg-deep-black/70 group-hover:bg-deep-black/25
+                    transition-all duration-500
+                    flex flex-col items-center justify-center p-6 text-center">
+
+          <span class="material-symbols-outlined text-4xl mb-3 text-white
+                       transform transition-transform duration-500
+                       group-hover:-translate-y-4">
+            factory
+          </span>
+
+          <h5 class="text-white font-black uppercase tracking-widest text-base sm:text-lg
+                     transform transition-transform duration-500
+                     group-hover:-translate-y-4">
+            Metal-Mecánica
+          </h5>
+
+          <p class="mt-3 text-white/85 text-xs leading-relaxed max-w-xs
+                    opacity-0 translate-y-2
+                    transition-all duration-500
+                    group-hover:opacity-100 group-hover:translate-y-0">
+            Soluciones de maquinado CNC y convencional para la industria metalmecánica.
+          </p>
         </div>
       </div>
 
-      <!-- Alimenticia -->
+      <!-- ALIMENTICIA -->
       <div class="reveal from-bottom relative h-64 overflow-hidden group border border-slate-200 bg-deep-black">
         <img
+          src="https://www.rrhhdigital.com/wp-content/uploads/userfiles/fabrica-alimentacion-comida.jpg"
           alt="Alimenticia"
-          class="absolute inset-0 w-full h-full object-cover grayscale brightness-[0.45] transition-all duration-700 group-hover:scale-110 group-hover:grayscale-0"
-          src="https://www.rrhhdigital.com/wp-content/uploads/userfiles/fabrica-alimentacion-comida.jpg" />
-        <div class="absolute inset-0 bg-deep-black/70 group-hover:bg-deep-black/20 transition-all duration-500 flex flex-col items-center justify-center p-6">
-          <span class="material-symbols-outlined text-4xl mb-4 text-white">restaurant</span>
-          <h5 class="text-white font-black uppercase tracking-widest text-base sm:text-lg">Alimenticia</h5>
+          class="absolute inset-0 w-full h-full object-cover grayscale brightness-[0.45]
+                 transition-all duration-700 group-hover:scale-110 group-hover:grayscale-0" />
+
+        <div class="absolute inset-0 bg-deep-black/70 group-hover:bg-deep-black/25
+                    transition-all duration-500
+                    flex flex-col items-center justify-center p-6 text-center">
+
+          <span class="material-symbols-outlined text-4xl mb-3 text-white
+                       transform transition-transform duration-500
+                       group-hover:-translate-y-4">
+            restaurant
+          </span>
+
+          <h5 class="text-white font-black uppercase tracking-widest text-base sm:text-lg
+                     transform transition-transform duration-500
+                     group-hover:-translate-y-4">
+            Alimenticia
+          </h5>
+
+          <p class="mt-3 text-white/85 text-xs leading-relaxed max-w-xs
+                    opacity-0 translate-y-2
+                    transition-all duration-500
+                    group-hover:opacity-100 group-hover:translate-y-0">
+            Fabricación y mantenimiento de piezas para maquinaria de proceso y empaque.
+          </p>
         </div>
       </div>
 
-      <!-- Agrícola -->
+      <!-- AGRÍCOLA -->
       <div class="reveal from-bottom relative h-64 overflow-hidden group border border-slate-200 bg-deep-black">
         <img
+          src="https://www.spmas.es/wp-content/uploads/2023/03/Post-3-PRL-Sector-Agricola.jpg"
           alt="Agrícola"
-          class="absolute inset-0 w-full h-full object-cover grayscale brightness-[0.45] transition-all duration-700 group-hover:scale-110 group-hover:grayscale-0"
-          src="https://www.spmas.es/wp-content/uploads/2023/03/Post-3-PRL-Sector-Agricola.jpg" />
-        <div class="absolute inset-0 bg-deep-black/70 group-hover:bg-deep-black/20 transition-all duration-500 flex flex-col items-center justify-center p-6">
-          <span class="material-symbols-outlined text-4xl mb-4 text-white">agriculture</span>
-          <h5 class="text-white font-black uppercase tracking-widest text-base sm:text-lg">Agrícola</h5>
+          class="absolute inset-0 w-full h-full object-cover grayscale brightness-[0.45]
+                 transition-all duration-700 group-hover:scale-110 group-hover:grayscale-0" />
+
+        <div class="absolute inset-0 bg-deep-black/70 group-hover:bg-deep-black/25
+                    transition-all duration-500
+                    flex flex-col items-center justify-center p-6 text-center">
+
+          <span class="material-symbols-outlined text-4xl mb-3 text-white
+                       transform transition-transform duration-500
+                       group-hover:-translate-y-4">
+            agriculture
+          </span>
+
+          <h5 class="text-white font-black uppercase tracking-widest text-base sm:text-lg
+                     transform transition-transform duration-500
+                     group-hover:-translate-y-4">
+            Agrícola
+          </h5>
+
+          <p class="mt-3 text-white/85 text-xs leading-relaxed max-w-xs
+                    opacity-0 translate-y-2
+                    transition-all duration-500
+                    group-hover:opacity-100 group-hover:translate-y-0">
+            Manufactura y reparación de componentes para maquinaria agrícola.
+          </p>
         </div>
       </div>
-     
-      <!-- Electrónica -->
+
+      <!-- ELECTRÓNICA -->
       <div class="reveal from-bottom relative h-64 overflow-hidden group border border-slate-200 bg-deep-black">
         <img
+          src="https://www.vencoel.com/wp-content/uploads/2023/11/normativas-electronica.jpg"
           alt="Electrónica"
-          class="absolute inset-0 w-full h-full object-cover grayscale brightness-[0.45] transition-all duration-700 group-hover:scale-110 group-hover:grayscale-0"
-          src="https://www.vencoel.com/wp-content/uploads/2023/11/normativas-electronica.jpg" />
-        <div class="absolute inset-0 bg-deep-black/70 group-hover:bg-deep-black/20 transition-all duration-500 flex flex-col items-center justify-center p-6">
-          <span class="material-symbols-outlined text-4xl mb-4 text-white">memory</span>
-          <h5 class="text-white font-black uppercase tracking-widest text-base sm:text-lg">Electrónica</h5>
+          class="absolute inset-0 w-full h-full object-cover grayscale brightness-[0.45]
+                 transition-all duration-700 group-hover:scale-110 group-hover:grayscale-0" />
+
+        <div class="absolute inset-0 bg-deep-black/70 group-hover:bg-deep-black/25
+                    transition-all duration-500
+                    flex flex-col items-center justify-center p-6 text-center">
+
+          <span class="material-symbols-outlined text-4xl mb-3 text-white
+                       transform transition-transform duration-500
+                       group-hover:-translate-y-4">
+            memory
+          </span>
+
+          <h5 class="text-white font-black uppercase tracking-widest text-base sm:text-lg
+                     transform transition-transform duration-500
+                     group-hover:-translate-y-4">
+            Electrónica
+          </h5>
+
+          <p class="mt-3 text-white/85 text-xs leading-relaxed max-w-xs
+                    opacity-0 translate-y-2
+                    transition-all duration-500
+                    group-hover:opacity-100 group-hover:translate-y-0">
+            Componentes de precisión para equipos y ensambles electrónicos industriales.
+          </p>
         </div>
       </div>
+
     </div>
   </div>
 </section>
+
 <section id="materiales" class="py-24 bg-deep-black">
 
   <div class="max-w-7xl mx-auto px-5 sm:px-8 reveal zoom-text">
@@ -335,7 +534,37 @@ Maquinados y Servicios Industriales es una empresa dedicada al maquinado y mante
 
 <!-- (EL RESTO DE TU ARCHIVO: sectores + materiales) LO DEJAS IGUAL -->
 <!-- ... pega aquí tus secciones #sectores y #materiales tal cual las tienes ... -->
- <script src="assets/js/service-hover-video.js"></script>
+<script src="assets/js/service-hover-video.js"></script>
+<script src="assets/js/hero-servicio-switch.js"></script>
 
+<style>
+  /* Cuando el card está abierto (móvil), mostrar descripción */
+  /* =========================
+   MÓVIL: mostrar todo fijo
+   ========================= */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  @media (hover: none) and (pointer: coarse) {
+
+    /* Descripción SIEMPRE visible */
+    .service-desc {
+      opacity: 1 !important;
+      transform: translateY(0) !important;
+      pointer-events: auto !important;
+    }
+
+    /* Quitar animación de entrada del título */
+    .service-head {
+      transform: translateY(0) !important;
+    }
+
+    /* Ocultar flecha en móvil */
+    .service-arrow {
+      display: none !important;
+    }
+  }
+</style>
 
 <?php include "includes/ui/footer.php"; ?>

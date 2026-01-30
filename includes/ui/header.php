@@ -29,18 +29,24 @@ if (!isset($empresa) || !is_array($empresa) || empty($empresa)) {
 ?>
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>MSI Maquinados y Servicios Industriales</title>
   <link rel="icon" href="assets/img/favicon.ico" type="image/x-icon">
-<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
 
 
   <!-- ✅ Anti-flash: fondo base inmediato (antes de que cargue Tailwind/CSS) -->
   <style>
-    html, body { background: #020617; } /* deep-black */
+    html,
+    body {
+      background: #020617;
+    }
+
+    /* deep-black */
   </style>
 
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
@@ -82,8 +88,9 @@ if (!isset($empresa) || !is_array($empresa) || empty($empresa)) {
 
   <!-- ✅ Anti-flash extra: forzar overlay oscuro del loader sin tocar tu loader.css -->
   <style>
-    .page-loader{
-      background: rgba(2,6,23,0.75) !important; /* deep-black */
+    .page-loader {
+      background: rgba(2, 6, 23, 0.75) !important;
+      /* deep-black */
       backdrop-filter: blur(6px);
       -webkit-backdrop-filter: blur(6px);
     }
@@ -103,37 +110,37 @@ if (!isset($empresa) || !is_array($empresa) || empty($empresa)) {
   <div class="fixed top-0 left-0 right-0 z-[9999]">
 
     <!-- TOP BAR (SOLO ESCRITORIO) -->
-     <?php if (!($hideTopBar ?? false)): ?>
+    <?php if (!($hideTopBar ?? false)): ?>
 
-   <div class="hidden lg:flex w-full bg-deep-black border-b border-white/10">
-      <div class="max-w-7xl mx-auto w-full px-8 h-10 flex items-center text-[13px] tracking-wide text-white/90 normal-case">
+      <div class="hidden lg:flex w-full bg-deep-black border-b border-white/10">
+        <div class="max-w-7xl mx-auto w-full px-8 h-10 flex items-center text-[13px] tracking-wide text-white/90 normal-case">
 
 
 
-        <div class="flex flex-wrap items-center gap-x-8 gap-y-2 text-white/80">
-          <span class="flex items-center gap-2">
-            <span class="material-symbols-outlined text-primary-red text-sm">location_on</span>
-            <?php echo htmlspecialchars($empresa["ubicacion"] ?? "", ENT_QUOTES, "UTF-8"); ?>
-          </span>
+          <div class="flex flex-wrap items-center gap-x-8 gap-y-2 text-white/80">
+            <span class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-primary-red text-sm">location_on</span>
+              <?php echo htmlspecialchars($empresa["ubicacion"] ?? "", ENT_QUOTES, "UTF-8"); ?>
+            </span>
 
-          <span class="flex items-center gap-2">
-            <span class="material-symbols-outlined text-primary-red text-sm">call</span>
-            <?php echo htmlspecialchars($empresa["telefono"] ?? "", ENT_QUOTES, "UTF-8"); ?>
-          </span>
+            <span class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-primary-red text-sm">call</span>
+              <?php echo htmlspecialchars($empresa["telefono"] ?? "", ENT_QUOTES, "UTF-8"); ?>
+            </span>
 
-          <span class="flex items-center gap-2">
-            <span class="material-symbols-outlined text-primary-red text-sm">mail</span>
-            <?php echo htmlspecialchars($empresa["correo"] ?? "", ENT_QUOTES, "UTF-8"); ?>
-          </span>
+            <span class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-primary-red text-sm">mail</span>
+              <?php echo htmlspecialchars($empresa["correo"] ?? "", ENT_QUOTES, "UTF-8"); ?>
+            </span>
+          </div>
         </div>
       </div>
-    </div>
     <?php endif; ?>
 
 
     <!-- ✅ HEADER (FIJO) -->
-<header class="bg-white border-b border-border-navy/20 shadow-[0_6px_12px_-8px_rgba(2,6,23,0.35)] px-4 sm:px-6 lg:px-8 h-20 sm:h-24 lg:h-28">
-         <div class="max-w-7xl mx-auto flex justify-between items-center h-full">
+    <header class="bg-white border-b border-border-navy/20 shadow-[0_6px_12px_-8px_rgba(2,6,23,0.35)] px-4 sm:px-6 lg:px-8 h-20 sm:h-24 lg:h-28">
+      <div class="max-w-7xl mx-auto flex justify-between items-center h-full">
 
         <!-- LOGO -->
         <a href="index.php" class="flex items-center h-full gap-4">
@@ -144,10 +151,10 @@ if (!isset($empresa) || !is_array($empresa) || empty($empresa)) {
 
           <div class="leading-tight">
             <?php
-              $nombre = trim((string)($empresa['nombre'] ?? ''));
-              $partes = explode(' ', $nombre, 2);
-              $linea1 = $partes[0] ?? '';
-              $linea2 = $partes[1] ?? '';
+            $nombre = trim((string)($empresa['nombre'] ?? ''));
+            $partes = explode(' ', $nombre, 2);
+            $linea1 = $partes[0] ?? '';
+            $linea2 = $partes[1] ?? '';
             ?>
 
             <p class="text-royal-blue font-black uppercase tracking-wide text-[12px] sm:text-sm lg:text-lg">
@@ -172,10 +179,56 @@ if (!isset($empresa) || !is_array($empresa) || empty($empresa)) {
             Nosotros
           </a>
 
-          <a href="servicios.php"
-            class="<?= $currentPage == 'servicios.php' ? 'text-primary-red' : 'text-navy-blue hover:text-primary-red transition-colors' ?>">
-            Servicios
-          </a>
+          <?php
+          // ✅ Submenú (usa los 6 servicios del fallback)
+          // Recomendación: asegúrate de que en $fallback_servicios existan 6 elementos.
+          $serviciosMenu = array_slice($fallback_servicios ?? [], 0, 6);
+
+          // slug simple (sirve para anchors: #maquinado-cnc, etc.)
+          function slugify(string $t): string
+          {
+            $t = mb_strtolower(trim($t), 'UTF-8');
+            $t = preg_replace('/[^\p{L}\p{N}\s-]+/u', '', $t);
+            $t = preg_replace('/[\s-]+/', '-', $t);
+            return trim($t, '-');
+          }
+          ?>
+
+          <div class="relative group">
+            <!-- ✅ El link principal sigue siendo clickeable -->
+            <a href="servicios.php"
+              class="<?= $currentPage == 'servicios.php'
+                        ? 'text-primary-red'
+                        : 'text-navy-blue hover:text-primary-red transition-colors' ?> flex items-center gap-1">
+              Servicios
+              <span class="material-symbols-outlined text-[18px] leading-none translate-y-[1px] opacity-80 group-hover:opacity-100">
+                keyboard_arrow_down
+              </span>
+            </a>
+
+            <!-- ✅ Dropdown -->
+            <div class="absolute left-0 top-full pt-4 opacity-0 invisible
+              group-hover:opacity-100 group-hover:visible
+              transition-all duration-200">
+              <div class="w-72 bg-white border border-border-navy/20 shadow-2xl rounded-sm overflow-hidden">
+
+
+                <div class="py-2">
+                  <?php foreach ($serviciosMenu as $srv): ?>
+                    <?php
+                    $nombreSrv = (string)($srv["nombre"] ?? "");
+                    $idSrv = slugify($nombreSrv); // para #anchor
+                    ?>
+                    <a href="servicios.php#<?= htmlspecialchars($idSrv, ENT_QUOTES, "UTF-8"); ?>"
+                      class="block px-4 py-3 text-navy-blue font-bold text-[13px]
+                    hover:bg-primary-red hover:text-white transition-colors">
+                      <?= htmlspecialchars($nombreSrv, ENT_QUOTES, "UTF-8"); ?>
+                    </a>
+                  <?php endforeach; ?>
+                </div>
+              </div>
+            </div>
+          </div>
 
           <a href="clientes.php"
             class="<?= $currentPage == 'clientes.php' ? 'text-primary-red' : 'text-navy-blue hover:text-primary-red transition-colors' ?>">
@@ -205,14 +258,14 @@ if (!isset($empresa) || !is_array($empresa) || empty($empresa)) {
   </div>
 
   <!-- ✅ ESPACIADOR para header fijo -->
-<div class="<?= ($hideTopBar ?? false)
-  ? 'h-20 sm:h-24 lg:h-[112px]'
-  : 'h-20 sm:h-24 lg:h-[152px]' ?>">
-</div>
+  <div class="<?= ($hideTopBar ?? false)
+                ? 'h-20 sm:h-24 lg:h-[112px]'
+                : 'h-20 sm:h-24 lg:h-[152px]' ?>">
+  </div>
 
   <!-- MENU MÓVIL -->
   <div id="mobileMenu"
-  class="md:hidden fixed left-0 right-0 top-20 sm:top-24 lg:top-28 z-50 pointer-events-none">
+    class="md:hidden fixed left-0 right-0 top-20 sm:top-24 lg:top-28 z-50 pointer-events-none">
     <div
       id="mobileMenuPanel"
       class="bg-white border-b border-border-navy/20 shadow-xl
@@ -232,10 +285,51 @@ if (!isset($empresa) || !is_array($empresa) || empty($empresa)) {
           Nosotros
         </a>
 
-        <a href="servicios.php"
-          class="<?= $currentPage == 'servicios.php' ? 'text-primary-red' : 'text-navy-blue hover:text-primary-red transition-colors' ?>">
-          Servicios
-        </a>
+        <!-- SERVICIOS (ACORDEÓN EN MÓVIL) -->
+        <div class="border border-border-navy/10 rounded-sm overflow-hidden">
+
+          <!-- Botón que abre/cierra -->
+          <button
+            id="btnMobileServicios"
+            type="button"
+            class="w-full flex items-center justify-between px-3 py-3
+           <?= $currentPage == 'servicios.php' ? 'text-primary-red' : 'text-navy-blue' ?>
+           font-black uppercase hover:text-primary-red transition-colors"
+            aria-expanded="false"
+            aria-controls="mobileServiciosSubmenu">
+
+            <span>Servicios</span>
+
+            <span id="iconServiciosDown"
+              class="material-symbols-outlined text-[22px] leading-none transition-transform">
+              expand_more
+            </span>
+          </button>
+
+          <!-- Submenú -->
+          <div
+            id="mobileServiciosSubmenu"
+            class="hidden bg-white border-t border-border-navy/10">
+
+            <a href="servicios.php"
+              class="block px-4 py-3 text-[12px] font-black uppercase
+             text-navy-blue hover:bg-primary-red hover:text-white transition-colors">
+              Ver todos los servicios
+            </a>
+
+            <?php foreach ($serviciosMenu as $srv): ?>
+              <?php
+              $nombreSrv = (string)($srv["nombre"] ?? "");
+              $idSrv = slugify($nombreSrv);
+              ?>
+              <a href="servicios.php#<?= htmlspecialchars($idSrv, ENT_QUOTES, "UTF-8"); ?>"
+                class="block px-4 py-3 text-[12px] font-black uppercase
+               text-navy-blue hover:bg-primary-red hover:text-white transition-colors">
+                <?= htmlspecialchars($nombreSrv, ENT_QUOTES, "UTF-8"); ?>
+              </a>
+            <?php endforeach; ?>
+          </div>
+        </div>
 
         <a href="clientes.php"
           class="<?= $currentPage == 'clientes.php' ? 'text-primary-red' : 'text-navy-blue hover:text-primary-red transition-colors' ?>">
@@ -319,4 +413,40 @@ if (!isset($empresa) || !is_array($empresa) || empty($empresa)) {
       loader.classList.add("is-hidden");
       setTimeout(() => loader.remove(), 650);
     });
+  </script>
+  <script>
+    (function() {
+      const btn = document.getElementById("btnMobileServicios");
+      const sub = document.getElementById("mobileServiciosSubmenu");
+      const icon = document.getElementById("iconServiciosDown");
+
+      if (!btn || !sub || !icon) return;
+
+      function openSub() {
+        sub.classList.remove("hidden");
+        btn.setAttribute("aria-expanded", "true");
+        icon.classList.add("rotate-180");
+      }
+
+      function closeSub() {
+        sub.classList.add("hidden");
+        btn.setAttribute("aria-expanded", "false");
+        icon.classList.remove("rotate-180");
+      }
+
+      btn.addEventListener("click", () => {
+        const isOpen = btn.getAttribute("aria-expanded") === "true";
+        isOpen ? closeSub() : openSub();
+      });
+
+      // ✅ Si estamos en servicios.php, lo dejamos abierto por UX (opcional)
+      const isServiciosPage = "<?= $currentPage ?>".toLowerCase() === "servicios.php";
+      if (isServiciosPage) openSub();
+
+      // ✅ Cuando das click a un link del submenú, que se cierre el panel móvil (ya lo haces)
+      // pero también cerramos el submenú por si lo vuelves a abrir después
+      sub.addEventListener("click", (e) => {
+        if (e.target && e.target.tagName === "A") closeSub();
+      });
+    })();
   </script>

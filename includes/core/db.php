@@ -2,7 +2,7 @@
 declare(strict_types=1);
 
 $DB_HOST = "localhost";
-$DB_NAME = "bd_msi";
+$DB_NAME = "bd_ms";
 $DB_USER = "root";
 $DB_PASS = "";
 $DB_CHARSET = "utf8mb4";

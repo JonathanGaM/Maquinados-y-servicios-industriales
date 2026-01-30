@@ -48,41 +48,49 @@ $fallback_servicios = [
   [
     "nombre" => "Servicio de Rectificado",
     "imagen" => "https://www.rapiddirect.com/wp-content/uploads/2022/08/CNC-turning-basics.webp",
-    "descripcion" => "Precisión milimétrica en superficies planas y cilíndricas para acabados de alta calidad y tolerancias críticas.",
+    "descripcion" => "Precisión milimétrica en superficies planas y cilíndricas para acabados de alta calidad.",
+    "descripcion_larga" => "Realizamos servicio de rectificado industrial enfocado en obtener tolerancias cerradas y acabados superficiales de alta precisión. Este proceso es ideal para la recuperación de piezas críticas, asegurando paralelismo, planicidad y concentricidad. Trabajamos bajo especificación técnica para garantizar funcionamiento óptimo y mayor vida útil de los componentes.",
     "video" => "assets/img/prue.mp4"
   ],
   [
     "nombre" => "Servicio de Cepillo",
     "imagen" => "https://umesal.com/wp-content/uploads/2019/06/C%C3%B3mo-funciona-el-proceso-de-mecanizado.jpg",
-    "descripcion" => "Maquinado de piezas de gran tamaño y superficies planas con alta remoción y precisión estructural.",
+    "descripcion" => "Maquinado de piezas de gran tamaño y superficies planas.",
+    "descripcion_larga" => "El servicio de cepillo permite el maquinado de superficies planas en piezas de grandes dimensiones, logrando alta estabilidad estructural y remoción uniforme de material. Es un proceso ideal para bases, guías y componentes industriales donde se requiere robustez, alineación y precisión geométrica.",
     "video" => "assets/img/prue.mp4"
-
   ],
   [
     "nombre" => "Tornos CNC",
     "imagen" => "https://www.metalmecanica.com/uploads/news-pictures/pphoto-3769.png",
-    "descripcion" => "Producción en serie y piezas de alta complejidad técnica mediante control numérico computarizado.",
+    "descripcion" => "Producción en serie y piezas de alta complejidad técnica.",
+    "descripcion_larga" => "Contamos con tornos CNC para la fabricación de piezas cilíndricas con alta repetibilidad y precisión dimensional. Este proceso es ideal para producción en serie, prototipos y componentes complejos, garantizando uniformidad, eficiencia y control estricto de tolerancias.",
     "video" => "assets/img/prue.mp4"
   ],
   [
     "nombre" => "Fabricación de Engranes",
     "imagen" => "https://acerostorices.com/wp-content/uploads/2024/01/imagen-de-diversos-engranajes.jpg",
-    "descripcion" => "Diseño y manufactura de piñones, coronas y engranajes rectos o helicoidales bajo plano o muestra.",
+    "descripcion" => "Diseño y manufactura de engranes industriales de alta precisión y confiabilidad.",
+
+    "descripcion_larga" => "Fabricamos engranes, piñones, coronas y sinfines bajo plano o muestra, cuidando el perfil, paso y alineación para una correcta transmisión de potencia. Nuestros procesos aseguran resistencia mecánica, durabilidad y desempeño confiable en aplicaciones industriales exigentes.",
     "video" => "assets/img/prue.mp4"
   ],
   [
     "nombre" => "Servicio de Torno",
     "imagen" => "https://jlmetalmecanica.com/wp-content/uploads/2023/09/SERVICIO-DE-TORNO.jpg",
-    "descripcion" => "Fabricación de ejes, bujes y piezas cilíndricas con acabados técnicos y precisión dimensional.",
+    "descripcion" => "Fabricación de ejes, bujes y piezas cilíndricas para aplicaciones industriales de precisión.",
+
+    "descripcion_larga" => "Ofrecemos servicio de torno convencional para la fabricación y reparación de ejes, bujes y componentes cilíndricos. Trabajamos con precisión dimensional y acabados técnicos adecuados para ensambles mecánicos y mantenimiento industrial.",
     "video" => "assets/img/prue.mp4"
   ],
   [
     "nombre" => "Servicio de Fresadora",
     "imagen" => "https://lh3.googleusercontent.com/aida-public/AB6AXuAJNVjBzyAR1abkbPp9sjxuQogGh1wMillxRuMEcg8XC6Qma00Fm9k3o5LZpoGngB3tbvENoo1FNVsV-6wcOUbud_kfvk997cbtwV_Vm-05BAbTIadRMthj4LaBTAqyDomzWbkPl7a3OJFOk1398T7OWqF8rLkH8oYNSyuYiKExV2GYw5wf3vunK1V-HlllCaiQROibu2P0A91qeOums1HSeijA9FY_r5mgJA-p4rJhbuSh0f4v42THqaSvlZXI3wUx-_qeJfRcAvSv",
-    "descripcion" => "Mecanizado para chaveteros, cajas y componentes geométricos complejos con alta repetibilidad.",
+    "descripcion" => "Mecanizado de geometrías complejas y chaveteros.",
+    "descripcion_larga" => "El servicio de fresadora permite el mecanizado de chaveteros, ranuras, cajas y superficies complejas con alta exactitud. Es ideal para componentes que requieren geometrías precisas, excelente acabado y compatibilidad perfecta con otros elementos mecánicos.",
     "video" => "assets/img/prue.mp4"
   ],
 ];
+
 // ======================
 // CLIENTES (MÓDULO)
 // ======================
@@ -108,33 +116,33 @@ $fallback_clientes = [
   ],
   [
     "nombre" => "SERVICIOS ELECTROMECÁNICOS",
-    "descripcion" => "Empresa vanguardista en equipos electromecánicos con más de 40 años de experiencia en México, enfocada en mantenimiento preventivo y correctivo con respuesta rápida.",
+    "descripcion" => "Empresa de mantenimiento electromecánico que necesita fabricación y reparación de componentes para respuesta rápida en campo.",
     "imagen" => "assets/img/SER.png",
-    "tag" => "40+ años de experiencia"
+    "tag" => "Mantenimiento Crítico"
   ],
   [
     "nombre" => "INDOLEA",
-    "descripcion" => "Empresa 100% mexicana en Guadalajara con más de 50 años en compra, venta, fabricación y distribución de oleaginosas para el mercado nacional e internacional.",
+    "descripcion" => "Empresa dedicada a oleaginosas que requiere refacciones y componentes industriales para líneas de proceso y manejo de producto.",
     "imagen" => "assets/img/indolea.png",
-    "tag" => "50+ años"
+    "tag" => "Refacciones a Medida"
   ],
   [
     "nombre" => "VALO",
-    "descripcion" => "Líder global en producción y suministro de huevos para vacunas y medios de cultivo, aportando a la salud humana y animal desde finales de los 60.",
+    "descripcion" => "Empresa del sector biomédico que demanda componentes de alta precisión para procesos críticos en salud humana y animal.",
     "imagen" => "assets/img/valo.jpeg",
-    "tag" => "BioMedia"
+    "tag" => "Alta Precisión"
   ],
   [
     "nombre" => "FLEXITEK",
-    "descripcion" => "Proveedor de empaque flexible en Guadalajara desde 1986, con materias primas que cumplen normas FDA y UE y certificación HACCP.",
+    "descripcion" => "Fabricante de empaque flexible que requiere componentes mecánicos precisos para maquinaria de producción y conversión.",
     "imagen" => "assets/img/flexitek.jpg",
-    "tag" => "Desde 1986"
+    "tag" => "Producción Continua"
   ],
   [
     "nombre" => "AVIATION TECHNICAL SERVICES GDL",
-    "descripcion" => "Taller aeronáutico mexicano fundado en 2016 en Jalisco, especializado en reparación y overhaul de frenos, ruedas y baterías con alta calidad y menor costo.",
+    "descripcion" => "Taller aeronáutico que necesita maquinados de alta precisión para reparación y overhaul de componentes críticos.",
     "imagen" => "assets/img/aviation.jpg",
-    "tag" => "MRO Aeronáutico"
+    "tag" => "Componentes Críticos"
   ],
 
 ];

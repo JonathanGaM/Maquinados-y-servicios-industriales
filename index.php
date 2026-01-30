@@ -79,11 +79,11 @@ $MEDIA = $fallback_media ?? [];
       <div class="hero-surround">
 
         <!-- ✅ Texto que cambiará -->
-       
-<p
-  id="hero-rotating-text"
-  class="text-sm sm:text-base md:text-xl text-gray-200 mb-6 sm:mb-10 max-w-xl font-medium leading-relaxed">
-</p>
+
+        <p
+          id="hero-rotating-text"
+          class="text-sm sm:text-base md:text-xl text-gray-200 mb-6 sm:mb-10 max-w-xl font-medium leading-relaxed">
+        </p>
 
         <!-- ✅ Botones -->
         <div class="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 justify-start">
@@ -127,11 +127,11 @@ w-full sm:w-auto">
   </div>
 </section>
 
-<section class="py-24 bg-navy-blue industrial-grid relative overflow-hidden">
+<section class="py-14 sm:py-16 lg:py-20 bg-navy-blue industrial-grid relative overflow-hidden">
 
   <div class="max-w-7xl mx-auto px-5 sm:px-8 relative z-10">
 
-    <div class="grid lg:grid-cols-2 gap-10 lg:gap-20 items-center">
+    <div class="grid lg:grid-cols-2 gap-8 lg:gap-14 items-center">
 
       <!-- ✅ IZQUIERDA: imagen + años (entra desde la izquierda) -->
       <div class="relative reveal from-left">
@@ -144,31 +144,36 @@ w-full sm:w-auto">
             src="<?= htmlspecialchars(($fallback_media['home']['liderazgo'] ?? ''), ENT_QUOTES, 'UTF-8') ?>" />
 
 
-          <div class="absolute -bottom-5 right-3 sm:-right-6 bg-primary-red p-5 sm:p-8 rounded-sm shadow-2xl skew-box">
+          <div class="absolute -bottom-3 right-1 sm:-right-4 bg-primary-red p-2 sm:p-4 rounded-sm shadow-lg skew-box">
 
-            <div class="skew-box-inner text-center text-white">
-              <span class="block text-4xl font-black">
-                <?= experience_decade(MSI_START_YEAR); ?>+
-              </span>
-              <span class="text-[10px] uppercase tracking-widest font-bold">
-                Años de Liderazgo
-              </span>
-            </div>
+           <div class="skew-box-inner text-center text-white">
+  <span class="block text-xl sm:text-3xl font-black leading-none">
+    <?= experience_decade(MSI_START_YEAR); ?>+
+  </span>
+  <span class="text-[8px] sm:text-[9px] uppercase tracking-widest font-bold">
+    Años de Liderazgo
+  </span>
+</div>
+
+
           </div>
         </div>
       </div>
 
       <!-- ✅ DERECHA: texto (entra desde la derecha) -->
       <div class="reveal from-right">
-        <h2 class="text-3xl sm:text-4xl md:text-5xl font-black uppercase mb-6 sm:mb-8 leading-tight text-white">
+        <h2 class="text-3xl sm:text-4xl md:text-5xl font-black uppercase mb-4 sm:mb-5 leading-tight text-white">
           Mantenimiento <br /><span class="text-primary-red">Industrial</span> de Elite
         </h2>
 
-        <p class="text-gray-300 text-base sm:text-lg mb-6 sm:mb-8 leading-relaxed">
+
+        <p class="text-gray-300 text-base sm:text-lg mb-4 sm:mb-5 leading-relaxed">
           Ofrecemos soluciones integrales en mantenimiento y fabricación industrial con los más altos estándares. Nuestra planta en Guadalajara está equipada con tecnología de vanguardia para garantizar la confiabilidad operativa.
         </p>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 mb-8 sm:mb-10">
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-5 sm:mb-6">
+
           <div class="space-y-3">
             <span class="material-symbols-outlined text-primary-red text-3xl sm:text-4xl">
               verified_user</span>
@@ -184,12 +189,18 @@ w-full sm:w-auto">
           </div>
         </div>
 
-        <a href="nosotros.php"
-          class="bg-primary-red hover:bg-red-700 px-6 py-3 sm:px-10 sm:py-4 text-xs sm:text-sm font-bold uppercase tracking-widest rounded-sm
-inline-flex items-center gap-2 sm:gap-3 text-white transition-all w-full sm:w-auto justify-center">
+       <a href="nosotros.php"
+  class="hero-cta border-2 border-white hover:bg-white hover:text-navy-blue
+px-5 py-3 sm:px-8 sm:py-4
+text-xs sm:text-sm
+font-bold uppercase tracking-widest rounded-sm
+transition-all text-white inline-flex items-center justify-center gap-2
+w-full sm:w-auto">
+
           CONOCER MÁS
           <span class="material-symbols-outlined text-sm">read_more</span>
         </a>
+
       </div>
 
     </div>
