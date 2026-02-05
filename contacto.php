@@ -60,7 +60,7 @@ include "includes/ui/header.php";
       alt="Industrial Background"
       class="parallax-bg absolute inset-0 w-full h-full object-cover"
       src="assets/img/contacto.png" />
-    <div class="absolute inset-0 bg-black/70"></div>
+    <div class="absolute inset-0 bg-black/60"></div>
     <div class="absolute inset-0 industrial-grid opacity-10"></div>
   </div>
 

@@ -197,10 +197,16 @@ $whatsappText = urlencode("Hola, me gustaría solicitar una cotización");
 
 </footer>
 <!-- BOTÓN VOLVER ARRIBA -->
+<!-- BOTÓN VOLVER ARRIBA -->
 <button id="backToTop"
-  class="fixed left-6 bottom-8 z-50 w-12 h-12 rounded-full bg-primary-red text-white
-         flex items-center justify-center shadow-xl opacity-0 pointer-events-none
-         transition-all duration-300 hover:scale-110">
+  class="fixed left-5 bottom-6 z-50
+         w-10 h-10 sm:w-12 sm:h-12
+         rounded-full
+         bg-primary-red/80 text-white backdrop-blur-sm border border-white/15
+         flex items-center justify-center shadow-xl
+         opacity-0 pointer-events-none
+         transition-all duration-300 hover:scale-110 hover:bg-primary-red">
+
   <span class="material-symbols-outlined text-lg">keyboard_arrow_up</span>
 </button>
 

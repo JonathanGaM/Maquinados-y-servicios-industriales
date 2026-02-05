@@ -68,10 +68,12 @@ $MEDIA = $fallback_media ?? [];
         $linea2 = $partes[1] ?? '';
       }
       ?>
-
-      <h1 class="hero-title text-left text-3xl sm:text-4xl md:text-6xl font-extrabold uppercase leading-tight tracking-tight mb-6 text-royal-blue">
-        <span class="hero-line" data-text="<?= e($nombre) ?>"><?= e($nombre) ?></span>
+      <h1 class="font-extrabold uppercase leading-tight tracking-tight mb-6
+           text-3xl sm:text-4xl md:text-6xl lg:text-7xl">
+        <span class="text-white">SOLUCIONES DE</span>
+        <span class="text-primary-red"> PRECISIÓN INDUSTRIAL</span>
       </h1>
+
 
 
 
@@ -126,86 +128,142 @@ w-full sm:w-auto">
     </div>
   </div>
 </section>
-
-<section class="py-14 sm:py-16 lg:py-20 bg-navy-blue industrial-grid relative overflow-hidden">
-
+<section class="py-16 sm:py-20 lg:py-24 bg-gray-50 relative">
   <div class="max-w-7xl mx-auto px-5 sm:px-8 relative z-10">
 
-    <div class="grid lg:grid-cols-2 gap-8 lg:gap-14 items-center">
+    <!-- GRID PRINCIPAL -->
+    <div class="grid lg:grid-cols-[0.9fr_1.1fr] gap-10 lg:gap-16 items-start lg:min-h-[110vh]">
 
-      <!-- ✅ IZQUIERDA: imagen + años (entra desde la izquierda) -->
-      <div class="relative reveal from-left">
-        <div class="absolute -top-10 -left-10 w-40 h-40 border-t-2 border-l-2 border-primary-red/50"></div>
+      <!-- IZQUIERDA -->
+      <div class="relative reveal from-left lg:sticky lg:top-32 self-start">
 
-        <div class="bg-deep-black border border-white/10 p-4 rounded-sm relative z-10 shadow-2xl">
-          <img alt="Team of engineers collaboratively working on a complex industrial system"
-            class="rounded-sm grayscale hover:grayscale-0 transition-all duration-700 aspect-[4/3] object-cover"
+        <!-- Marco decorativo -->
+        <div class="absolute -top-8 -left-8 w-40 h-40 border-t-4 border-l-4 border-gray-300"></div>
 
+        <!-- Imagen con marco -->
+        <div class="border-4 border-gray-300 p-2 bg-white shadow-lg">
+          <img
+            alt="Equipo técnico trabajando en maquinado de precisión"
+            class="aspect-[4/3] object-cover w-full"
             src="<?= htmlspecialchars(($fallback_media['home']['liderazgo'] ?? ''), ENT_QUOTES, 'UTF-8') ?>" />
+        </div>
 
-
-          <div class="absolute -bottom-3 right-1 sm:-right-4 bg-primary-red p-2 sm:p-4 rounded-sm shadow-lg skew-box">
-
-           <div class="skew-box-inner text-center text-white">
-  <span class="block text-xl sm:text-3xl font-black leading-none">
-    <?= experience_decade(MSI_START_YEAR); ?>+
-  </span>
-  <span class="text-[8px] sm:text-[9px] uppercase tracking-widest font-bold">
-    Años de Liderazgo
-  </span>
-</div>
-
-
+        <!-- CUADRO ROJO -->
+<!-- CUADRO ROJO -->
+<div class="
+  absolute
+  bottom-[-2.5rem] sm:-bottom-4
+  right-3 sm:-right-6
+  bg-primary-red
+  p-2 sm:p-4
+  shadow-xl
+">
+          <div class="text-center text-white">
+<span class="block text-xl sm:text-3xl font-black leading-none">
+              <?= experience_decade(MSI_START_YEAR); ?>+
+            </span>
+            <span class="text-[10px] sm:text-[11px] uppercase tracking-widest font-bold leading-tight">
+              Años liderando la industria<br class="hidden sm:block" /> de precisión en GDL
+            </span>
           </div>
         </div>
       </div>
 
-      <!-- ✅ DERECHA: texto (entra desde la derecha) -->
-      <div class="reveal from-right">
-        <h2 class="text-3xl sm:text-4xl md:text-5xl font-black uppercase mb-4 sm:mb-5 leading-tight text-white">
-          Mantenimiento <br /><span class="text-primary-red">Industrial</span> de Elite
+      <!-- DERECHA -->
+<div class="reveal from-right mt-6 sm:mt-0">
+
+        <h2 class="text-3xl sm:text-4xl md:text-5xl font-black uppercase mb-5 leading-tight text-navy-blue">
+          ¿Por qué <span class="text-primary-red">elegirnos?</span>
         </h2>
 
-
-        <p class="text-gray-300 text-base sm:text-lg mb-4 sm:mb-5 leading-relaxed">
-          Ofrecemos soluciones integrales en mantenimiento y fabricación industrial con los más altos estándares. Nuestra planta en Guadalajara está equipada con tecnología de vanguardia para garantizar la confiabilidad operativa.
+        <p class="text-gray-700 text-base sm:text-lg mb-8 leading-relaxed max-w-2xl">
+          Combinamos experiencia técnica y precisión para entregar piezas críticas con calidad comprobada,
+          asegurando continuidad operativa y resultados confiables.
         </p>
 
+        <!-- CARDS -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-10">
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-5 sm:mb-6">
-
-          <div class="space-y-3">
-            <span class="material-symbols-outlined text-primary-red text-3xl sm:text-4xl">
-              verified_user</span>
-            <h4 class="font-bold uppercase text-sm tracking-wider text-white">Calidad Comprobada</h4>
-            <p class="text-xs text-gray-400">Procesos supervisados y atención al detalle que aseguran resultados confiables en cada entrega.</p>
+          <!-- Card -->
+          <div class="bg-gray-100 border border-gray-200 p-5 space-y-3">
+            <h4 class="flex items-center gap-3 font-bold uppercase text-[15px] tracking-wider text-navy-blue">
+              <span>Calidad Comprobada</span>
+              <span class="material-symbols-outlined text-primary-red text-2xl ml-auto">engineering</span>
+            </h4>
+            <p class="text-sm text-gray-700 leading-relaxed">
+              Procesos controlados y enfoque en detalles para resultados confiables.
+            </p>
           </div>
 
-          <div class="space-y-3">
-            <span class="material-symbols-outlined text-primary-red text-3xl sm:text-4xl">
-              speed</span>
-            <h4 class="font-bold uppercase text-sm tracking-wider text-white">Respuesta Rápida</h4>
-            <p class="text-xs text-gray-400">Logística optimizada para reducir tiempos muertos de producción.</p>
+          <div class="bg-gray-100 border border-gray-200 p-5 space-y-3">
+            <h4 class="flex items-center gap-3 font-bold uppercase text-[15px] tracking-wider text-navy-blue">
+              <span>Respuesta Rápida</span>
+              <span class="material-symbols-outlined text-primary-red text-2xl ml-auto">bolt</span>
+            </h4>
+            <p class="text-sm text-gray-700 leading-relaxed">
+              Atención ágil para mantener la operación en marcha.
+            </p>
           </div>
+
+          <div class="bg-gray-100 border border-gray-200 p-5 space-y-3">
+            <h4 class="flex items-center gap-3 font-bold uppercase text-[15px] tracking-wider text-navy-blue">
+              <span>Herramientas de Calidad</span>
+              <span class="material-symbols-outlined text-primary-red text-2xl ml-auto">construction</span>
+            </h4>
+            <p class="text-sm text-gray-700 leading-relaxed">
+              Maquinaria confiable para acabados profesionales.
+            </p>
+          </div>
+
+          <div class="bg-gray-100 border border-gray-200 p-5 space-y-3">
+            <h4 class="flex items-center gap-3 font-bold uppercase text-[15px] tracking-wider text-navy-blue">
+              <span>Atención Personalizada</span>
+              <span class="material-symbols-outlined text-primary-red text-2xl ml-auto">support_agent</span>
+            </h4>
+            <p class="text-sm text-gray-700 leading-relaxed">
+              Acompañamiento técnico de inicio a fin.
+            </p>
+          </div>
+
+          <div class="bg-gray-100 border border-gray-200 p-5 space-y-3">
+            <h4 class="flex items-center gap-3 font-bold uppercase text-[15px] tracking-wider text-navy-blue">
+              <span>Precisión Milimétrica</span>
+              <span class="material-symbols-outlined text-primary-red text-2xl ml-auto">straighten</span>
+            </h4>
+            <p class="text-sm text-gray-700 leading-relaxed">
+              Tolerancias exactas para componentes críticos.
+            </p>
+          </div>
+
+          <div class="bg-gray-100 border border-gray-200 p-5 space-y-3">
+            <h4 class="flex items-center gap-3 font-bold uppercase text-[15px] tracking-wider text-navy-blue">
+              <span>Sectores y Metales</span>
+              <span class="material-symbols-outlined text-primary-red text-2xl ml-auto">factory</span>
+            </h4>
+            <p class="text-sm text-gray-700 leading-relaxed">
+              Experiencia en múltiples industrias y materiales.
+            </p>
+          </div>
+
         </div>
 
-       <a href="nosotros.php"
-  class="hero-cta border-2 border-white hover:bg-white hover:text-navy-blue
-px-5 py-3 sm:px-8 sm:py-4
-text-xs sm:text-sm
-font-bold uppercase tracking-widest rounded-sm
-transition-all text-white inline-flex items-center justify-center gap-2
-w-full sm:w-auto">
-
-          CONOCER MÁS
+        <!-- CTA -->
+        <a href="nosotros.php"
+          class="inline-flex items-center gap-2 border-2 border-navy-blue
+                 px-6 py-3 text-sm font-bold uppercase tracking-widest
+                 text-navy-blue hover:bg-navy-blue hover:text-white
+                 transition-all">
+          Conocer más
           <span class="material-symbols-outlined text-sm">read_more</span>
         </a>
 
       </div>
-
     </div>
   </div>
 </section>
+
+
+
 
 
 <section id="infraestructura" class="py-24 bg-industrial-white">

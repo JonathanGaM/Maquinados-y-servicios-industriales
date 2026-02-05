@@ -94,6 +94,14 @@ if (!isset($empresa) || !is_array($empresa) || empty($empresa)) {
       backdrop-filter: blur(6px);
       -webkit-backdrop-filter: blur(6px);
     }
+
+    /* Forzar cierre del dropdown aunque el mouse siga encima */
+    #navServicios.dropdown-force-close .js-servicios-dropdown {
+      opacity: 0 !important;
+      visibility: hidden !important;
+      pointer-events: none !important;
+      transform: translateY(-4px);
+    }
   </style>
 </head>
 
@@ -114,9 +122,6 @@ if (!isset($empresa) || !is_array($empresa) || empty($empresa)) {
 
       <div class="hidden lg:flex w-full bg-deep-black border-b border-white/10">
         <div class="max-w-7xl mx-auto w-full px-8 h-10 flex items-center text-[13px] tracking-wide text-white/90 normal-case">
-
-
-
           <div class="flex flex-wrap items-center gap-x-8 gap-y-2 text-white/80">
             <span class="flex items-center gap-2">
               <span class="material-symbols-outlined text-primary-red text-sm">location_on</span>
@@ -137,9 +142,8 @@ if (!isset($empresa) || !is_array($empresa) || empty($empresa)) {
       </div>
     <?php endif; ?>
 
-
     <!-- ✅ HEADER (FIJO) -->
-    <header class="bg-white border-b border-border-navy/20 shadow-[0_6px_12px_-8px_rgba(2,6,23,0.35)] px-4 sm:px-6 lg:px-8 h-20 sm:h-24 lg:h-28">
+    <header class="bg-white border-b border-border-navy/20 shadow-[0_6px_12px_-8px_rgba(2,6,23,0.35)] px-4 sm:px-6 lg:px-8 h-[72px] sm:h-[84px] lg:h-[96px]">
       <div class="max-w-7xl mx-auto flex justify-between items-center h-full">
 
         <!-- LOGO -->
@@ -147,7 +151,8 @@ if (!isset($empresa) || !is_array($empresa) || empty($empresa)) {
           <img
             src="assets/img/logoMSI.png"
             alt="MSI - Maquinados y Servicios Industriales"
-            class="h-12 sm:h-14 lg:h-full max-h-[120px] w-auto object-contain" />
+            class="h-11 sm:h-12 lg:h-full max-h-[96px] w-auto object-contain" />
+
 
           <div class="leading-tight">
             <?php
@@ -157,18 +162,18 @@ if (!isset($empresa) || !is_array($empresa) || empty($empresa)) {
             $linea2 = $partes[1] ?? '';
             ?>
 
-            <p class="text-royal-blue font-black uppercase tracking-wide text-[12px] sm:text-sm lg:text-lg">
+            <p class="text-royal-blue font-black uppercase tracking-wide text-[11px] sm:text-[13px] lg:text-[17px]">
               <?php echo htmlspecialchars($linea1, ENT_QUOTES, "UTF-8"); ?>
             </p>
 
-            <p class="text-royal-blue font-black uppercase tracking-wide text-[12px] sm:text-sm lg:text-lg">
+            <p class="text-royal-blue font-black uppercase tracking-wide text-[11px] sm:text-[13px] lg:text-[17px]">
               <?php echo htmlspecialchars($linea2, ENT_QUOTES, "UTF-8"); ?>
             </p>
           </div>
         </a>
 
         <!-- MENU (escritorio) -->
-        <nav class="hidden md:flex ml-auto gap-10 text-[15px] font-bold uppercase">
+        <nav class="hidden md:flex ml-auto gap-8 text-[14px] font-bold uppercase">
           <a href="index.php"
             class="<?= $currentPage == 'index.php' ? 'text-primary-red' : 'text-navy-blue hover:text-primary-red transition-colors' ?>">
             Inicio
@@ -194,38 +199,58 @@ if (!isset($empresa) || !is_array($empresa) || empty($empresa)) {
           }
           ?>
 
-          <div class="relative group">
+          <div id="navServicios" class="relative group">
             <!-- ✅ El link principal sigue siendo clickeable -->
             <a href="servicios.php"
               class="<?= $currentPage == 'servicios.php'
                         ? 'text-primary-red'
                         : 'text-navy-blue hover:text-primary-red transition-colors' ?> flex items-center gap-1">
               Servicios
-              <span class="material-symbols-outlined text-[18px] leading-none translate-y-[1px] opacity-80 group-hover:opacity-100">
+              <span class="material-symbols-outlined text-[17px] leading-none translate-y-[1px] opacity-80 group-hover:opacity-100">
                 keyboard_arrow_down
               </span>
             </a>
 
             <!-- ✅ Dropdown -->
-            <div class="absolute left-0 top-full pt-4 opacity-0 invisible
-              group-hover:opacity-100 group-hover:visible
-              transition-all duration-200">
+            <div class="js-servicios-dropdown absolute left-0 top-full pt-4 opacity-0 invisible
+  group-hover:opacity-100 group-hover:visible
+  transition-all duration-200">
+
               <div class="w-72 bg-white border border-border-navy/20 shadow-2xl rounded-sm overflow-hidden">
 
 
                 <div class="py-2">
-                  <?php foreach ($serviciosMenu as $srv): ?>
-                    <?php
-                    $nombreSrv = (string)($srv["nombre"] ?? "");
-                    $idSrv = slugify($nombreSrv); // para #anchor
-                    ?>
-                    <a href="servicios.php#<?= htmlspecialchars($idSrv, ENT_QUOTES, "UTF-8"); ?>"
-                      class="block px-4 py-3 text-navy-blue font-bold text-[13px]
-                    hover:bg-primary-red hover:text-white transition-colors">
-                      <?= htmlspecialchars($nombreSrv, ENT_QUOTES, "UTF-8"); ?>
-                    </a>
-                  <?php endforeach; ?>
+                  <?php $isServiciosPage = ($currentPage === 'servicios.php'); ?>
+
+                <?php foreach ($serviciosMenu as $srv): ?>
+  <?php
+    $titulo = (string)($srv['nombre'] ?? '');
+    $descL  = (string)($srv['descripcion_larga'] ?? ($srv['descripcion'] ?? ''));
+    $imgL   = (string)($srv['imagen'] ?? '');
+    $slug   = slugify($titulo);
+    $carousel = $srv["carousel"] ?? [];
+  ?>
+
+  <a
+    href="<?= $isServiciosPage ? '#hero-servicios' : 'servicios.php?srv=' . $slug . '#hero-servicios'; ?>"
+    class="<?= $isServiciosPage ? 'js-hero-service' : '' ?> block px-4 py-3
+           text-navy-blue font-bold text-[13px]
+           hover:bg-primary-red hover:text-white transition-colors"
+    <?php if ($isServiciosPage): ?>
+      data-hero-slug="<?= htmlspecialchars($slug, ENT_QUOTES, 'UTF-8'); ?>"
+      data-hero-title="<?= htmlspecialchars($titulo, ENT_QUOTES, 'UTF-8'); ?>"
+      data-hero-desc="<?= htmlspecialchars($descL, ENT_QUOTES, 'UTF-8'); ?>"
+      data-hero-img="<?= htmlspecialchars($imgL, ENT_QUOTES, 'UTF-8'); ?>"
+      data-hero-badge="Soluciones de alta precisión"
+      data-hero-carousel='<?= htmlspecialchars(json_encode($carousel, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE), ENT_QUOTES, "UTF-8"); ?>'
+    <?php endif; ?>
+  >
+    <?= htmlspecialchars($titulo, ENT_QUOTES, 'UTF-8'); ?>
+  </a>
+<?php endforeach; ?>
+
                 </div>
+
               </div>
             </div>
           </div>
@@ -259,13 +284,12 @@ if (!isset($empresa) || !is_array($empresa) || empty($empresa)) {
 
   <!-- ✅ ESPACIADOR para header fijo -->
   <div class="<?= ($hideTopBar ?? false)
-                ? 'h-20 sm:h-24 lg:h-[112px]'
-                : 'h-20 sm:h-24 lg:h-[152px]' ?>">
+                ? 'h-[72px] sm:h-[84px] lg:h-[96px]'
+                : 'h-[72px] sm:h-[84px] lg:h-[136px]' ?>">
   </div>
-
   <!-- MENU MÓVIL -->
   <div id="mobileMenu"
-    class="md:hidden fixed left-0 right-0 top-20 sm:top-24 lg:top-28 z-50 pointer-events-none">
+    class="md:hidden fixed left-0 right-0 top-[72px] sm:top-[84px] lg:top-[96px] z-50 pointer-events-none">
     <div
       id="mobileMenuPanel"
       class="bg-white border-b border-border-navy/20 shadow-xl
@@ -285,51 +309,10 @@ if (!isset($empresa) || !is_array($empresa) || empty($empresa)) {
           Nosotros
         </a>
 
-        <!-- SERVICIOS (ACORDEÓN EN MÓVIL) -->
-        <div class="border border-border-navy/10 rounded-sm overflow-hidden">
-
-          <!-- Botón que abre/cierra -->
-          <button
-            id="btnMobileServicios"
-            type="button"
-            class="w-full flex items-center justify-between px-3 py-3
-           <?= $currentPage == 'servicios.php' ? 'text-primary-red' : 'text-navy-blue' ?>
-           font-black uppercase hover:text-primary-red transition-colors"
-            aria-expanded="false"
-            aria-controls="mobileServiciosSubmenu">
-
-            <span>Servicios</span>
-
-            <span id="iconServiciosDown"
-              class="material-symbols-outlined text-[22px] leading-none transition-transform">
-              expand_more
-            </span>
-          </button>
-
-          <!-- Submenú -->
-          <div
-            id="mobileServiciosSubmenu"
-            class="hidden bg-white border-t border-border-navy/10">
-
-            <a href="servicios.php"
-              class="block px-4 py-3 text-[12px] font-black uppercase
-             text-navy-blue hover:bg-primary-red hover:text-white transition-colors">
-              Ver todos los servicios
-            </a>
-
-            <?php foreach ($serviciosMenu as $srv): ?>
-              <?php
-              $nombreSrv = (string)($srv["nombre"] ?? "");
-              $idSrv = slugify($nombreSrv);
-              ?>
-              <a href="servicios.php#<?= htmlspecialchars($idSrv, ENT_QUOTES, "UTF-8"); ?>"
-                class="block px-4 py-3 text-[12px] font-black uppercase
-               text-navy-blue hover:bg-primary-red hover:text-white transition-colors">
-                <?= htmlspecialchars($nombreSrv, ENT_QUOTES, "UTF-8"); ?>
-              </a>
-            <?php endforeach; ?>
-          </div>
-        </div>
+        <a href="servicios.php"
+          class="<?= $currentPage == 'servicios.php' ? 'text-primary-red' : 'text-navy-blue hover:text-primary-red transition-colors' ?>">
+          Servicios
+        </a>
 
         <a href="clientes.php"
           class="<?= $currentPage == 'clientes.php' ? 'text-primary-red' : 'text-navy-blue hover:text-primary-red transition-colors' ?>">
@@ -416,37 +399,28 @@ if (!isset($empresa) || !is_array($empresa) || empty($empresa)) {
   </script>
   <script>
     (function() {
-      const btn = document.getElementById("btnMobileServicios");
-      const sub = document.getElementById("mobileServiciosSubmenu");
-      const icon = document.getElementById("iconServiciosDown");
+      const nav = document.getElementById("navServicios");
+      if (!nav) return;
 
-      if (!btn || !sub || !icon) return;
+      // Links dentro del dropdown de Servicios (escritorio)
+      const dropdownLinks = nav.querySelectorAll(".js-servicios-dropdown a");
+      if (!dropdownLinks.length) return;
 
-      function openSub() {
-        sub.classList.remove("hidden");
-        btn.setAttribute("aria-expanded", "true");
-        icon.classList.add("rotate-180");
+      function forceCloseDropdown() {
+        // Truco: quitamos el "hover" visual forzando una clase que anula el group-hover
+        nav.classList.add("dropdown-force-close");
+
+        // Opcional: quitar focus del link (se siente más "cerrado")
+        if (document.activeElement) document.activeElement.blur();
+
+        // Quitar la clase después de un momento (para permitir reabrir normal)
+        setTimeout(() => nav.classList.remove("dropdown-force-close"), 250);
       }
 
-      function closeSub() {
-        sub.classList.add("hidden");
-        btn.setAttribute("aria-expanded", "false");
-        icon.classList.remove("rotate-180");
-      }
-
-      btn.addEventListener("click", () => {
-        const isOpen = btn.getAttribute("aria-expanded") === "true";
-        isOpen ? closeSub() : openSub();
-      });
-
-      // ✅ Si estamos en servicios.php, lo dejamos abierto por UX (opcional)
-      const isServiciosPage = "<?= $currentPage ?>".toLowerCase() === "servicios.php";
-      if (isServiciosPage) openSub();
-
-      // ✅ Cuando das click a un link del submenú, que se cierre el panel móvil (ya lo haces)
-      // pero también cerramos el submenú por si lo vuelves a abrir después
-      sub.addEventListener("click", (e) => {
-        if (e.target && e.target.tagName === "A") closeSub();
+      dropdownLinks.forEach(a => {
+        a.addEventListener("click", () => {
+          forceCloseDropdown();
+        });
       });
     })();
   </script>

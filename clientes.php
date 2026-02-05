@@ -35,8 +35,11 @@ if (empty($clientes)) {
 include "includes/ui/header.php";
 ?>
 
-<!-- HERO CLIENTES -->
-<section class="relative h-[50vh] sm:h-[55vh] flex items-center overflow-hidden bg-deep-black">
+<section class="relative overflow-hidden bg-deep-black
+  -mt-12 sm:-mt-16 lg:-mt-[110px]
+  pt-12 sm:pt-16 lg:pt-[110px]
+  min-h-[42vh] sm:min-h-[46vh]">
+
   <!-- FONDO -->
   <div class="absolute inset-0 z-0">
     <img
@@ -51,7 +54,9 @@ include "includes/ui/header.php";
   </div>
 
   <!-- CONTENIDO -->
-  <div class="relative max-w-7xl mx-auto px-5 sm:px-8 md:px-12 w-full z-10">
+<div class="relative max-w-7xl mx-auto px-5 sm:px-8 md:px-12
+            w-full z-10 py-6 sm:py-8">
+
     <div class="max-w-3xl reveal zoom-text">
       <div class="inline-flex items-center gap-4 mb-5 sm:mb-6">
         <div class="h-[3px ] w-10 sm:w-12 bg-primary-red"></div>
@@ -60,8 +65,11 @@ include "includes/ui/header.php";
         </span>
       </div>
 
-      <h2 class="text-3xl sm:text-5xl md:text-7xl font-black uppercase leading-[0.95] md:leading-[0.9] tracking-tighter mb-6 sm:mb-8 text-white">
-        NUESTROS <br /><span class="text-primary-red">CLIENTES</span>
+
+<h2 class="text-2xl sm:text-4xl md:text-6xl font-black uppercase
+           leading-tight tracking-tight
+           mb-5 sm:mb-6 text-white">
+      NUESTROS <br /><span class="text-primary-red">CLIENTES</span>
       </h2>
 
       <p class="text-base sm:text-lg md:text-xl text-gray-300 leading-relaxed font-light">

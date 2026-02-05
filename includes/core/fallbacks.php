@@ -44,50 +44,101 @@ $fallback_empresa = [
 // ======================
 // SERVICIOS (MÓDULO)
 // ======================
+$fallback_hero_servicios = [
+  "carousel" => [
+    "assets/img/capacidades.png",
+    "assets/img/engrane.png",
+    "assets/img/estandares-industriales.png",
+    "assets/img/fon1.png",
+    "assets/img/fon2.png",
+    "assets/img/engrane.png",
+  ]
+];
 $fallback_servicios = [
   [
     "nombre" => "Servicio de Rectificado",
     "imagen" => "https://www.rapiddirect.com/wp-content/uploads/2022/08/CNC-turning-basics.webp",
-    "descripcion" => "Precisión milimétrica en superficies planas y cilíndricas para acabados de alta calidad.",
-    "descripcion_larga" => "Realizamos servicio de rectificado industrial enfocado en obtener tolerancias cerradas y acabados superficiales de alta precisión. Este proceso es ideal para la recuperación de piezas críticas, asegurando paralelismo, planicidad y concentricidad. Trabajamos bajo especificación técnica para garantizar funcionamiento óptimo y mayor vida útil de los componentes.",
-    "video" => "assets/img/prue.mp4"
+    "carousel" => [
+    "assets/img/engrane.png",
+    "assets/img/capacidades.png",
+    "assets/img/engrane.png",
+    "assets/img/estandares-industriales.png",
+    "assets/img/fon1.png",
+  ],
+    "descripcion" => "Rectificado industrial de alta precisión para superficies planas y cilíndricas.",
+    "descripcion_larga" => "El servicio de rectificado industrial permite obtener acabados de alta precisión y tolerancias cerradas en piezas mecánicas. Se utiliza para rectificado plano y cilíndrico en componentes que requieren exactitud dimensional, paralelismo y concentricidad. Es una solución ideal para mantenimiento industrial, recuperación de piezas desgastadas, ajuste de componentes críticos y fabricación de refacciones industriales que trabajan bajo condiciones exigentes.",
+    "video" => "assets/img/vid/prue.mp4"
   ],
   [
     "nombre" => "Servicio de Cepillo",
     "imagen" => "https://umesal.com/wp-content/uploads/2019/06/C%C3%B3mo-funciona-el-proceso-de-mecanizado.jpg",
-    "descripcion" => "Maquinado de piezas de gran tamaño y superficies planas.",
-    "descripcion_larga" => "El servicio de cepillo permite el maquinado de superficies planas en piezas de grandes dimensiones, logrando alta estabilidad estructural y remoción uniforme de material. Es un proceso ideal para bases, guías y componentes industriales donde se requiere robustez, alineación y precisión geométrica.",
-    "video" => "assets/img/prue.mp4"
+    "carousel" => [
+    "assets/img/capacidades.png",
+    "assets/img/engrane.png",
+    "assets/img/estandares-industriales.png",
+    "assets/img/fon1.png",
+    "assets/img/engrane.png",
+  ],
+
+    "descripcion" => "Maquinado de superficies planas en piezas industriales de gran tamaño.",
+    "descripcion_larga" => "El servicio de cepillo industrial está enfocado en el mecanizado de superficies planas en piezas de grandes dimensiones como bases, guías, bancadas y estructuras metálicas. Este proceso es ideal para corrección geométrica, alineación de superficies y fabricación de componentes industriales robustos. Se utiliza comúnmente en mantenimiento industrial, reparación de maquinaria pesada y fabricación de refacciones donde se requiere estabilidad estructural y precisión.",
+    "video" => "assets/img/vid/retificado.mp4"
   ],
   [
     "nombre" => "Tornos CNC",
     "imagen" => "https://www.metalmecanica.com/uploads/news-pictures/pphoto-3769.png",
-    "descripcion" => "Producción en serie y piezas de alta complejidad técnica.",
-    "descripcion_larga" => "Contamos con tornos CNC para la fabricación de piezas cilíndricas con alta repetibilidad y precisión dimensional. Este proceso es ideal para producción en serie, prototipos y componentes complejos, garantizando uniformidad, eficiencia y control estricto de tolerancias.",
-    "video" => "assets/img/prue.mp4"
+    "carousel" => [
+   "assets/img/capacidades.png",
+    "assets/img/engrane.png",
+    "assets/img/estandares-industriales.png",
+    "assets/img/fon1.png",
+    "assets/img/engrane.png",
+  ],
+    "descripcion" => "Mecanizado CNC de piezas cilíndricas con alta precisión y repetibilidad.",
+    "descripcion_larga" => "El servicio de torno CNC permite la fabricación de piezas cilíndricas con alta precisión, repetibilidad y control dimensional. Es ideal para producción en serie, prototipos industriales y fabricación de refacciones mecánicas. Mediante mecanizado CNC se logran acabados uniformes, tolerancias exactas y procesos eficientes para componentes utilizados en maquinaria industrial, sistemas mecánicos y equipos de producción.",
+    "video" => "assets/img/vid/prue.mp4"
   ],
   [
     "nombre" => "Fabricación de Engranes",
     "imagen" => "https://acerostorices.com/wp-content/uploads/2024/01/imagen-de-diversos-engranajes.jpg",
-    "descripcion" => "Diseño y manufactura de engranes industriales de alta precisión y confiabilidad.",
-
-    "descripcion_larga" => "Fabricamos engranes, piñones, coronas y sinfines bajo plano o muestra, cuidando el perfil, paso y alineación para una correcta transmisión de potencia. Nuestros procesos aseguran resistencia mecánica, durabilidad y desempeño confiable en aplicaciones industriales exigentes.",
-    "video" => "assets/img/prue.mp4"
+    "carousel" => [
+    "assets/img/capacidades.png",
+    "assets/img/engrane.png",
+    "assets/img/estandares-industriales.png",
+    "assets/img/fon1.png",
+    "assets/img/engrane.png",
+  ],
+    "descripcion" => "Fabricación de engranes industriales para transmisión de potencia.",
+    "descripcion_larga" => "La fabricación de engranes industriales incluye el diseño y mecanizado de piñones, coronas, engranes rectos, helicoidales y sinfines. Este servicio está orientado a sistemas de transmisión de potencia utilizados en maquinaria industrial. Los engranes se fabrican bajo plano o muestra, asegurando correcto perfil, paso y alineación. Es una solución ideal para mantenimiento industrial, reemplazo de refacciones y optimización del rendimiento mecánico.",
+    "video" => "assets/img/vid/prue.mp4"
   ],
   [
     "nombre" => "Servicio de Torno",
     "imagen" => "https://jlmetalmecanica.com/wp-content/uploads/2023/09/SERVICIO-DE-TORNO.jpg",
-    "descripcion" => "Fabricación de ejes, bujes y piezas cilíndricas para aplicaciones industriales de precisión.",
-
-    "descripcion_larga" => "Ofrecemos servicio de torno convencional para la fabricación y reparación de ejes, bujes y componentes cilíndricos. Trabajamos con precisión dimensional y acabados técnicos adecuados para ensambles mecánicos y mantenimiento industrial.",
-    "video" => "assets/img/prue.mp4"
+    "carousel" => [
+    "assets/img/capacidades.png",
+    "assets/img/engrane.png",
+    "assets/img/estandares-industriales.png",
+    "assets/img/fon1.png",
+    "assets/img/engrane.png",
+  ],
+    "descripcion" => "Fabricación y reparación de piezas cilíndricas para uso industrial.",
+    "descripcion_larga" => "El servicio de torno convencional se utiliza para la fabricación y reparación de ejes, bujes, flechas y piezas cilíndricas. Es ideal para mantenimiento correctivo, ajustes mecánicos y fabricación de refacciones industriales. Permite trabajar con distintos materiales y obtener dimensiones precisas para ensambles mecánicos, contribuyendo a la continuidad operativa de maquinaria industrial.",
+    "video" => "assets/img/vid/prue.mp4"
   ],
   [
     "nombre" => "Servicio de Fresadora",
     "imagen" => "https://lh3.googleusercontent.com/aida-public/AB6AXuAJNVjBzyAR1abkbPp9sjxuQogGh1wMillxRuMEcg8XC6Qma00Fm9k3o5LZpoGngB3tbvENoo1FNVsV-6wcOUbud_kfvk997cbtwV_Vm-05BAbTIadRMthj4LaBTAqyDomzWbkPl7a3OJFOk1398T7OWqF8rLkH8oYNSyuYiKExV2GYw5wf3vunK1V-HlllCaiQROibu2P0A91qeOums1HSeijA9FY_r5mgJA-p4rJhbuSh0f4v42THqaSvlZXI3wUx-_qeJfRcAvSv",
-    "descripcion" => "Mecanizado de geometrías complejas y chaveteros.",
-    "descripcion_larga" => "El servicio de fresadora permite el mecanizado de chaveteros, ranuras, cajas y superficies complejas con alta exactitud. Es ideal para componentes que requieren geometrías precisas, excelente acabado y compatibilidad perfecta con otros elementos mecánicos.",
-    "video" => "assets/img/prue.mp4"
+    "carousel" => [
+   "assets/img/capacidades.png",
+    "assets/img/engrane.png",
+    "assets/img/estandares-industriales.png",
+    "assets/img/fon1.png",
+    "assets/img/engrane.png",
+  ],
+    "descripcion" => "Mecanizado de ranuras, chaveteros y geometrías complejas.",
+    "descripcion_larga" => "El servicio de fresadora industrial permite el mecanizado de chaveteros, ranuras, cajas, alojamientos y geometrías complejas. Es ideal para la fabricación de componentes mecánicos, adaptación de piezas especiales y mantenimiento industrial. Este proceso garantiza precisión geométrica, buen acabado superficial y compatibilidad exacta en ensambles mecánicos utilizados en maquinaria y equipos industriales.",
+    "video" => "assets/img/vid/prue.mp4"
   ],
 ];
 
