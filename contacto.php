@@ -59,7 +59,7 @@ include "includes/ui/header.php";
     <img
       alt="Industrial Background"
       class="parallax-bg absolute inset-0 w-full h-full object-cover"
-      src="assets/img/contacto.png" />
+      src="<?= e((string)($fallback_contacto_media["hero_bg"] ?? "")); ?>" />
     <div class="absolute inset-0 bg-black/60"></div>
     <div class="absolute inset-0 industrial-grid opacity-10"></div>
   </div>
@@ -167,10 +167,11 @@ pb-10 sm:pb-14 lg:pb-16">
       </div>
 
       <!-- FORM (NO tocar lógica) -->
-      <div class="w-full flex justify-center lg:justify-end mt-4 sm:mt-6 lg:mt-0">
+      <div id="cotizacion-form" class="w-full flex justify-center lg:justify-end mt-4 sm:mt-6 lg:mt-0 scroll-mt-[120px]">
         <div class="glass-morphism w-full max-w-xl 
 p-5 sm:p-7 md:p-9 lg:p-10 
 rounded-sm shadow-2xl relative overflow-hidden reveal zoom-text">
+
           <div class="absolute top-0 right-0 w-32 h-28
  bg-primary-red/10 rounded-full blur-3xl -mr-16 -mt-16"></div>
 

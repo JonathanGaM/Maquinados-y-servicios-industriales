@@ -43,18 +43,21 @@
   }
 
   // ✅ Carrusel dinámico (4/6/lo que sea)
-function updateCarousel(images) {
-  const imgs = Array.isArray(images) ? images.filter(Boolean) : [];
-  const list = imgs.length ? imgs : defaultCarousel;
+  function updateCarousel(images) {
+    const imgs = Array.isArray(images) ? images.filter(Boolean) : [];
+    const list = imgs.length ? imgs : defaultCarousel;
 
-  const count = list.length || 1;
-  carouselEl.style.setProperty("--count", String(count));
+    const count = list.length || 1;
+    carouselEl.style.setProperty("--count", String(count));
 
-  carouselEl.innerHTML = list
-    .map((src, i) => `<figure style="--i:${i}"><img src="${src}" alt="Imagen ${i + 1}"></figure>`)
-    .join("");
-}
+    carouselEl.innerHTML = list
+      .map((src, i) => `<figure style="--i:${i}"><img src="${src}" alt="Imagen ${i + 1}"></figure>`)
+      .join("");
+carouselEl.style.scrollBehavior = "auto";
+carouselEl.scrollLeft = 0;
+carouselEl.style.scrollBehavior = "";
 
+  }
 
   function setServiceHero({ img, titleText, descText, badgeText, carouselImgs }) {
     if (img) bgImg.setAttribute("src", img);
@@ -71,8 +74,8 @@ function updateCarousel(images) {
     desc.textContent = descText || "";
     badge.textContent = badgeText || "";
 
-    stats.style.display = "";     // ✅ siempre visible
-    updateCarousel(carouselImgs); // ✅ cambia carrusel
+    stats.style.display = "";
+    updateCarousel(carouselImgs);
   }
 
   function setDefaultHero() {
@@ -116,12 +119,82 @@ function updateCarousel(images) {
     return true;
   }
 
+  // ====== AUTO CARRUSEL EN MÓVIL (sin arrastrar) ======
+  let autoTimer = null;
+
+  function isMobile() {
+    return window.matchMedia("(max-width: 768px)").matches;
+  }
+
+  function stopAutoCarousel() {
+    if (autoTimer) {
+      clearInterval(autoTimer);
+      autoTimer = null;
+    }
+  }
+
+ function startAutoCarousel() {
+  stopAutoCarousel();
+  if (!isMobile()) return;
+
+  const slides = carouselEl.querySelectorAll("figure");
+  if (!slides.length) return;
+
+  // ancho real de “una página” (mejor que figure.width)
+  const slideWidth = () => carouselEl.clientWidth;
+
+  // índice actual basado en scroll actual (evita que se descontrole)
+  let i = Math.round(carouselEl.scrollLeft / slideWidth());
+
+  const jumpTo = (x) => {
+    const prev = carouselEl.style.scrollBehavior;
+    carouselEl.style.scrollBehavior = "auto";
+    carouselEl.scrollLeft = x;
+    carouselEl.style.scrollBehavior = prev || "";
+  };
+
+  const smoothTo = (x) => {
+    carouselEl.scrollTo({ left: x, behavior: "smooth" });
+  };
+
+  autoTimer = setInterval(() => {
+    const w = slideWidth();
+    const last = slides.length - 1;
+
+    // ✅ Si ya estamos en la última, NO hagas smooth hacia 0 (eso se ve como rebobinado)
+    // Mejor: salto instantáneo a 0 y el siguiente tick avanza a 1 con smooth.
+    if (i >= last) {
+      jumpTo(0);
+      i = 0;
+      return;
+    }
+
+    i++;
+    smoothTo(i * w);
+  }, 2800);
+}
+
+
+
+  // 🔁 Hook: cada que se actualiza el carrusel, reinicia autoplay
+  const _oldUpdateCarousel = updateCarousel;
+  updateCarousel = function(images) {
+    _oldUpdateCarousel(images);
+    startAutoCarousel();
+  };
+
   document.addEventListener("DOMContentLoaded", () => {
     updateCarousel(defaultCarousel);
 
     if (!applyHeroFromUrl()) {
       hero.classList.remove("hero-pending");
     }
+
+    startAutoCarousel();
+  });
+
+  window.addEventListener("resize", () => {
+    startAutoCarousel();
   });
 
   document.addEventListener("click", (ev) => {

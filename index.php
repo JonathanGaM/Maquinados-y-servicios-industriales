@@ -6,10 +6,39 @@ require_once __DIR__ . "/includes/ui/header.php";
 
 // ✅ Inyectamos el “diccionario” de imágenes para JS
 $MEDIA = $fallback_media ?? [];
+// ====== TEXTOS ROTATIVOS (BD -> fallback) ======
+$rotatingTexts = [];
+
+if ($pdo instanceof PDO) {
+  try {
+    $stmt = $pdo->prepare("
+      SELECT valor
+      FROM contenidos
+      WHERE pagina='index' AND seccion='hero' AND clave='rotating_texts'
+      ORDER BY orden ASC
+    ");
+    $stmt->execute();
+    $rotatingTexts = $stmt->fetchAll(PDO::FETCH_COLUMN);
+  } catch (Throwable $e) {
+    $rotatingTexts = [];
+  }
+}
+
+// fallback si BD falla o viene vacío
+if (empty($rotatingTexts)) {
+  $rotatingTexts = $fallback_media['hero']['rotating_texts'] ?? [];
+}
+
 
 ?>
 <script>
   window.MSI_MEDIA = <?= json_encode($MEDIA, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) ?>;
+
+  // ✅ Textos rotativos: BD -> fallback
+  window.MSI_INDEX_ROTATING_TEXTS = <?= json_encode(
+    $rotatingTexts,
+    JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE
+  ) ?>;
 </script>
 
 
@@ -28,7 +57,9 @@ $MEDIA = $fallback_media ?? [];
       id="hero-bg-a"
       class="hero-bg-layer is-active"
       alt="Industrial background"
-      src="<?= htmlspecialchars(($fallback_media['hero']['carousel'][0] ?? ''), ENT_QUOTES, 'UTF-8') ?>" />
+      src="<?= htmlspecialchars(($MEDIA['hero']['carousel'][0] ?? ''), ENT_QUOTES, 'UTF-8') ?>"
+ />
+
 
     <!-- Capa siguiente (arranca invisible) -->
     <img
@@ -145,7 +176,8 @@ w-full sm:w-auto">
           <img
             alt="Equipo técnico trabajando en maquinado de precisión"
             class="aspect-[4/3] object-cover w-full"
-            src="<?= htmlspecialchars(($fallback_media['home']['liderazgo'] ?? ''), ENT_QUOTES, 'UTF-8') ?>" />
+            src="<?= htmlspecialchars(($MEDIA['home']['liderazgo'] ?? ''), ENT_QUOTES, 'UTF-8') ?>"
+ />
         </div>
 
         <!-- CUADRO ROJO -->
@@ -247,15 +279,17 @@ w-full sm:w-auto">
 
         </div>
 
-        <!-- CTA -->
-        <a href="nosotros.php"
-          class="inline-flex items-center gap-2 border-2 border-navy-blue
-                 px-6 py-3 text-sm font-bold uppercase tracking-widest
-                 text-navy-blue hover:bg-navy-blue hover:text-white
-                 transition-all">
-          Conocer más
-          <span class="material-symbols-outlined text-sm">read_more</span>
-        </a>
+       <a href="nosotros.php"
+  class="inline-flex items-center gap-2
+         bg-navy-blue text-white
+         px-6 py-3 text-sm font-bold uppercase tracking-widest
+         rounded-md
+         hover:bg-[#142e52]
+         transition-all">
+  Conocer más
+  <span class="material-symbols-outlined text-sm">read_more</span>
+</a>
+
 
       </div>
     </div>
@@ -281,7 +315,7 @@ w-full sm:w-auto">
       <div class="md:col-span-8 group relative overflow-hidden bg-navy-blue min-h-[450px]">
         <img alt="Operator carefully performing tasks on a conventional lathe"
           class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000"
-          src="<?= htmlspecialchars(($fallback_media['infraestructura']['torno_convencional'] ?? ''), ENT_QUOTES, 'UTF-8') ?>" />
+          src="<?= htmlspecialchars(($MEDIA['infraestructura']['torno_convencional'] ?? ''), ENT_QUOTES, 'UTF-8') ?>" />
         <div class="absolute inset-0 bg-navy-blue/40 group-hover:bg-navy-blue/20 transition-colors"></div>
         <div class="absolute inset-0 bg-gradient-to-t from-deep-black via-transparent to-transparent"></div>
         <div class="absolute bottom-0 left-0 p-6 sm:p-8 md:p-10">

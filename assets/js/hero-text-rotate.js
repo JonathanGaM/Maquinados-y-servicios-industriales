@@ -2,13 +2,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const el = document.getElementById("hero-rotating-text");
   if (!el) return;
 
-  const texts = [
-    "Fabricación, maquila y reparación de componentes industriales con sistemas internos de control de calidad y procesos confiables.",
-    "Especialistas en engranes, sinfines y coronas para transmisión de potencia en maquinaria industrial.",
-    "Diseño y manufactura de ejes y componentes mecánicos a medida, fabricados con alta precisión y entrega puntual.",
-    "Producción de rodillos industriales, coples y refacciones críticas para mantenimiento y continuidad operativa.",
-    "Soluciones en maquinado convencional y CNC para proyectos unitarios o producción en volumen."
-  ];
+  // ✅ tomar textos desde fallback inyectado
+const texts = Array.isArray(window.MSI_INDEX_ROTATING_TEXTS)
+  ? window.MSI_INDEX_ROTATING_TEXTS
+  : [];
+  if (!texts.length) return;
 
   const BG_INTERVAL = 6500;
   const AFTER_BG = 1700;
@@ -59,6 +57,5 @@ document.addEventListener("DOMContentLoaded", () => {
     }, BG_INTERVAL + AFTER_BG);
   };
 
-  // ✅ Arranca la rotación (sin duplicar timers)
   scheduleNext();
 });

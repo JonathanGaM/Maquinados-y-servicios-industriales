@@ -221,6 +221,9 @@ if ($currentPage !== "contacto.php") {
 
 <script src="assets/js/loader.js"></script>
 <script src="assets/js/reveal.js" defer></script>
+<!-- JS GLOBAL -->
+<script src="assets/js/mobile-links.js" defer></script>
+
 
 
 <script>

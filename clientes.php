@@ -1,30 +1,66 @@
 <?php
-require_once __DIR__ . "/includes/core/db.php";
-require_once __DIR__ . "/includes/core/db-safe.php";
 require_once __DIR__ . "/includes/core/fallbacks.php";
+require_once __DIR__ . "/includes/core/db.php";
 
-// helper seguro
-function e(string $v): string
-{
+/* Escape helper */
+function e(string $v): string {
   return htmlspecialchars($v, ENT_QUOTES, "UTF-8");
 }
 
-// 1) Traer texto de clientes desde BD (solo nombre/descripcion)
-$clientes = [];
+/* =========================
+   HERO CLIENTES (BD → fallback)
+   ========================= */
+$clientesHeroDesc = "";
+
 if ($pdo instanceof PDO) {
   try {
-    $stmt = $pdo->query("SELECT nombre, descripcion FROM clientes ORDER BY id ASC");
+    $stmt = $pdo->prepare("
+      SELECT valor
+      FROM contenidos
+      WHERE pagina='clientes'
+        AND seccion='hero'
+        AND clave='hero_descripcion'
+      ORDER BY orden ASC
+      LIMIT 1
+    ");
+    $stmt->execute();
+    $clientesHeroDesc = (string)($stmt->fetchColumn() ?: "");
+  } catch (Throwable $e) {
+    $clientesHeroDesc = "";
+  }
+}
+
+if ($clientesHeroDesc === "") {
+  $clientesHeroDesc = (string)($fallback_clientes_media["hero"]["descripcion"] ?? "");
+}
+$heroMedia = $fallback_clientes_media["hero"] ?? [];
+$ctaMedia  = $fallback_clientes_media["cta"]  ?? [];
+
+/* =========================
+   LISTA CLIENTES (BD → fallback)
+   - Solo texto: nombre + descripcion
+   - Imágenes se quedan en fallback
+   ========================= */
+$clientes = [];
+
+if ($pdo instanceof PDO) {
+  try {
+    $stmt = $pdo->query("
+      SELECT id, nombre, descripcion
+      FROM clientes
+      ORDER BY id ASC
+    ");
     $clientes = $stmt->fetchAll(PDO::FETCH_ASSOC);
   } catch (Throwable $e) {
     $clientes = [];
   }
 }
 
-// 2) Si BD falla → fallback completo
+// fallback si BD falla o viene vacío
 if (empty($clientes)) {
-  $clientes = $fallback_clientes;
+  $clientes = $fallback_clientes ?? [];
 } else {
-  // 3) BD OK → inyectar imagen/tag por ORDEN (no por nombre)
+  // ✅ BD OK: inyectar imagen/tag desde fallback por ORDEN (igual que servicios)
   foreach ($clientes as $i => &$c) {
     $c["imagen"] = $fallback_clientes[$i]["imagen"] ?? "";
     $c["tag"]    = $fallback_clientes[$i]["tag"] ?? "";
@@ -35,6 +71,7 @@ if (empty($clientes)) {
 include "includes/ui/header.php";
 ?>
 
+
 <section class="relative overflow-hidden bg-deep-black
   -mt-12 sm:-mt-16 lg:-mt-[110px]
   pt-12 sm:pt-16 lg:pt-[110px]
@@ -43,9 +80,10 @@ include "includes/ui/header.php";
   <!-- FONDO -->
   <div class="absolute inset-0 z-0">
     <img
-      alt="Fondo Industrial"
-      class="w-full h-full object-cover brightness-[0.9] contrast-[1.05]"
-      src="https://mspcorp.ca/wp-content/uploads/2021/12/MSPC-Blog-12-22-21-Blog.jpg" />
+  alt="Fondo Industrial"
+  class="w-full h-full object-cover brightness-[0.9] contrast-[1.05]"
+  src="<?= e((string)($heroMedia["bg"] ?? "")); ?>" />
+
 
     <!-- Oscurecido elegante -->
     <div class="absolute inset-0 bg-gradient-to-b from-navy-blue/80 via-deep-black/60 to-deep-black/95"></div>
@@ -59,7 +97,7 @@ include "includes/ui/header.php";
 
     <div class="max-w-3xl reveal zoom-text">
       <div class="inline-flex items-center gap-4 mb-5 sm:mb-6">
-        <div class="h-[3px ] w-10 sm:w-12 bg-primary-red"></div>
+        <div class="h-[3px] w-10 sm:w-12 bg-primary-red"></div>
         <span class="text-primary-red font-black tracking-[0.35em] sm:tracking-[0.4em] text-[10px] sm:text-xs uppercase">
           Portafolio de Confianza
         </span>
@@ -73,8 +111,9 @@ include "includes/ui/header.php";
       </h2>
 
       <p class="text-base sm:text-lg md:text-xl text-gray-300 leading-relaxed font-light">
-        Aliados estratégicos que confían en nuestra precisión técnica para el mantenimiento industrial y la fabricación de componentes críticos en sus procesos productivos.
-      </p>
+  <?= e($clientesHeroDesc); ?>
+</p>
+
     </div>
   </div>
 </section>
@@ -148,9 +187,10 @@ include "includes/ui/header.php";
 <section class="relative py-20 sm:py-24 text-white overflow-hidden">
   <!-- FONDO -->
   <div class="absolute inset-0 z-0">
-    <img
-      src="assets/img/estandares-industriales.png"
-      alt="Estándares industriales y control de calidad"
+   <img
+  src="<?= e((string)($ctaMedia["bg"] ?? "")); ?>"
+  alt="Estándares industriales y control de calidad"
+
       class="w-full h-full object-cover brightness-[0.85] contrast-[1.05]"
       loading="lazy"
       decoding="async"
@@ -187,6 +227,7 @@ include "includes/ui/header.php";
       </a>
 
       <a href="contacto.php"
+          data-mobile-href="contacto.php#cotizacion-form"
         class="w-full md:w-auto border border-white/25 hover:bg-white hover:text-navy-blue text-white px-10 sm:px-12 py-3.5 sm:py-4 text-sm font-black uppercase tracking-widest transition-all text-center">
         Contáctanos
       </a>

@@ -1,6 +1,8 @@
 <?php
 require_once __DIR__ . "/includes/core/fallbacks.php";
 require_once __DIR__ . "/includes/core/db.php";
+require_once __DIR__ . "/includes/core/db-safe.php";
+
 
 $servicios = [];
 
@@ -9,29 +11,54 @@ function e(string $v): string
 {
   return htmlspecialchars($v, ENT_QUOTES, "UTF-8");
 }
-
-// 1) Traer texto desde BD (solo nombre/descripcion)
+// 1) Traer texto desde BD (solo nombre/descripcion/descripcion larga)
 if ($pdo instanceof PDO) {
   try {
-    $stmt = $pdo->query("SELECT nombre, descripcion FROM servicios ORDER BY id ASC");
+    $stmt = $pdo->query("
+      SELECT nombre, descripcion, descripcion_larga
+      FROM servicios
+      ORDER BY id ASC
+    ");
     $servicios = $stmt->fetchAll(PDO::FETCH_ASSOC);
   } catch (Throwable $ex) {
     $servicios = [];
   }
 }
-
 // 2) Si BD falla → usar fallback completo (incluye imagen/video si lo agregas)
 if (empty($servicios)) {
   $servicios = $fallback_servicios;
 } else {
-  // 3) BD OK → asignar imagen/video por ORDEN (índice)
   foreach ($servicios as $i => &$s) {
     $s["imagen"]   = $fallback_servicios[$i]["imagen"]   ?? ($fallback_servicios[0]["imagen"] ?? "");
     $s["video"]    = $fallback_servicios[$i]["video"]    ?? "";
-    $s["carousel"] = $fallback_servicios[$i]["carousel"] ?? [];  // ✅ ESTA LÍNEA
+    $s["carousel"] = $fallback_servicios[$i]["carousel"] ?? [];
   }
   unset($s);
 }
+// ====== HERO SERVICIOS: descripcion (BD -> fallback) ======
+$heroServiciosDesc = "";
+
+if ($pdo instanceof PDO) {
+  try {
+    $stmt = $pdo->prepare("
+      SELECT valor
+      FROM contenidos
+      WHERE pagina='servicios' AND seccion='hero' AND clave='hero_descripcion'
+      ORDER BY orden ASC
+      LIMIT 1
+    ");
+    $stmt->execute();
+    $heroServiciosDesc = (string)($stmt->fetchColumn() ?: "");
+  } catch (Throwable $e) {
+    $heroServiciosDesc = "";
+  }
+}
+
+if ($heroServiciosDesc === "") {
+  $heroServiciosDesc = (string)($fallback_servicios_contenido["hero"]["descripcion"] ?? "");
+}
+
+
 
 include "includes/ui/header.php";
 
@@ -59,7 +86,7 @@ include "includes/ui/header.php";
         id="hero-bg-img"
         alt="Fondo Industrial"
         class="w-full h-full object-cover brightness-[0.55]"
-        src="https://www.mobil.com.mx/lubricantes/-/media/project/wep/mobil/mobil-mx/blog-industrial/engranes/fs-sm.jpg" />
+        src="<?= e($fallback_servicios_contenido["hero"]["imagen"] ?? ""); ?>" />
       <div class="absolute inset-0 bg-gradient-to-b from-navy-blue/75 to-deep-black/55"></div>
       <div class="industrial-grid absolute inset-0 opacity-10"></div>
     </div>
@@ -89,10 +116,9 @@ include "includes/ui/header.php";
         <!-- IZQUIERDA -->
         <div class="reveal from-left lg:-ml-12">
           <div class="mx-auto w-full max-w-md">
-           <div class="carousel3d-wrap">
-  <div class="carousel3d" id="hero-carousel3d" aria-label="Carrusel 3D del servicio"></div>
-</div>
-
+            <div class="carousel3d-wrap">
+              <div class="carousel3d" id="hero-carousel3d" aria-label="Carrusel 3D del servicio"></div>
+            </div>
           </div>
         </div>
 
@@ -102,7 +128,7 @@ include "includes/ui/header.php";
           <p id="hero-desc"
             class="text-white/90 text-[15px] sm:text-[17px] leading-[1.55] -mt-1"
             style="text-align: justify;">
-            Maquinados y Servicios Industriales es una empresa dedicada al maquinado y mantenimiento de maquinaria industrial, especializada en la fabricación y reparación de engranes, sinfines, coronas, flechas y componentes críticos. Ofrecemos soluciones de manufactura mediante procesos convencionales y CNC, orientadas a sectores agroindustrial y manufacturero, cumpliendo con altos estándares de precisión, confiabilidad operativa y entregas en tiempo.
+<?= e($heroServiciosDesc); ?>
           </p>
 
           <div id="hero-stats"
@@ -122,15 +148,10 @@ include "includes/ui/header.php";
 
         </div>
       </div><!-- /grid -->
-
     </div>
   </div>
-
-  </div>
-  </div>
-
+  
 </section>
-
 
 <!-- GRID SERVICIOS -->
 <section id="servicios" class="pt-10 pb-12 sm:pt-12 sm:pb-16 bg-white relative overflow-hidden">
@@ -153,7 +174,6 @@ include "includes/ui/header.php";
 
       <div class="w-20 h-[2px] bg-primary-red mx-auto mt-4"></div>
     </div>
-
     <!-- GRID -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
 
@@ -212,9 +232,6 @@ include "includes/ui/header.php";
             <div class="pr-2 pb-14 sm:pb-16">
               <div class="service-head transform transition-all duration-500 ease-out
     translate-y-16 group-hover:translate-y-0 group-focus-within:translate-y-0">
-
-               
-
                 <h3 class="text-lg font-black text-white uppercase leading-tight">
                   <?= e((string)($s["nombre"] ?? "")); ?>
                 </h3>
@@ -247,6 +264,8 @@ include "includes/ui/header.php";
 
               <!-- COTIZAR -->
               <a href="contacto.php"
+                data-mobile-href="contacto.php#cotizacion-form"
+
                 class="bg-primary-red
            hover:bg-white hover:text-navy-blue
            transition-all
@@ -256,14 +275,7 @@ include "includes/ui/header.php";
                 Cotizar
               </a>
               <!-- FLECHA -->
-              <span
-                class="service-arrow material-symbols-outlined
-           text-white/70 text-xl
-           animate-bounce
-           transition-all duration-300
-           group-hover:animate-none group-hover:opacity-80">
-                expand_less
-              </span>
+
             </div>
           </div>
         </div>
@@ -271,8 +283,6 @@ include "includes/ui/header.php";
     </div>
   </div>
 </section>
-
-
 <section id="sectores" class="pt-14 pb-16 sm:pt-18 sm:pb-20 bg-white relative overflow-hidden">
 
   <!-- overlays -->
@@ -295,206 +305,44 @@ include "includes/ui/header.php";
     <!-- GRID -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
 
-      <!-- AUTOMOTRIZ -->
-      <div class="reveal from-bottom relative h-64 overflow-hidden group border border-slate-200 bg-deep-black">
-        <img
-          src="https://cdn.club-magazin.autodoc.de/uploads/sites/11/2020/12/motor-de-combustion-interna-de-un-automovil.jpg"
-          alt="Automotriz"
-          class="absolute inset-0 w-full h-full object-cover grayscale brightness-[0.45]
-                 transition-all duration-700 group-hover:scale-110 group-hover:grayscale-0" />
+      <?php foreach (($fallback_servicios_contenido["sectores"] ?? []) as $sec): ?>
 
-        <div class="absolute inset-0 bg-deep-black/70 group-hover:bg-deep-black/25
-                    transition-all duration-500
-                    flex flex-col items-center justify-center p-6 text-center">
+        <div class="reveal from-bottom relative h-64 overflow-hidden group border border-slate-200 bg-deep-black">
 
-          <span class="material-symbols-outlined text-4xl mb-3 text-white
+          <img
+            src="<?= e($sec["imagen"] ?? ""); ?>"
+            alt="<?= e($sec["titulo"] ?? ""); ?>"
+            class="absolute inset-0 w-full h-full object-cover grayscale brightness-[0.45]
+                   transition-all duration-700 group-hover:scale-110 group-hover:grayscale-0" />
+
+          <div class="absolute inset-0 bg-deep-black/70 group-hover:bg-deep-black/25
+                      transition-all duration-500
+                      flex flex-col items-center justify-center p-6 text-center">
+
+            <h5 class="text-white font-black uppercase tracking-widest text-base sm:text-lg
                        transform transition-transform duration-500
                        group-hover:-translate-y-4">
-            directions_car
-          </span>
+              <?= e($sec["titulo"] ?? ""); ?>
+            </h5>
 
-          <h5 class="text-white font-black uppercase tracking-widest text-base sm:text-lg
-                     transform transition-transform duration-500
-                     group-hover:-translate-y-4">
-            Automotriz
-          </h5>
+            <p class="mt-3 text-white/85 text-xs leading-relaxed max-w-xs
+                      opacity-0 translate-y-2
+                      transition-all duration-500
+                      group-hover:opacity-100 group-hover:translate-y-0">
+              <?= e($sec["descripcion"] ?? ""); ?>
+            </p>
+          </div>
 
-          <p class="mt-3 text-white/85 text-xs leading-relaxed max-w-xs
-                    opacity-0 translate-y-2
-                    transition-all duration-500
-                    group-hover:opacity-100 group-hover:translate-y-0">
-            Fabricación y reparación de componentes para líneas de producción automotriz.
-          </p>
         </div>
-      </div>
 
-      <!-- AERONÁUTICA -->
-      <div class="reveal from-bottom relative h-64 overflow-hidden group border border-slate-200 bg-deep-black">
-        <img
-          src="https://us.123rf.com/450wm/andose24/andose241709/andose24170900011/86109270-tren-de-aterrizaje.jpg?ver=6"
-          alt="Aeronáutica"
-          class="absolute inset-0 w-full h-full object-cover grayscale brightness-[0.45]
-                 transition-all duration-700 group-hover:scale-110 group-hover:grayscale-0" />
-
-        <div class="absolute inset-0 bg-deep-black/70 group-hover:bg-deep-black/25
-                    transition-all duration-500
-                    flex flex-col items-center justify-center p-6 text-center">
-
-          <span class="material-symbols-outlined text-4xl mb-3 text-white
-                       transform transition-transform duration-500
-                       group-hover:-translate-y-4">
-            flight
-          </span>
-
-          <h5 class="text-white font-black uppercase tracking-widest text-base sm:text-lg
-                     transform transition-transform duration-500
-                     group-hover:-translate-y-4">
-            Aeronáutica
-          </h5>
-
-          <p class="mt-3 text-white/85 text-xs leading-relaxed max-w-xs
-                    opacity-0 translate-y-2
-                    transition-all duration-500
-                    group-hover:opacity-100 group-hover:translate-y-0">
-            Maquinados de alta precisión para componentes críticos aeronáuticos.
-          </p>
-        </div>
-      </div>
-
-      <!-- METAL-MECÁNICA -->
-      <div class="reveal from-bottom relative h-64 overflow-hidden group border border-slate-200 bg-deep-black">
-        <img
-          src="https://www.rapiddirect.com/wp-content/uploads/2023/10/5-axis-cnc-machining-process.webp"
-          alt="Metal-Mecánica"
-          class="absolute inset-0 w-full h-full object-cover grayscale brightness-[0.45]
-                 transition-all duration-700 group-hover:scale-110 group-hover:grayscale-0" />
-
-        <div class="absolute inset-0 bg-deep-black/70 group-hover:bg-deep-black/25
-                    transition-all duration-500
-                    flex flex-col items-center justify-center p-6 text-center">
-
-          <span class="material-symbols-outlined text-4xl mb-3 text-white
-                       transform transition-transform duration-500
-                       group-hover:-translate-y-4">
-            factory
-          </span>
-          <h5 class="text-white font-black uppercase tracking-widest text-base sm:text-lg
-                     transform transition-transform duration-500
-                     group-hover:-translate-y-4">
-            Metal-Mecánica
-          </h5>
-          <p class="mt-3 text-white/85 text-xs leading-relaxed max-w-xs
-                    opacity-0 translate-y-2
-                    transition-all duration-500
-                    group-hover:opacity-100 group-hover:translate-y-0">
-            Soluciones de maquinado CNC y convencional para la industria metalmecánica.
-          </p>
-        </div>
-      </div>
-
-      <!-- ALIMENTICIA -->
-      <div class="reveal from-bottom relative h-64 overflow-hidden group border border-slate-200 bg-deep-black">
-        <img
-          src="https://www.rrhhdigital.com/wp-content/uploads/userfiles/fabrica-alimentacion-comida.jpg"
-          alt="Alimenticia"
-          class="absolute inset-0 w-full h-full object-cover grayscale brightness-[0.45]
-                 transition-all duration-700 group-hover:scale-110 group-hover:grayscale-0" />
-
-        <div class="absolute inset-0 bg-deep-black/70 group-hover:bg-deep-black/25
-                    transition-all duration-500
-                    flex flex-col items-center justify-center p-6 text-center">
-
-          <span class="material-symbols-outlined text-4xl mb-3 text-white
-                       transform transition-transform duration-500
-                       group-hover:-translate-y-4">
-            restaurant
-          </span>
-
-          <h5 class="text-white font-black uppercase tracking-widest text-base sm:text-lg
-                     transform transition-transform duration-500
-                     group-hover:-translate-y-4">
-            Alimenticia
-          </h5>
-
-          <p class="mt-3 text-white/85 text-xs leading-relaxed max-w-xs
-                    opacity-0 translate-y-2
-                    transition-all duration-500
-                    group-hover:opacity-100 group-hover:translate-y-0">
-            Fabricación y mantenimiento de piezas para maquinaria de proceso y empaque.
-          </p>
-        </div>
-      </div>
-
-      <!-- AGRÍCOLA -->
-      <div class="reveal from-bottom relative h-64 overflow-hidden group border border-slate-200 bg-deep-black">
-        <img
-          src="https://www.spmas.es/wp-content/uploads/2023/03/Post-3-PRL-Sector-Agricola.jpg"
-          alt="Agrícola"
-          class="absolute inset-0 w-full h-full object-cover grayscale brightness-[0.45]
-                 transition-all duration-700 group-hover:scale-110 group-hover:grayscale-0" />
-
-        <div class="absolute inset-0 bg-deep-black/70 group-hover:bg-deep-black/25
-                    transition-all duration-500
-                    flex flex-col items-center justify-center p-6 text-center">
-
-          <span class="material-symbols-outlined text-4xl mb-3 text-white
-                       transform transition-transform duration-500
-                       group-hover:-translate-y-4">
-            agriculture
-          </span>
-
-          <h5 class="text-white font-black uppercase tracking-widest text-base sm:text-lg
-                     transform transition-transform duration-500
-                     group-hover:-translate-y-4">
-            Agrícola
-          </h5>
-          <p class="mt-3 text-white/85 text-xs leading-relaxed max-w-xs
-                    opacity-0 translate-y-2
-                    transition-all duration-500
-                    group-hover:opacity-100 group-hover:translate-y-0">
-            Manufactura y reparación de componentes para maquinaria agrícola.
-          </p>
-        </div>
-      </div>
-
-      <!-- ELECTRÓNICA -->
-      <div class="reveal from-bottom relative h-64 overflow-hidden group border border-slate-200 bg-deep-black">
-        <img
-          src="https://www.vencoel.com/wp-content/uploads/2023/11/normativas-electronica.jpg"
-          alt="Electrónica"
-          class="absolute inset-0 w-full h-full object-cover grayscale brightness-[0.45]
-                 transition-all duration-700 group-hover:scale-110 group-hover:grayscale-0" />
-
-        <div class="absolute inset-0 bg-deep-black/70 group-hover:bg-deep-black/25
-                    transition-all duration-500
-                    flex flex-col items-center justify-center p-6 text-center">
-
-          <span class="material-symbols-outlined text-4xl mb-3 text-white
-                       transform transition-transform duration-500
-                       group-hover:-translate-y-4">
-            memory
-          </span>
-
-          <h5 class="text-white font-black uppercase tracking-widest text-base sm:text-lg
-                     transform transition-transform duration-500
-                     group-hover:-translate-y-4">
-            Electrónica
-          </h5>
-
-          <p class="mt-3 text-white/85 text-xs leading-relaxed max-w-xs
-                    opacity-0 translate-y-2
-                    transition-all duration-500
-                    group-hover:opacity-100 group-hover:translate-y-0">
-            Componentes de precisión para equipos y ensambles electrónicos industriales.
-          </p>
-        </div>
-      </div>
+      <?php endforeach; ?>
 
     </div>
   </div>
 </section>
 
-<section id="materiales" class="py-24 bg-deep-black">
+
+<section id="materiales" class="py-24 bg-[rgb(10_25_47)]">
 
   <div class="max-w-7xl mx-auto px-5 sm:px-8 reveal zoom-text">
 
@@ -540,7 +388,7 @@ include "includes/ui/header.php";
           <img
             alt="Materiales / Plano Técnico"
             class="w-full object-cover contrast-105 saturate-110"
-            src="https://www.zintilon.com/wp-content/uploads/2024/07/ferrous-metals-vs-non-ferrous-metals-880x608.png" />
+            src="<?= e($fallback_servicios_contenido["materiales"]["imagen"] ?? ""); ?>" />
         </div>
         <div class="absolute -bottom-4 -right-4 sm:-bottom-6 sm:-right-6 w-full h-full border-2 border-primary-red/20 -z-0"></div>
 
@@ -554,110 +402,122 @@ include "includes/ui/header.php";
 <script src="assets/js/service-hover-video.js"></script>
 <script src="assets/js/hero-servicio-switch.js"></script>
 
+
+
 <style>
-  
   /* =========================
    DESKTOP: Carrusel 3D
    ========================= */
-.carousel3d-wrap{
-  perspective: 900px;
-  height: 230px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.carousel3d{
-  position: relative;
-  width: 220px;
-  height: 160px;
-  transform-style: preserve-3d;
-  animation: spin3d 26s linear infinite;
-
-  --count: 4;
-  --z: 190px;
-}
-
-.carousel3d figure{
-  position: absolute;
-  inset: 0;
-  margin: 0;
-  border-radius: 6px;
-  overflow: hidden;
-  border: 2px solid rgba(255,255,255,0.12);
-  box-shadow: 0 10px 20px -10px rgba(0,0,0,0.25);
-  background: transparent;
-
-  transform: rotateY(calc((360deg / var(--count)) * var(--i))) translateZ(var(--z));
-}
-
-.carousel3d img{
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-@keyframes spin3d{
-  from{ transform: rotateY(0deg); }
-  to{ transform: rotateY(360deg); }
-}
-
-/* =========================
-   MÓVIL: Slider horizontal (sin 3D)
-   ========================= */
-@media (max-width: 768px){
-
-  .carousel3d-wrap{
-    perspective: none;
-    height: auto;
-    justify-content: flex-start;
-  }
-
-  .carousel3d{
-    width: 100%;
-    height: auto;
-
-    transform: none;
-    animation: none;
-
+  .carousel3d-wrap {
+    perspective: 900px;
+    height: 230px;
     display: flex;
-    gap: 14px;
-
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    padding: 6px 2px 10px;
-    -webkit-overflow-scrolling: touch;
+    align-items: center;
+    justify-content: center;
   }
 
-  .carousel3d figure{
+  .carousel3d {
     position: relative;
-    inset: auto;
+    width: 220px;
+    height: 160px;
+    transform-style: preserve-3d;
+    animation: spin3d 26s linear infinite;
 
-    flex: 0 0 80%;
-    max-width: 80%;
-    height: 180px;
-
-    transform: none;
-    scroll-snap-align: center;
+    --count: 4;
+    --z: 190px;
   }
 
-  /* scrollbar sutil */
-  .carousel3d::-webkit-scrollbar{
-    height: 6px;
+  .carousel3d figure {
+    position: absolute;
+    inset: 0;
+    margin: 0;
+    border-radius: 6px;
+    overflow: hidden;
+    border: 2px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 10px 20px -10px rgba(0, 0, 0, 0.25);
+    background: transparent;
+
+    transform: rotateY(calc((360deg / var(--count)) * var(--i))) translateZ(var(--z));
   }
-  .carousel3d::-webkit-scrollbar-thumb{
-    background: rgba(255,255,255,.25);
-    border-radius: 4px;
+
+  .carousel3d img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
   }
-}
 
-@media (prefers-reduced-motion: reduce){
-  .carousel3d{ animation: none; }
-}
+  @keyframes spin3d {
+    from {
+      transform: rotateY(0deg);
+    }
 
+    to {
+      transform: rotateY(360deg);
+    }
+  }
 
+  /* =========================
+   MÓVIL: Carrusel normal auto (sin 3D)
+   ========================= */
+  @media (max-width: 768px) {
+    
 
+    .carousel3d-wrap {
+      perspective: none;
+      height: auto;
+      justify-content: flex-start;
+      margin-top: 4px;
+      margin-bottom: 10px;
+    }
+
+    .carousel3d {
+      width: 100%;
+      height: auto;
+      transform: none;
+      transform-style: flat;
+      animation: none;
+      display: flex;
+      gap: 0;
+      padding: 0;
+      overflow-x: auto;
+      /* ✅ necesario para que scrollTo funcione */
+      overflow-y: hidden;
+      touch-action: pan-y;
+      /* ✅ bloquea el swipe horizontal */
+      scrollbar-width: none;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      /* Firefox */
+    }
+
+    .carousel3d figure {
+      position: relative;
+      inset: auto;
+      flex: 0 0 100%;
+      max-width: 100%;
+      height: 150px;
+      transform: none;
+      scroll-snap-align: start;
+
+    }
+
+    .carousel3d img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .carousel3d::-webkit-scrollbar {
+      display: none;
+    }
+
+    /* Chrome/Safari */
+  }
+
+ 
+  
 
   /* Cuando el card está abierto (móvil), mostrar descripción */
   /* =========================
@@ -701,9 +561,6 @@ include "includes/ui/header.php";
     /* deep-black */
     visibility: visible;
   }
-
-
-
 
   @media (hover: none) and (pointer: coarse) {
 

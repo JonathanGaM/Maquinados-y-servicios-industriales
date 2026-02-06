@@ -26,7 +26,7 @@ $historiaTxt = $empresa["historia"] ?? $fallback_empresa["historia"] ?? "";
 
       <!-- IMAGEN -->
       <img
-        src="https://thumbs.dreamstime.com/b/hombre-de-ingenier%C3%ADa-que-lleva-uniforme-trabajadores-seguridad-realizar-el-mantenimiento-en-la-f%C3%A1brica-m%C3%A1quina-torno-metal-216109790.jpg"
+        src="<?= htmlspecialchars(($fallback_img_nosotros["hero_bg"] ?? ""), ENT_QUOTES, "UTF-8"); ?>"
         alt="Taller industrial de alta precisión"
         class="absolute inset-0 w-full h-full object-cover brightness-[0.9] contrast-[1.05]" />
 
@@ -147,12 +147,12 @@ $historiaTxt = $empresa["historia"] ?? $fallback_empresa["historia"] ?? "";
         </div>
 
         <img
-          src="assets/img/nosotros/1m.png"
+         src="<?= htmlspecialchars(($fallback_img_nosotros["mision_izq"] ?? ""), ENT_QUOTES, "UTF-8"); ?>"
           class="absolute -left-4 top-[45%] -translate-y-1/2
          h-[300px] object-contain z-20 pointer-events-none" />
 
         <img
-          src="assets/img/nosotros/2m.png"
+         src="<?= htmlspecialchars(($fallback_img_nosotros["vision_der"] ?? ""), ENT_QUOTES, "UTF-8"); ?>"
           class="absolute -right-4 top-[45%] -translate-y-1/2
          h-[300px] object-contain z-20 pointer-events-none" />
 
@@ -292,13 +292,13 @@ $historiaTxt = $empresa["historia"] ?? $fallback_empresa["historia"] ?? "";
     <!-- FONDO (mismo look que el CTA) -->
     <div class="absolute inset-0 z-0">
       <img
-        src="assets/img/capacidades.png"
+      src="<?= htmlspecialchars(($fallback_img_nosotros["capacidades_bg"] ?? ""), ENT_QUOTES, "UTF-8"); ?>"
         alt="Manufactura de precisión"
         class="w-full h-full object-cover brightness-[0.85] contrast-[1.05]"
         loading="lazy"
         decoding="async" />
 
-      <div class="absolute inset-0 bg-gradient-to-b from-navy-blue/85 via-deep-black/70 to-deep-black/95"></div>
+      <div class="absolute inset-0 bg-gradient-to-b from-navy-blue/75 via-deep-black/70 to-deep-black/85"></div>
       <div class="industrial-grid absolute inset-0 opacity-10"></div>
 
       <div class="absolute -top-24 -left-24 w-72 h-72 bg-primary-red/10 rounded-full blur-3xl"></div>
