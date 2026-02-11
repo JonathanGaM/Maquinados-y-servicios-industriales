@@ -236,6 +236,7 @@ rounded-sm shadow-2xl relative overflow-hidden reveal zoom-text">
 "
                 placeholder="Describa brevemente su requerimiento..."></textarea>
             </div>
+<div class="g-recaptcha" data-sitekey="<?= e($cfg['RECAPTCHA_SITE_KEY']); ?>"></div>
 
             <button class="btn-sweep w-full bg-primary-red hover:bg-red-700 text-white py-3.5 px-8
 

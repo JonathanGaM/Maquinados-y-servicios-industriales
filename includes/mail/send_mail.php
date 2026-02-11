@@ -14,7 +14,7 @@ require_once __DIR__ . "/../core/db.php";       // define $pdo (o null si falla)
 require_once __DIR__ . "/../core/db-safe.php";  // db_ok()
 
 // -------------------------------
-// Cargar configuración SMTP + reCAPTCHA
+// Cargar configuraci車n SMTP + reCAPTCHA
 // -------------------------------
 $cfg = require "/home/u236648/secure/msi_mail.php";
 
@@ -57,9 +57,10 @@ if ($recaptcha_response !== '') {
             );
             $result = json_decode($verify, true);
             $captcha_ok = $result['success'] ?? false;
+            
         }
     } catch (Throwable $e) {
-        // API falla, captcha no bloquea el envío
+        // API falla, captcha no bloquea el env赤o
         $captcha_ok = false;
     }
 }
@@ -83,7 +84,7 @@ if (!$captcha_ok) {
 }
 
 // -------------------------------
-// 1) Intentar guardar en BD (solo si hay conexión)
+// 1) Intentar guardar en BD (solo si hay conexi車n)
 // -------------------------------
 $bd_ok = false;
 
@@ -152,7 +153,7 @@ try {
   $mail->CharSet = "UTF-8";
   $mail->isHTML(true);
 
-  $mail->Subject = "Nueva solicitud de cotización - $servicio";
+  $mail->Subject = "Nueva solicitud de cotizaci車n - $servicio";
 
   $safeMensaje = nl2br(htmlspecialchars($mensaje, ENT_QUOTES, "UTF-8"));
   $safeNombre  = htmlspecialchars($nombre, ENT_QUOTES, "UTF-8");
@@ -161,10 +162,10 @@ try {
   $safeServ    = htmlspecialchars($servicio, ENT_QUOTES, "UTF-8");
 
   $mail->Body = "
-    <h2>Nueva solicitud de cotización</h2>
+    <h2>Nueva solicitud de cotizaci車n</h2>
     <p><b>Nombre:</b> {$safeNombre}</p>
     <p><b>Email:</b> {$safeEmail}</p>
-    <p><b>Teléfono:</b> {$safeTel}</p>
+    <p><b>Tel谷fono:</b> {$safeTel}</p>
     <p><b>Servicio:</b> {$safeServ}</p>
     <hr>
     <p><b>Mensaje:</b></p>
@@ -172,7 +173,7 @@ try {
   ";
 
   $mail->AltBody =
-    "Nombre: $nombre\nEmail: $email\nTeléfono: $telefono\nServicio: $servicio\n\nMensaje:\n$mensaje";
+    "Nombre: $nombre\nEmail: $email\nTel谷fono: $telefono\nServicio: $servicio\n\nMensaje:\n$mensaje";
 
   $mail->send();
   $mail_ok = true;
