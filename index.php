@@ -36,9 +36,9 @@ if (empty($rotatingTexts)) {
 
   // ✅ Textos rotativos: BD -> fallback
   window.MSI_INDEX_ROTATING_TEXTS = <?= json_encode(
-    $rotatingTexts,
-    JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE
-  ) ?>;
+                                      $rotatingTexts,
+                                      JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE
+                                    ) ?>;
 </script>
 
 
@@ -57,8 +57,7 @@ if (empty($rotatingTexts)) {
       id="hero-bg-a"
       class="hero-bg-layer is-active"
       alt="Industrial background"
-      src="<?= htmlspecialchars(($MEDIA['hero']['carousel'][0] ?? ''), ENT_QUOTES, 'UTF-8') ?>"
- />
+      src="<?= htmlspecialchars(($MEDIA['hero']['carousel'][0] ?? ''), ENT_QUOTES, 'UTF-8') ?>" />
 
 
     <!-- Capa siguiente (arranca invisible) -->
@@ -100,14 +99,10 @@ if (empty($rotatingTexts)) {
       }
       ?>
       <h1 class="font-extrabold uppercase leading-tight tracking-tight mb-6
-           text-3xl sm:text-4xl md:text-6xl lg:text-7xl">
+           text-3xl sm:text-4xl md:text-5xl lg:text-6xl">
         <span class="text-white">SOLUCIONES DE</span>
         <span class="text-primary-red"> PRECISIÓN INDUSTRIAL</span>
       </h1>
-
-
-
-
       <!-- ✅ TEXTO + BOTONES (aparecen al final juntos) -->
       <div class="hero-surround">
 
@@ -176,13 +171,12 @@ w-full sm:w-auto">
           <img
             alt="Equipo técnico trabajando en maquinado de precisión"
             class="aspect-[4/3] object-cover w-full"
-            src="<?= htmlspecialchars(($MEDIA['home']['liderazgo'] ?? ''), ENT_QUOTES, 'UTF-8') ?>"
- />
+            src="<?= htmlspecialchars(($MEDIA['home']['liderazgo'] ?? ''), ENT_QUOTES, 'UTF-8') ?>" />
         </div>
 
         <!-- CUADRO ROJO -->
-<!-- CUADRO ROJO -->
-<div class="
+        <!-- CUADRO ROJO -->
+        <div class="
   absolute
   bottom-[-2.5rem] sm:-bottom-4
   right-3 sm:-right-6
@@ -191,7 +185,7 @@ w-full sm:w-auto">
   shadow-xl
 ">
           <div class="text-center text-white">
-<span class="block text-xl sm:text-3xl font-black leading-none">
+            <span class="block text-xl sm:text-3xl font-black leading-none">
               <?= experience_decade(MSI_START_YEAR); ?>+
             </span>
             <span class="text-[10px] sm:text-[11px] uppercase tracking-widest font-bold leading-tight">
@@ -202,7 +196,7 @@ w-full sm:w-auto">
       </div>
 
       <!-- DERECHA -->
-<div class="reveal from-right mt-6 sm:mt-0">
+      <div class="reveal from-right mt-6 sm:mt-0">
 
         <h2 class="text-3xl sm:text-4xl md:text-5xl font-black uppercase mb-5 leading-tight text-navy-blue">
           ¿Por qué <span class="text-primary-red">elegirnos?</span>
@@ -279,16 +273,16 @@ w-full sm:w-auto">
 
         </div>
 
-       <a href="nosotros.php"
-  class="inline-flex items-center gap-2
+        <a href="nosotros.php"
+          class="inline-flex items-center gap-2
          bg-navy-blue text-white
          px-6 py-3 text-sm font-bold uppercase tracking-widest
          rounded-md
          hover:bg-[#142e52]
          transition-all">
-  Conocer más
-  <span class="material-symbols-outlined text-sm">read_more</span>
-</a>
+          Conocer más
+          <span class="material-symbols-outlined text-sm">read_more</span>
+        </a>
 
 
       </div>

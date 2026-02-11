@@ -31,12 +31,31 @@ if (!isset($empresa) || !is_array($empresa) || empty($empresa)) {
 <html lang="es">
 
 <head>
-  <meta charset="utf-8" />
+   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MSI Maquinados y Servicios Industriales</title>
-  <link rel="icon" href="assets/img/favicon.ico" type="image/x-icon">
-  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
+
+  <title>Maquinados y Servicios Industriales en Guadalajara | MSI</title>
+
+  <meta name="description" content="MSI Maquinados y Servicios Industriales en Guadalajara. Especialistas en maquinado de precisión, mantenimiento industrial y fabricación de piezas industriales a la medida." />
+
+  <meta name="keywords" content="maquinados industriales, servicios industriales, maquinado de precisión, mantenimiento industrial, fabricación industrial, Guadalajara" />
+
+  <meta name="robots" content="index, follow">
+
+  <!-- Favicons -->
+<!-- Favicons -->
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/img/apple-touch-icon.png">
+<link rel="manifest" href="/assets/img/site.webmanifest">
+
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Maquinados y Servicios Industriales en Guadalajara | MSI">
+  <meta property="og:description" content="Soluciones integrales en maquinado de precisión, mantenimiento y fabricación industrial en Guadalajara.">
+  <meta property="og:image" content="https://maquinadosyserviciosindustriales.com/assets/img/logoMSI.png">
+  <meta property="og:url" content="https://maquinadosyserviciosindustriales.com">
+  <meta property="og:type" content="website">
 
 
   <!-- ✅ Anti-flash: fondo base inmediato (antes de que cargue Tailwind/CSS) -->
@@ -55,6 +74,7 @@ if (!isset($empresa) || !is_array($empresa) || empty($empresa)) {
   <link rel="stylesheet" href="assets/css/loader.css">
   <link rel="stylesheet" href="assets/css/global.css">
   <link rel="stylesheet" href="assets/css/reveal.css">
+
 
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
@@ -222,32 +242,31 @@ if (!isset($empresa) || !is_array($empresa) || empty($empresa)) {
                 <div class="py-2">
                   <?php $isServiciosPage = ($currentPage === 'servicios.php'); ?>
 
-                <?php foreach ($serviciosMenu as $srv): ?>
-  <?php
-    $titulo = (string)($srv['nombre'] ?? '');
-    $descL  = (string)($srv['descripcion_larga'] ?? ($srv['descripcion'] ?? ''));
-    $imgL   = (string)($srv['imagen'] ?? '');
-    $slug   = slugify($titulo);
-    $carousel = $srv["carousel"] ?? [];
-  ?>
+                  <?php foreach ($serviciosMenu as $srv): ?>
+                    <?php
+                    $titulo = (string)($srv['nombre'] ?? '');
+                    $descL  = (string)($srv['descripcion_larga'] ?? ($srv['descripcion'] ?? ''));
+                    $imgL   = (string)($srv['imagen'] ?? '');
+                    $slug   = slugify($titulo);
+                    $carousel = $srv["carousel"] ?? [];
+                    ?>
 
-  <a
-    href="<?= $isServiciosPage ? '#hero-servicios' : 'servicios.php?srv=' . $slug . '#hero-servicios'; ?>"
-    class="<?= $isServiciosPage ? 'js-hero-service' : '' ?> block px-4 py-3
+                    <a
+                      href="<?= $isServiciosPage ? '#hero-servicios' : 'servicios.php?srv=' . $slug . '#hero-servicios'; ?>"
+                      class="<?= $isServiciosPage ? 'js-hero-service' : '' ?> block px-4 py-3
            text-navy-blue font-bold text-[13px]
            hover:bg-primary-red hover:text-white transition-colors"
-    <?php if ($isServiciosPage): ?>
-      data-hero-slug="<?= htmlspecialchars($slug, ENT_QUOTES, 'UTF-8'); ?>"
-      data-hero-title="<?= htmlspecialchars($titulo, ENT_QUOTES, 'UTF-8'); ?>"
-      data-hero-desc="<?= htmlspecialchars($descL, ENT_QUOTES, 'UTF-8'); ?>"
-      data-hero-img="<?= htmlspecialchars($imgL, ENT_QUOTES, 'UTF-8'); ?>"
-      data-hero-badge="Soluciones de alta precisión"
-      data-hero-carousel='<?= htmlspecialchars(json_encode($carousel, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE), ENT_QUOTES, "UTF-8"); ?>'
-    <?php endif; ?>
-  >
-    <?= htmlspecialchars($titulo, ENT_QUOTES, 'UTF-8'); ?>
-  </a>
-<?php endforeach; ?>
+                      <?php if ($isServiciosPage): ?>
+                      data-hero-slug="<?= htmlspecialchars($slug, ENT_QUOTES, 'UTF-8'); ?>"
+                      data-hero-title="<?= htmlspecialchars($titulo, ENT_QUOTES, 'UTF-8'); ?>"
+                      data-hero-desc="<?= htmlspecialchars($descL, ENT_QUOTES, 'UTF-8'); ?>"
+                      data-hero-img="<?= htmlspecialchars($imgL, ENT_QUOTES, 'UTF-8'); ?>"
+                      data-hero-badge="Soluciones de alta precisión"
+                      data-hero-carousel='<?= htmlspecialchars(json_encode($carousel, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE), ENT_QUOTES, "UTF-8"); ?>'
+                      <?php endif; ?>>
+                      <?= htmlspecialchars($titulo, ENT_QUOTES, 'UTF-8'); ?>
+                    </a>
+                  <?php endforeach; ?>
 
                 </div>
 

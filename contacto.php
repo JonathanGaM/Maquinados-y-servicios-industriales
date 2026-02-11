@@ -48,6 +48,8 @@ $waRaw = (string)($empresa["whatsapp"] ?? "");
 $waDigits = preg_replace("/\D+/", "", $waRaw);
 
 $hideTopBar = true;
+$cfg = require "/home/u236648/secure/msi_mail.php";
+
 include "includes/ui/header.php";
 ?>
 
@@ -274,6 +276,19 @@ rounded-sm shadow-2xl relative overflow-hidden reveal zoom-text">
       }, 400);
     }, 3500);
   </script>
+  <script>
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.querySelector("#cotizacion-form form");
+  form.addEventListener("submit", (e) => {
+    const response = grecaptcha.getResponse();
+    if (!response) {
+      e.preventDefault();
+      alert("Por favor, marque la casilla 'No soy un robot' antes de enviar.");
+    }
+  });
+});
+</script>
+
 
   <style>
     @keyframes fadeIn {

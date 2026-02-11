@@ -20,6 +20,7 @@ $empresa = db_first_row(
   $fallback_empresa
 );
 $whatsappText = urlencode("Hola, me gustaría solicitar una cotización");
+
 ?>
 
 
@@ -223,6 +224,9 @@ if ($currentPage !== "contacto.php") {
 <script src="assets/js/reveal.js" defer></script>
 <!-- JS GLOBAL -->
 <script src="assets/js/mobile-links.js" defer></script>
+<!-- reCAPTCHA -->
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
 
 
 

@@ -4,7 +4,7 @@ declare(strict_types=1);
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-// PHPMailer (igual que tú)
+// PHPMailer
 require __DIR__ . "/../vendor/phpmailer/PHPMailer.php";
 require __DIR__ . "/../vendor/phpmailer/SMTP.php";
 require __DIR__ . "/../vendor/phpmailer/Exception.php";
@@ -13,13 +13,17 @@ require __DIR__ . "/../vendor/phpmailer/Exception.php";
 require_once __DIR__ . "/../core/db.php";       // define $pdo (o null si falla)
 require_once __DIR__ . "/../core/db-safe.php";  // db_ok()
 
+// -------------------------------
+// Cargar configuración SMTP + reCAPTCHA
+// -------------------------------
+$cfg = require "/home/u236648/secure/msi_mail.php";
+
 function clean(string $v): string {
   return trim(str_replace(["\r", "\n"], " ", $v));
 }
 
 if ($_SERVER["REQUEST_METHOD"] !== "POST") {
   header("Location: /contacto.php?err=method");
-
   exit;
 }
 
@@ -39,13 +43,52 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 }
 
 // -------------------------------
+// 0) Validar reCAPTCHA (opcional, fallback)
+// -------------------------------
+$recaptcha_response = $_POST['g-recaptcha-response'] ?? '';
+$captcha_ok = false;
+
+if ($recaptcha_response !== '') {
+    try {
+        $secret = $cfg['recaptcha_secret'] ?? '';
+        if ($secret !== '') {
+            $verify = file_get_contents(
+                "https://www.google.com/recaptcha/api/siteverify?secret={$secret}&response={$recaptcha_response}"
+            );
+            $result = json_decode($verify, true);
+            $captcha_ok = $result['success'] ?? false;
+        }
+    } catch (Throwable $e) {
+        // API falla, captcha no bloquea el envío
+        $captcha_ok = false;
+    }
+}
+
+// -------------------------------
+// 0.1) Validaciones extras si captcha falla
+// -------------------------------
+if (!$captcha_ok) {
+    if (strlen($mensaje) > 1000) {
+        header("Location: /contacto.php?err=mensaje_largo");
+        exit;
+    }
+
+    $blacklist = ['spamword1','spamword2'];
+    foreach ($blacklist as $b) {
+        if (stripos($mensaje, $b) !== false) {
+            header("Location: /contacto.php?err=mensaje_sospechoso");
+            exit;
+        }
+    }
+}
+
+// -------------------------------
 // 1) Intentar guardar en BD (solo si hay conexión)
 // -------------------------------
 $bd_ok = false;
 
 if (db_ok()) {
   try {
-    // ✅ tu INSERT original, SIN cambiar tabla/columnas
     $stmt = $GLOBALS["pdo"]->prepare("
       INSERT INTO contactos (nombre, email, telefono, servicio, mensaje)
       VALUES (:nombre, :email, :telefono, :servicio, :mensaje)
@@ -57,10 +100,8 @@ if (db_ok()) {
       ":servicio" => $servicio,
       ":mensaje"  => $mensaje
     ]);
-
     $bd_ok = true;
   } catch (Throwable $e) {
-    // BD falló: no rompemos el flujo, solo marcamos false
     $bd_ok = false;
   }
 }
@@ -70,9 +111,6 @@ if (db_ok()) {
 // -------------------------------
 $mail_ok = false;
 
-$cfg = require "/home/u236648/secure/msi_mail.php";
-
-
 $smtpHost = $cfg["SMTP_HOST"] ?? "";
 $smtpPort = (int)($cfg["SMTP_PORT"] ?? 0);
 $smtpUser = $cfg["SMTP_USER"] ?? "";
@@ -80,7 +118,6 @@ $smtpPass = $cfg["SMTP_PASS"] ?? "";
 $destino  = ($cfg["SMTP_TO"] ?? "") ?: $smtpUser;
 
 if ($smtpHost === "" || $smtpPort === 0 || $smtpUser === "" || $smtpPass === "") {
-  // Si config SMTP está mal, igual puede haber BD guardada -> decide con fallback
   if ($bd_ok) {
     header("Location: /contacto.php?ok=1");
     exit;
@@ -152,6 +189,5 @@ if ($mail_ok || $bd_ok) {
   exit;
 }
 
-// Si ambas fallaron:
 header("Location: /contacto.php?err=mail");
 exit;

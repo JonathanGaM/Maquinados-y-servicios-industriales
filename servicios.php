@@ -80,7 +80,7 @@ include "includes/ui/header.php";
   class="scroll-mt-[170px] sm:scroll-mt-[190px] relative overflow-hidden">
 
   <!-- ✅ Fondo 1: más compacto -->
-  <div class="relative min-h-[23vh] sm:min-h-[30vh] flex items-center">
+  <div class="relative min-h-[20vh] sm:min-h-[28vh] flex items-center">
     <div class="absolute inset-0 z-0">
       <img
         id="hero-bg-img"
@@ -154,7 +154,8 @@ include "includes/ui/header.php";
 </section>
 
 <!-- GRID SERVICIOS -->
-<section id="servicios" class="pt-10 pb-12 sm:pt-12 sm:pb-16 bg-white relative overflow-hidden">
+<section id="servicios" class="pt-8 pb-10 sm:pt-10 sm:pb-14 bg-white relative overflow-hidden">
+
 
   <!-- overlays suaves -->
   <div class="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(2,6,23,0.05)_1px,transparent_0)] [background-size:40px_40px]"></div>
@@ -175,7 +176,8 @@ include "includes/ui/header.php";
       <div class="w-20 h-[2px] bg-primary-red mx-auto mt-4"></div>
     </div>
     <!-- GRID -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
+
 
       <?php foreach ($servicios as $s): ?>
         <?php $carousel = $s["carousel"] ?? []; ?>
@@ -226,10 +228,10 @@ include "includes/ui/header.php";
             to-transparent"></div>
 
           <!-- CONTENIDO -->
-          <div class="absolute inset-0 px-3 py-5 sm:px-4 sm:py-6 flex flex-col justify-end">
+<div class="absolute inset-0 px-3 py-4 sm:px-4 sm:py-5 flex flex-col justify-end">
 
             <!-- TEXTO (espacio reservado para botones) -->
-            <div class="pr-2 pb-14 sm:pb-16">
+            <div class="pr-2 pb-12 sm:pb-14">
               <div class="service-head transform transition-all duration-500 ease-out
     translate-y-16 group-hover:translate-y-0 group-focus-within:translate-y-0">
                 <h3 class="text-lg font-black text-white uppercase leading-tight">
@@ -360,27 +362,42 @@ include "includes/ui/header.php";
           Contamos con la experiencia y herramientas para el maquinado de todo tipo de aceros ferrosos y no ferrosos:
         </p>
 
-        <ul class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+       <ul class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
 
-          <li class="flex items-center gap-3 text-sm font-bold uppercase tracking-wider text-gray-300">
-            <span class="w-2 h-2 bg-primary-red"></span> Acero Inoxidable
-          </li>
-          <li class="flex items-center gap-3 text-sm font-bold uppercase tracking-wider text-gray-300">
-            <span class="w-2 h-2 bg-primary-red"></span> Bronce y Latón
-          </li>
-          <li class="flex items-center gap-3 text-sm font-bold uppercase tracking-wider text-gray-300">
-            <span class="w-2 h-2 bg-primary-red"></span> Aluminio
-          </li>
-          <li class="flex items-center gap-3 text-sm font-bold uppercase tracking-wider text-gray-300">
-            <span class="w-2 h-2 bg-primary-red"></span> Aceros Tratados (4140, D2)
-          </li>
-          <li class="flex items-center gap-3 text-sm font-bold uppercase tracking-wider text-gray-300">
-            <span class="w-2 h-2 bg-primary-red"></span> Plásticos de Ingeniería
-          </li>
-          <li class="flex items-center gap-3 text-sm font-bold uppercase tracking-wider text-gray-300">
-            <span class="w-2 h-2 bg-primary-red"></span> Hierro Vaciado
-          </li>
-        </ul>
+  <li class="flex items-center gap-3 text-sm font-bold uppercase tracking-wider text-gray-300">
+    <span class="w-2 h-2 bg-primary-red"></span> Acero grado herramienta
+  </li>
+
+  <li class="flex items-center gap-3 text-sm font-bold uppercase tracking-wider text-gray-300">
+    <span class="w-2 h-2 bg-primary-red"></span> Acero al carbón
+  </li>
+
+  <li class="flex items-center gap-3 text-sm font-bold uppercase tracking-wider text-gray-300">
+    <span class="w-2 h-2 bg-primary-red"></span> Acero inoxidable
+  </li>
+
+  <li class="flex items-center gap-3 text-sm font-bold uppercase tracking-wider text-gray-300">
+    <span class="w-2 h-2 bg-primary-red"></span> Acero aleado
+  </li>
+
+  <li class="flex items-center gap-3 text-sm font-bold uppercase tracking-wider text-gray-300">
+    <span class="w-2 h-2 bg-primary-red"></span> Bronce y latón
+  </li>
+
+  <li class="flex items-center gap-3 text-sm font-bold uppercase tracking-wider text-gray-300">
+    <span class="w-2 h-2 bg-primary-red"></span> Aluminio
+  </li>
+
+  <li class="flex items-center gap-3 text-sm font-bold uppercase tracking-wider text-gray-300">
+    <span class="w-2 h-2 bg-primary-red"></span> Plásticos de ingeniería
+  </li>
+
+  <li class="flex items-center gap-3 text-sm font-bold uppercase tracking-wider text-gray-300">
+    <span class="w-2 h-2 bg-primary-red"></span> Hierro vaciado
+  </li>
+
+</ul>
+
       </div>
 
       <div class="lg:w-1/2 relative w-full z-10">

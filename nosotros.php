@@ -308,65 +308,68 @@ $historiaTxt = $empresa["historia"] ?? $fallback_empresa["historia"] ?? "";
     </div>
 
     <div class="relative z-10 max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 grid lg:grid-cols-2 gap-6 lg:gap-10 items-start">
+<!-- BLOQUE IZQUIERDO -->
+<div class="reveal zoom-text">
+  <h2 class="text-2xl sm:text-4xl lg:text-5xl font-black uppercase mb-3 sm:mb-4 text-white leading-tight">
+    Capacidades de <span class="text-primary-red">Ingeniería Avanzada</span>
+  </h2>
 
-      <!-- BLOQUE IZQUIERDO -->
-      <div class="reveal zoom-text">
-        <h2 class="text-2xl sm:text-4xl lg:text-5xl font-black uppercase mb-3 sm:mb-4 text-white leading-tight">
-          Capacidades de <span class="text-primary-red">Ingeniería Avanzada</span>
-        </h2>
+  <div class="h-[3px] w-16 bg-primary-red mb-4"></div>
 
-        <div class="h-[3px] w-16 bg-primary-red mb-4"></div>
+  <!-- ✅ Más aire / menos pegado -->
+  <p class="text-base sm:text-lg lg:text-lg text-white/90 max-w-xl leading-relaxed font-medium
+            mt-2 sm:mt-3">
+    Infraestructura especializada para fabricar componentes complejos con tolerancias mínimas y alto desempeño industrial.
+  </p>
 
-        <p class="text-base sm:text-lg lg:text-lg text-white/90 max-w-xl leading-snug font-medium">
-          Infraestructura especializada para fabricar componentes complejos con tolerancias mínimas y alto desempeño industrial.
-        </p>
+  <!-- ✅ Separación extra + mejor legibilidad -->
+  <p class="mt-4 sm:mt-5 text-[11px] sm:text-xs font-medium uppercase tracking-wider text-white/80 leading-relaxed">
+    precisión • repetibilidad • control dimensional • ingeniería avanzada • confiabilidad operativa
+  </p>
+</div>
 
-        <p class="mt-2 text-[11px] sm:text-xs font-medium uppercase tracking-wider text-white/80">
-          precisión • repetibilidad • control dimensional • ingeniería avanzada • confiabilidad operativa
-        </p>
+<!-- BLOQUE DERECHO (CARD) -->
+<div class="reveal zoom-text rounded-sm p-4 sm:p-6 lg:p-7 border border-white/10 bg-deep-black/55 backdrop-blur-sm
+    shadow-2xl shadow-black/40 relative overflow-hidden">
 
+  <div class="pointer-events-none absolute -top-16 -right-16 w-64 h-64 bg-primary-red/10 blur-3xl"></div>
 
-      </div>
+  <h4 class="text-primary-red font-black uppercase tracking-[0.25em] mb-4 text-xs sm:text-sm">
+    Portafolio de Componentes
+  </h4>
 
-      <!-- BLOQUE DERECHO (CARD más compacto) -->
-      <div class="reveal zoom-text rounded-sm p-4 sm:p-6 lg:p-7 border border-white/10 bg-deep-black/55 backdrop-blur-sm
-          shadow-2xl shadow-black/40 relative overflow-hidden">
+  <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3 
+      text-[11px] sm:text-xs 
+      font-medium uppercase tracking-wider 
+      text-white/75">
+    <li class="flex items-center gap-2"><span class="text-primary-red">▸</span> Sinfines y Coronas</li>
+    <li class="flex items-center gap-2"><span class="text-primary-red">▸</span> Piñones</li>
+    <li class="flex items-center gap-2"><span class="text-primary-red">▸</span> Engranes Rectos</li>
+    <li class="flex items-center gap-2"><span class="text-primary-red">▸</span> Engranes Helicoidales</li>
+    <li class="flex items-center gap-2"><span class="text-primary-red">▸</span> Ejes y Flechas</li>
+    <li class="flex items-center gap-2"><span class="text-primary-red">▸</span> Rodillos Industriales</li>
+    <li class="flex items-center gap-2"><span class="text-primary-red">▸</span> Coples y Bridas</li>
+    <li class="flex items-center gap-2"><span class="text-primary-red">▸</span> Pernos Especiales</li>
+    <li class="flex items-center gap-2"><span class="text-primary-red">▸</span> Herramentales</li>
+    <li class="flex items-center gap-2"><span class="text-primary-red">▸</span> Refacciones a Medida</li>
 
-        <div class="pointer-events-none absolute -top-16 -right-16 w-64 h-64 bg-primary-red/10 blur-3xl"></div>
+    <!-- ✅ NUEVO -->
+    <li class="flex items-center gap-2"><span class="text-primary-red">▸</span> Fixtures y Moldes</li>
+  </ul>
 
-        <h4 class="text-primary-red font-black uppercase tracking-[0.25em] mb-4 text-xs sm:text-sm">
-          Portafolio de Componentes
-        </h4>
+  <div class="mt-5">
+    <a href="servicios.php#servicios"
+      class="inline-block px-7 py-2.5 text-[11px] sm:text-xs font-black uppercase tracking-widest
+          border border-primary-red text-primary-red hover:bg-primary-red hover:text-white
+          transition-all duration-300 rounded-md">
+      Ver nuestros servicios
+    </a>
+  </div>
 
-        <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3 
-            text-[11px] sm:text-xs 
-            font-medium uppercase tracking-wider 
-            text-white/75">
-          <li class="flex items-center gap-2"><span class="text-primary-red">▸</span> Sinfines y Coronas</li>
-          <li class="flex items-center gap-2"><span class="text-primary-red">▸</span> Piñones</li>
-          <li class="flex items-center gap-2"><span class="text-primary-red">▸</span> Engranes Rectos</li>
-          <li class="flex items-center gap-2"><span class="text-primary-red">▸</span> Engranes Helicoidales</li>
-          <li class="flex items-center gap-2"><span class="text-primary-red">▸</span> Ejes y Flechas</li>
-          <li class="flex items-center gap-2"><span class="text-primary-red">▸</span> Rodillos Industriales</li>
-          <li class="flex items-center gap-2"><span class="text-primary-red">▸</span> Coples y Bridas</li>
-          <li class="flex items-center gap-2"><span class="text-primary-red">▸</span> Pernos Especiales</li>
-          <li class="flex items-center gap-2"><span class="text-primary-red">▸</span> Herramentales</li>
-          <li class="flex items-center gap-2"><span class="text-primary-red">▸</span> Refacciones a Medida</li>
-        </ul>
+  <div class="mt-6 h-[2px] w-24 bg-primary-red"></div>
+</div>
 
-        <!-- CTA (más pegado, y fuera del <ul> para HTML válido) -->
-        <div class="mt-5">
-          <a href="servicios.php#servicios"
-            class="inline-block px-7 py-2.5 text-[11px] sm:text-xs font-black uppercase tracking-widest
-                border border-primary-red text-primary-red hover:bg-primary-red hover:text-white
-                transition-all duration-300 rounded-md">
-            Ver nuestros servicios
-          </a>
-        </div>
-
-        <div class="mt-6 h-[2px] w-24 bg-primary-red"></div>
-      </div>
-
+     
     </div>
   </section>
   <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3 text-[11px] sm:text-sm uppercase font-bold text-white/80">

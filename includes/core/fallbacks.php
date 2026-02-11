@@ -119,7 +119,7 @@ $fallback_servicios = [
     ],
     "descripcion" => "Rectificado industrial de alta precisión para superficies planas y cilíndricas.",
     "descripcion_larga" => "El servicio de rectificado industrial permite obtener acabados de alta precisión y tolerancias cerradas en piezas mecánicas. Se utiliza para rectificado plano y cilíndrico en componentes que requieren exactitud dimensional, paralelismo y concentricidad. Es una solución ideal para mantenimiento industrial, recuperación de piezas desgastadas, ajuste de componentes críticos y fabricación de refacciones industriales que trabajan bajo condiciones exigentes.",
-    "video" => "assets/img/vid/prue.mp4"
+    "video" => "assets/img/vid/retificado.mp4"
   ],
   [
     "nombre" => "Servicio de Cepillo",
@@ -152,7 +152,7 @@ $fallback_servicios = [
   ],
   [
     "nombre" => "Fabricación de Engranes",
-    "imagen" => "https://acerostorices.com/wp-content/uploads/2024/01/imagen-de-diversos-engranajes.jpg",
+    "imagen" => "assets/img/servicios/engrane.jpeg",
     "carousel" => [
       "assets/img/capacidades.png",
       "assets/img/engrane.png",
@@ -162,13 +162,13 @@ $fallback_servicios = [
     ],
     "descripcion" => "Fabricación de engranes industriales para transmisión de potencia.",
     "descripcion_larga" => "La fabricación de engranes industriales incluye el diseño y mecanizado de piñones, coronas, engranes rectos, helicoidales y sinfines. Este servicio está orientado a sistemas de transmisión de potencia utilizados en maquinaria industrial. Los engranes se fabrican bajo plano o muestra, asegurando correcto perfil, paso y alineación. Es una solución ideal para mantenimiento industrial, reemplazo de refacciones y optimización del rendimiento mecánico.",
-    "video" => "assets/img/vid/prue.mp4"
+    "video" => "assets/img/vid/engranev.mp4"
   ],
   [
-    "nombre" => "Servicio de Torno",
+    "nombre" => "Servicio de Torno Convencional",
     "imagen" => "https://jlmetalmecanica.com/wp-content/uploads/2023/09/SERVICIO-DE-TORNO.jpg",
     "carousel" => [
-      "assets/img/capacidades.png",
+      "assets/img/tornoconvencional.jpeg",
       "assets/img/engrane.png",
       "assets/img/estandares-industriales.png",
       "assets/img/fon1.png",
@@ -190,7 +190,7 @@ $fallback_servicios = [
     ],
     "descripcion" => "Mecanizado de ranuras, chaveteros y geometrías complejas.",
     "descripcion_larga" => "El servicio de fresadora industrial permite el mecanizado de chaveteros, ranuras, cajas, alojamientos y geometrías complejas. Es ideal para la fabricación de componentes mecánicos, adaptación de piezas especiales y mantenimiento industrial. Este proceso garantiza precisión geométrica, buen acabado superficial y compatibilidad exacta en ensambles mecánicos utilizados en maquinaria y equipos industriales.",
-    "video" => "assets/img/vid/prue.mp4"
+    "video" => "assets/img/vid/fresadora.mp4"
   ],
 
 
@@ -269,49 +269,49 @@ $fallback_clientes = [
   [
     "nombre" => "BSM",
     "descripcion" => "Especialistas en la industria azucarera, confían en nuestra reparación de sinfines y coronas de gran escala.",
-    "imagen" => "assets/img/bsm.png",
+    "imagen" => "assets/img/clientes/bsm.png",
     "tag" => "Mantenimiento Crítico"
   ],
   [
     "nombre" => "CAREY",
     "descripcion" => "Empresa del sector agroindustrial que utiliza nuestra tecnología CNC para la fabricación de herramentales especializados.",
-    "imagen" => "assets/img/carey.png",
+    "imagen" => "assets/img/clientes/carey.png",
     "tag" => "Precisión Agrícola"
   ],
   [
     "nombre" => "LATEX MEXICANA",
     "descripcion" => "Principales productores de derivados del látex, requieren piezas de acero inoxidable con acabados sanitarios de alta precisión.",
-    "imagen" => "assets/img/latex_mexicana.png",
+    "imagen" => "assets/img/clientes/latex_mexicana.png",
     "tag" => "Materiales Especiales"
   ],
   [
     "nombre" => "SERVICIOS ELECTROMECÁNICOS",
     "descripcion" => "Empresa de mantenimiento electromecánico que necesita fabricación y reparación de componentes para respuesta rápida en campo.",
-    "imagen" => "assets/img/SER.png",
+    "imagen" => "assets/img/clientes/SER.png",
     "tag" => "Mantenimiento Crítico"
   ],
   [
     "nombre" => "INDOLEA",
     "descripcion" => "Empresa dedicada a oleaginosas que requiere refacciones y componentes industriales para líneas de proceso y manejo de producto.",
-    "imagen" => "assets/img/indolea.png",
+    "imagen" => "assets/img/clientes/indolea.png",
     "tag" => "Refacciones a Medida"
   ],
   [
     "nombre" => "VALO",
     "descripcion" => "Empresa del sector biomédico que demanda componentes de alta precisión para procesos críticos en salud humana y animal.",
-    "imagen" => "assets/img/valo.jpeg",
+    "imagen" => "assets/img/clientes/valo.jpeg",
     "tag" => "Alta Precisión"
   ],
   [
     "nombre" => "FLEXITEK",
     "descripcion" => "Fabricante de empaque flexible que requiere componentes mecánicos precisos para maquinaria de producción y conversión.",
-    "imagen" => "assets/img/flexitek.jpg",
+    "imagen" => "assets/img/clientes/flexitek.jpg",
     "tag" => "Producción Continua"
   ],
   [
     "nombre" => "AVIATION TECHNICAL SERVICES GDL",
     "descripcion" => "Taller aeronáutico que necesita maquinados de alta precisión para reparación y overhaul de componentes críticos.",
-    "imagen" => "assets/img/aviation.jpg",
+    "imagen" => "assets/img/clientes/aviation.jpg",
     "tag" => "Componentes Críticos"
   ],
 
